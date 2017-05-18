@@ -10,9 +10,9 @@ include_once 'RouteTable.php';
 include_once 'MasterController.php';
 
 $uri = $_SERVER['REQUEST_URI'];
-if (strpos($uri, ".php") == false || $uri == '\\'){
+if ($uri == '\\'){
     $uri = RouteTable::$Default;
 }
-$path = Helper::GetPath("test");
+$path = Helper::GetPath($uri);
 Helper::PrintArray($path);
 $masterController = new MasterController($path);
