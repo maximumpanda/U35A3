@@ -11,7 +11,7 @@ namespace Api;
 
 class AlphaController
 {
-    public static function FourOhFour(){
+    public static function GetIndex(){
         return http_response_code(404);
     }
 }

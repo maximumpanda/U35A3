@@ -67,6 +67,7 @@ class MasterController{
         $base = $this->GetControllerBaseName($controllerName);
         Helper::Print($base);
         $methods = get_class_methods($controllerName);
+        Helper::PrintArray($methods);
         $gets = [];
         $posts = [];
         $element = [];
