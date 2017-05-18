@@ -14,10 +14,4 @@ if ($uri == '/'){
     $uri = RouteTable::$DefaultPath;
 }
 $path = array_filter(explode("/", $uri)) ;
-if (end($path)[0] == "?"){
-    Session::SetParams(end($path));
-    array_pop($path);
-}
-Helper::PrintArray($path);
-Helper::PrintArray(Session::$Bag);
 new MasterController($path);

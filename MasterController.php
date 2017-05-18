@@ -19,8 +19,9 @@ class MasterController{
         foreach ($this->controllers as $file){
             include_once $file;
         }
-        $this->Path = $path;
         RouteTable::$Routes = $this->GenerateRouteTable();
+        $this->Path = $path;
+        $this->ReadParams();
         $this->BuildView();
     }
 
@@ -45,7 +46,6 @@ class MasterController{
         foreach ($this->controllers as $controller){
             $table = array_merge($table, $this->GenerateRouteTableElement($controller));
         }
-        Helper::PrintArray($table);
         return $table;
     }
 
@@ -102,5 +102,15 @@ class MasterController{
         $controller = $this->Path[$count-2] . "Controller";
         Helper::Print($controller);
         call_user_func($controller."::".$this->Path[$count-1]);
+    }
+
+    private function ReadParams()
+    {
+        if (end($this->Path)[0] == "?"){
+            Session::SetParams(end($this->Path));
+            array_pop($this->Path);
+        }
+        Helper::PrintArray($this->Path);
+        Helper::PrintArray(Session::$Bag);
     }
 }

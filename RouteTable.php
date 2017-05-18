@@ -14,6 +14,7 @@ class RouteTable
 
     public static function IsValidPath($path, $current = null, $index =0){
         if ($current == null) $current = self::$Routes;
+
         if (isset($current[$path[$index]])){
             if ($current[$path[$index]]);
         }
@@ -21,6 +22,7 @@ class RouteTable
 
     public static function PathToDestination($path){
         $current = self::$Routes;
+
         foreach ($path as $val){
             if (isset($current[$val])){
                 $current = $current[$val];
@@ -28,7 +30,6 @@ class RouteTable
             else{
                 return null;
             }
-
         }
         return $current;
     }
