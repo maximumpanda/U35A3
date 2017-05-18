@@ -76,11 +76,12 @@ class MasterController{
             if ( strpos($method->name, "Get") !== false) array_push($gets, substr($method->name, 3));
             if (strpos($method->name, "Post") !== false) array_push($posts, substr($method->name, 4));
         }
+
         $last = $element;
         for ($i =0; $i < count($parentList)-1; $i++){
             Helper::Print($i . " " . $parentList[$i]);
-            $last = array($parentList[$i] => array());
-            $last = $last[0];
+            $last = [$parentList[$i] => []];
+            $last = end($last);
         }
         $last[$base] =[
             "Controller" => $controllerName,
@@ -88,7 +89,7 @@ class MasterController{
             "Post" => $posts
         ];
         Helper::Print("element: " . $base);
-        Helper::PrintArray($element);
+        Helper::PrintArray($last);
         return $element;
     }
 
