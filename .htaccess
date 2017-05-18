@@ -1,0 +1,5 @@
+RewriteEngine On
+
+# Rewrite all other URLs to index.php/
+RewriteCond %{REQUEST_URI} !^/debugging/
+RewriteRule (.*) Router.php [NC,L]

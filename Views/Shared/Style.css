@@ -1,0 +1,46 @@
+#Header{
+    background-color: white;
+    height: 120px;
+    justify-content: flex-start;
+    display: flex;
+}
+#Header .Title{
+    align-self: center;
+    font-size: 400%;
+}
+.Center{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.Title{
+    font-size: 500%;
+}
+#ViewContainer{
+}
+#Menu {
+    background-color: slategrey;
+    height: 40px;
+    width:100%;
+    display: flex;
+    justify-content:space-around;
+}
+#Menu .Element{
+    align-self: center;
+    padding: 10px;
+}
+
+#Menu .Element:hover{
+    background-color: lightslategrey;
+}
+
+#Footer{
+    background-color:slategrey;
+    height:20px;
+    text-align: center;
+}
+
+body{
+    margin: 0;
+    min-height: 100vh;
+}
