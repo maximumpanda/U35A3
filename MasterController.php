@@ -18,7 +18,9 @@ class MasterController{
         $this->controllers = glob($_SERVER['DOCUMENT_ROOT'] . "/Controllers/*.php");
         foreach ($this->controllers as $file){
             include_once $file;
+
         }
+        RouteTable::$Routes = $this->GenerateRouteTable();
         $this->Path  = $path;
         $this->BuildView();
     }
@@ -38,9 +40,12 @@ class MasterController{
     }
 
     public function GenerateRouteTable(){
+        $table = [];
         foreach ($this->controllers as $controller){
             print $controller;
+            $table[$controller] = $controller;
         }
+        return $table;
     }
 
     private function CallController(){
