@@ -77,19 +77,18 @@ class MasterController{
             if (strpos($method->name, "Post") !== false) array_push($posts, substr($method->name, 4));
         }
 
-        $last = $element;
-        for ($i =0; $i < count($parentList)-1; $i++){
-            Helper::Print($i . " " . $parentList[$i]);
-            $last = [$parentList[$i] => []];
-            $last = end($last);
-        }
-        $last[$base] =[
+        $element[$base] =[
             "Controller" => $controllerName,
             "Get" => $gets,
             "Post" => $posts
         ];
+        $parentListSize = count($parentList);
+        for ($i = $parentListSize-1; $i >= 0; $i--){
+            Helper::Print($i . " " . $parentList[$i]);
+            $newElement[$parentList[$i]] = [$element];
+            $element = $newElement;
+        }
         Helper::Print("element: " . $base);
-        Helper::PrintArray($last);
         Helper::PrintArray($element);
         return $element;
     }
