@@ -15,6 +15,10 @@ class MasterController{
 
     function __construct($path)
     {
+        if (end($path)[0] == "?"){
+            Session::SetParams(end($path));
+            array_pop($path);
+        }
         $this->GetControllers();
         $this->controllers = glob($_SERVER['DOCUMENT_ROOT'] . "/Controllers/*.php");
         foreach ($this->controllers as $file){
@@ -26,10 +30,6 @@ class MasterController{
     }
 
     private function BuildView(){
-        if (end($this->Path)[0] == "?"){
-            Session::SetParams(end($path));
-            array_pop($this->Path);
-        }
         if ($this->Path == "") {
             $objData = RouteTable::$DefaultPath;
         }
