@@ -43,7 +43,7 @@ class MasterController{
     public function GenerateRouteTable(){
         $table = [];
         foreach ($this->controllers as $controller){
-            array_merge($table, $this->GenerateRouteTableElement($controller));
+            $table = array_merge($table, $this->GenerateRouteTableElement($controller));
         }
         Helper::PrintArray($table);
         return $table;
