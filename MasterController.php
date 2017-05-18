@@ -16,7 +16,6 @@ class MasterController{
     function __construct($path)
     {
         $this->GetControllers();
-        $this->controllers = glob($_SERVER['DOCUMENT_ROOT'] . "/Controllers/*.php");
         foreach ($this->controllers as $file){
             include_once $file;
         }
