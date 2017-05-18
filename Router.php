@@ -13,6 +13,6 @@ $uri = $_SERVER['REQUEST_URI'];
 if ($uri == '\\'){
     $uri = RouteTable::$Default;
 }
-$path = Helper::GetPath($uri);
+$path = explode($uri, "/");
 Helper::PrintArray($path);
 $masterController = new MasterController($path);
