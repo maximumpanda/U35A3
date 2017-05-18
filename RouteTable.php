@@ -2,31 +2,9 @@
 include_once $_SERVER["DOCUMENT_ROOT"] ."/MasterController.php";
 class RouteTable
 {
-    public static $Default = "Home/Index.php";
-    public static $Routes = [
-        "Home" => [
-            "Index"
-        ],
-        "Tracker" => [
-            "Index"
-        ],
-        "UserPortal" => [
-            "Index",
-            "Login",
-            "Logout",
-            "History"
-        ],
-        "Error" => [
-            "Index"
-        ],
-        "Api" => [
-            "V1" => [
-                "Insert" => [],
-                "Update" => [],
-                "Delete" => []
-            ]
-        ]
-    ];
+    public static $Default = "Home/Index";
+    public static $DefaultError = "Error/Index/?code=404";
+    public static $Routes = [];
 
     public static $HiddenBranches = [
         "Api",

@@ -22,7 +22,7 @@ class MasterController{
 
         }
         RouteTable::$Routes = $this->GenerateRouteTable();
-        $this->Path  = $path;
+        $this->Path = $path;
         $this->BuildView();
     }
 
@@ -48,8 +48,6 @@ class MasterController{
             $methods =  get_class_methods($controllerName);
             $gets = [];
             $posts = [];
-            Helper::Print($controllerName);
-            Helper::Print(count($methods));
             foreach ($methods as $methodName){
                 if ( strpos($methodName, "Get") !== false) array_push($gets, substr($methodName, 3));
                 if (strpos($methodName, "Post") !== false) array_push($posts, substr($methodName, 4));
@@ -60,7 +58,6 @@ class MasterController{
                 "Post" => $posts
             ];
         }
-        Helper::PrintArray($table);
         return $table;
     }
 

@@ -20,4 +20,4 @@ if (end($path)[0] == "?"){
 }
 Helper::PrintArray($path);
 Helper::PrintArray(Session::$Bag);
-$masterController = new MasterController($path);
+new MasterController($path);
