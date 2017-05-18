@@ -19,7 +19,6 @@ class MasterController{
         $this->controllers = glob($_SERVER['DOCUMENT_ROOT'] . "/Controllers/*.php");
         foreach ($this->controllers as $file){
             include_once $file;
-
         }
         RouteTable::$Routes = $this->GenerateRouteTable();
         $this->Path = $path;
@@ -72,12 +71,13 @@ class MasterController{
         foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir)) as $path){
             if (strpos($path, ".php")) array_push($controllers, $path);
         }
-        Helper::PrintArray($controllers);
+            Helper::PrintArray($controllers);
     }
 
     private function CallController(){
         $count = count($this->Path);
         $controller = $this->Path[$count-2] . "Controller";
+        Helper::Print($controller);
         call_user_func($controller."::".$this->Path[$count-1]);
     }
 }

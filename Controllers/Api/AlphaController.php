@@ -9,7 +9,7 @@
 namespace Api;
 
 
-class AController
+class AlphaController
 {
     public static function FourOhFour(){
         return http_response_code(404);
