@@ -26,6 +26,10 @@ class MasterController{
     }
 
     private function BuildView(){
+        if (end($this->Path)[0] == "?"){
+            Session::SetParams(end($path));
+            array_pop($this->Path);
+        }
         if ($this->Path == "") {
             $objData = RouteTable::$DefaultPath;
         }
@@ -33,8 +37,10 @@ class MasterController{
             $objData = RouteTable::PathToDestination($this->Path);
         }
         if ($objData == null) {
-            $this->Path = RouteTable::$DefaultErrorPath;
+            $objData = RouteTable::$DefaultErrorPath;
         }
+        $this->Path = $objData;
+
         $this->CallController();
         Session::SetView($this->Path);
     }
@@ -57,6 +63,7 @@ class MasterController{
                 "Post" => $posts
             ];
         }
+        Helper::PrintArray($table);
         return $table;
     }
 

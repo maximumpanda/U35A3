@@ -11,13 +11,9 @@ include_once 'MasterController.php';
 
 $uri = $_SERVER['REQUEST_URI'];
 if ($uri == '/'){
-    $uri = RouteTable::$Default;
+    $uri = RouteTable::$DefaultPath;
 }
-$path = explode("/", $uri);
-if (end($path)[0] == "?"){
-    Session::SetParams(end($path));
-    array_pop($path);
-}
+$path = array_filter(explode("/", $uri)) ;
 Helper::PrintArray($path);
 Helper::PrintArray(Session::$Bag);
 new MasterController($path);
