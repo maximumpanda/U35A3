@@ -44,7 +44,6 @@ class MasterController{
     public function GenerateRouteTable(){
         $table = [];
         foreach ($this->controllers as $controller){
-            Helper::Print($controller);
             array_push($table, $this->GenerateRouteTableElement($controller));
         }
         Helper::PrintArray($table);
@@ -61,6 +60,7 @@ class MasterController{
 
     private function GenerateRouteTableElement($controller){
         $parentList = $this->GenerateParentList($controller);
+        Helper::PrintArray($parentList);
         $controllerName = Helper::GetClassName($controller);
         $base = $this->GetControllerBaseName($controllerName);
         $methods = get_class_methods($controllerName);
@@ -73,16 +73,17 @@ class MasterController{
         }
         if ($parentList != null){
             $last = $element;
-            foreach ($parentList as $parent){
-                $last[$parent] = [];
-                $last = $last[$parent];
+
+            for ($i =0; $i < count($parentList)-1; $i++){
+                $last[$parentList[$i]] = [$parentList[$i+1] =>[]];
+                $last = $last[0];
             }
             $last[$base] =[
                 "Controller" => $controllerName,
                 "Get" => $gets,
                 "Post" => $posts
             ];
-            Helper::PrintArray($element);
+
             return $element;
         }
         return false;
