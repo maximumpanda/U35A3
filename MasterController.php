@@ -59,6 +59,7 @@ class MasterController{
         $list = array_pop($list);
         Helper::Print("parentList");
         Helper::PrintArray($list);
+        Helper::Print("end");
         return $list;
     }
 
