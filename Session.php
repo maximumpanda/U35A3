@@ -12,4 +12,12 @@ class Session{
     public static function SetView($val){
         self::$View = $_SERVER['DOCUMENT_ROOT'] . $val;
     }
+    public static function SetParams($paramsString){
+        $params = substr($paramsString, 1);
+        $splitParams = explode("&", $params);
+        foreach ($splitParams as $param){
+            $splitParam = explode("=", $param);
+            Session::$Bag[$splitParam[0]] = $splitParam[1];
+        }
+    }
 }
