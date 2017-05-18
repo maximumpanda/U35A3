@@ -66,7 +66,7 @@ class MasterController{
         Helper::Print($controllerName);
         $base = $this->GetControllerBaseName($controllerName);
         Helper::Print($base);
-        $methods = get_class_methods($controllerName);
+        $methods = (new ReflectionClass($controllerName))->getMethods(ReflectionMethod::IS_PUBLIC);
         Helper::PrintArray($methods);
         $gets = [];
         $posts = [];
