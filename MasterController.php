@@ -11,7 +11,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/Session.php";
 
 class MasterController{
     private $Path = [];
-    private $controllers;
+    private $controllers = [];
 
     function __construct($path)
     {
