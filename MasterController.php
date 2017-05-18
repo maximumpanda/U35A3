@@ -43,8 +43,8 @@ class MasterController{
 
     public function GenerateRouteTable(){
         $table = [];
+        Helper::PrintArray($this->controllers);
         foreach ($this->controllers as $controller){
-            Helper::Print($controller);
             array_push($table, $this->GenerateRouteTableElement($controller));
         }
         Helper::PrintArray($table);
@@ -97,11 +97,9 @@ class MasterController{
 
     private function GetControllers(){
         $dir = $_SERVER['DOCUMENT_ROOT'] . "/Controllers/";
-        $controllers = [];
         foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir)) as $path){
-            if (strpos($path, ".php")) array_push($controllers, $path);
+            if (strpos($path, ".php")) array_push($this->controllers, $path);
         }
-            Helper::PrintArray($controllers);
     }
 
     private function CallController(){
