@@ -31,6 +31,6 @@ class Helper
         if ($lastSlash == false) return false;
         $lastDot = strrpos($filename, ".");
         if ($lastDot == false) return false;
-        return substr($filename, $lastSlash + 1, $lastDot - $lastSlash);
+        return substr($filename, $lastSlash + 1, $lastDot - $lastSlash -1);
     }
 }
