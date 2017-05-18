@@ -24,4 +24,8 @@ class UserPortalController
     public static function GetHistory(){
 
     }
+
+    private static function Test(){
+
+    }
 }
