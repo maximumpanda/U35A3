@@ -83,7 +83,7 @@ class MasterController{
                 "Get" => $gets,
                 "Post" => $posts
             ];
-
+            Helper::PrintArray($element);
             return $element;
         }
         return false;
