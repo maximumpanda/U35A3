@@ -57,17 +57,15 @@ class MasterController{
         Helper::Print($relativePath);
         $list = array_filter(explode("/", $relativePath));
         array_pop($list);
-        Helper::Print("parentList");
-        Helper::PrintArray($list);
-        Helper::Print("end");
         return $list;
     }
 
     private function GenerateRouteTableElement($controller){
         $parentList = $this->GenerateParentList($controller);
-
         $controllerName = Helper::GetClassName($controller);
+        Helper::Print($controllerName);
         $base = $this->GetControllerBaseName($controllerName);
+        Helper::Print($base);
         $methods = get_class_methods($controllerName);
         $gets = [];
         $posts = [];
