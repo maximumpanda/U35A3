@@ -52,9 +52,9 @@ class MasterController{
     }
 
     private function GenerateParentList($controllerPath){
-        $lastDash = strrpos($controllerPath, "/");
+        $lastDot = strrpos($controllerPath, ".");
         $prefixLength =  strlen($_SERVER['DOCUMENT_ROOT'] . "/Controllers/");
-        $relativePath = substr($controllerPath, $prefixLength , $lastDash - $prefixLength);
+        $relativePath = substr($controllerPath, $prefixLength , $lastDot - $prefixLength);
         Helper::Print($relativePath);
         return array_filter(explode("/", $relativePath));
     }
