@@ -15,13 +15,13 @@ class MasterController{
 
     function __construct($path)
     {
-        $this->ReadParams();
         $this->GetControllers();
         foreach ($this->controllers as $file){
             include_once $file;
         }
-        RouteTable::$Routes = $this->GenerateRouteTable();
         $this->Path = $path;
+        $this->ReadParams();
+        RouteTable::$Routes = $this->GenerateRouteTable();
         $this->BuildView();
     }
 
