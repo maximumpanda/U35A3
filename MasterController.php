@@ -54,6 +54,7 @@ class MasterController{
         $lastDash = strrpos($controllerPath, "/");
         $prefixLength =  strlen($_SERVER['DOCUMENT_ROOT'] . "/Controllers/");
         $relativePath = substr($controllerPath, $prefixLength , $lastDash - $prefixLength);
+        Helper::Print($relativePath);
         return array_filter(explode("/", $relativePath));
     }
 
@@ -80,6 +81,7 @@ class MasterController{
                 "Get" => $gets,
                 "Post" => $posts
             ];
+            Helper::PrintArray($element);
             return $element;
         }
         return false;
