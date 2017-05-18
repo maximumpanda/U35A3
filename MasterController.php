@@ -76,11 +76,8 @@ class MasterController{
             if ( strpos($method->name, "Get") !== false) array_push($gets, substr($method->name, 3));
             if (strpos($method->name, "Post") !== false) array_push($posts, substr($method->name, 4));
         }
-        Helper::PrintArray($gets);
-        Helper::PrintArray($posts);
         if ($parentList != null){
             $last = $element;
-
             for ($i =0; $i < count($parentList)-1; $i++){
                 $last[$parentList[$i]] = [$parentList[$i+1] =>[]];
                 $last = $last[0];
@@ -90,6 +87,7 @@ class MasterController{
                 "Get" => $gets,
                 "Post" => $posts
             ];
+            Helper::Print("element:");
             Helper::PrintArray($element);
             return $element;
         }
