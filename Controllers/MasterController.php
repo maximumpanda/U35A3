@@ -6,7 +6,7 @@
  * Time: 11:00 AM
  */
 include_once $_SERVER['DOCUMENT_ROOT'] . "/Sql/Sql.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "Session.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/Session.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/Controllers";
 class MasterController{
     private $Path;
