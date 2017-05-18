@@ -20,6 +20,12 @@ class Helper
         print ("<div>" . $message . "</div>");
     }
 
+    public static function PrintArray($array){
+        foreach ($array as $line){
+            self::Print($line);
+        }
+    }
+
     public static function GetClassName($filename) {
         $lastSlash = strrpos($filename, "/");
         if ($lastSlash == false) return false;

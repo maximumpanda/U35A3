@@ -43,10 +43,21 @@ class MasterController{
         $table = [];
         foreach ($this->controllers as $controller){
             $controllerName = Helper::GetClassName($controller);
-            Helper::Print($controllerName);
-            Helper::Print($this->GetControllerBaseName($controllerName));
-            $table[$controller] = $controller;
+            $base = $this->GetControllerBaseName($controllerName);
+            $methods =  get_class_methods($controllerName);
+            $gets = [];
+            $posts = [];
+            foreach ($methods as $methodName){
+                if (strpos($methodName, "Get") == true) array_push($gets, $methodName);
+                if (strpos($methodName, "Post") == true) array_push($posts, $methodName);
+            }
+            $table[$base] = [
+                "Controller" => $controllerName,
+                "Get" => $gets,
+                "Post" => $posts
+            ];
         }
+        print_r($table);
         return $table;
     }
 
