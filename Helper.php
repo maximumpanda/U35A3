@@ -19,4 +19,12 @@ class Helper
     public static function Print($message){
         print ("<div>" . $message . "</div>");
     }
+
+    public static function GetClassName($filename) {
+        $lastSlash = strrpos($filename, "/");
+        if ($lastSlash == false) return false;
+        $lastDot = strrpos($filename, ".");
+        if ($lastDot == false) return false;
+        return substr($filename, $lastSlash, $lastDot - $lastSlash);
+    }
 }
