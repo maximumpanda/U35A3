@@ -78,7 +78,7 @@ class MasterController{
         }
         $last = $element;
         for ($i =0; $i < count($parentList)-1; $i++){
-            $last[$parentList[$i]] = [$parentList[$i+1] =>[]];
+            $last[$parentList[$i]] = array();
             $last = $last[0];
         }
         $last[$base] =[
