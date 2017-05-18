@@ -55,7 +55,11 @@ class MasterController{
         $prefixLength =  strlen($_SERVER['DOCUMENT_ROOT'] . "/Controllers/");
         $relativePath = substr($controllerPath, $prefixLength , $lastDot - $prefixLength);
         Helper::Print($relativePath);
-        return array_filter(explode("/", $relativePath));
+        $list = array_filter(explode("/", $relativePath));
+        Helper::PrintArray($list);
+        $list = array_pop($list);
+        Helper::PrintArray($list);
+        return $list;
     }
 
     private function GenerateRouteTableElement($controller){
