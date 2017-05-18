@@ -48,7 +48,7 @@ class MasterController{
             $gets = [];
             $posts = [];
             Helper::Print($controllerName);
-            Helper::Print(array_count_values($methods));
+            Helper::Print(count($methods));
             foreach ($methods as $methodName){
                 if (strpos($methodName, "Get") == true) array_push($gets, $methodName);
                 if (strpos($methodName, "Post") == true) array_push($posts, $methodName);
