@@ -56,7 +56,7 @@ class MasterController{
         $relativePath = substr($controllerPath, $prefixLength , $lastDot - $prefixLength);
         Helper::Print($relativePath);
         $list = array_filter(explode("/", $relativePath));
-        //$list = array_pop($list);
+        array_pop($list);
         Helper::Print("parentList");
         Helper::PrintArray($list);
         Helper::Print("end");
