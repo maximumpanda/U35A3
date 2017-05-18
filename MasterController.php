@@ -78,6 +78,7 @@ class MasterController{
         }
         $last = $element;
         for ($i =0; $i < count($parentList)-1; $i++){
+            Helper::Print($i . " " . $parentList[$i]);
             $last[$parentList[$i]] = array();
             $last = $last[0];
         }
