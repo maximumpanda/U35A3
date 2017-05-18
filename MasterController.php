@@ -44,6 +44,7 @@ class MasterController{
     public function GenerateRouteTable(){
         $table = [];
         foreach ($this->controllers as $controller){
+            Helper::Print($controller);
             array_push($table, $this->GenerateRouteTableElement($controller));
         }
         Helper::PrintArray($table);
