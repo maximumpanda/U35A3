@@ -72,9 +72,10 @@ class MasterController{
     private function GetControllers(){
         $dir = $_SERVER['DOCUMENT_ROOT'] . "/Controllers/";
         $controllers = [];
-        foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir)) as $controller){
-            Helper::Print($controller);
+        foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir)) as $path){
+            if (strpos($path, ".php")) array_push($controllers, $path);
         }
+        Helper::PrintArray($controllers);
     }
 
     private function CallController(){
