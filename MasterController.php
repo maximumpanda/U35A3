@@ -76,6 +76,8 @@ class MasterController{
             if ( strpos($methodName, "Get") !== false) array_push($gets, substr($methodName, 3));
             if (strpos($methodName, "Post") !== false) array_push($posts, substr($methodName, 4));
         }
+        Helper::PrintArray($gets);
+        Helper::PrintArray($posts);
         if ($parentList != null){
             $last = $element;
 
