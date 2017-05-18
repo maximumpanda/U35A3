@@ -9,6 +9,9 @@ include_once 'RouterHelper.php';
 include_once 'RouteTable.php';
 include_once 'MasterController.php';
 
-print $_SERVER['REQUEST_URI'];
+$uri = $_SERVER['REQUEST_URI'];
+if (strpos($uri, ".php") == false){
+    $uri = RouteTable::$Default;
+}
 $path = RouterHelper::GetPath("test");
 new MasterController($path);

@@ -7,14 +7,18 @@
  */
 include_once $_SERVER['DOCUMENT_ROOT'] . "/Sql/Sql.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/Session.php";
-foreach (glob($_SERVER['DOCUMENT_ROOT'] . "/Controllers/*.php") as $file){
-    include_once $file;
-}
+
+
 class MasterController{
     private $Path;
+    private $controllers;
 
     function __construct($path)
     {
+        $this->controllers = glob($_SERVER['DOCUMENT_ROOT'] . "/Controllers/*.php");
+        foreach ($this->controllers as $file){
+            include_once $file;
+        }
         $this->Path  = $path;
         $this->BuildView();
     }
@@ -31,6 +35,12 @@ class MasterController{
         }
         $this->CallController();
         Session::SetView($this->Path);
+    }
+
+    public function GenerateRouteTable(){
+        foreach ($this->controllers as $controller){
+            print $controller;
+        }
     }
 
     private function CallController(){

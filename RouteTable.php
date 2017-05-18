@@ -1,6 +1,8 @@
 <?php
+include_once $_SERVER["DOCUMENT_ROOT"] ."/MasterController.php";
 class RouteTable
 {
+    public static $Default = "Home/Index.php";
     public static $Routes = [
         "Home" => [
             "Index"
