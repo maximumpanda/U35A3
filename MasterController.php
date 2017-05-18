@@ -7,7 +7,9 @@
  */
 include_once $_SERVER['DOCUMENT_ROOT'] . "/Sql/Sql.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/Session.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/Controllers";
+foreach (glob($_SERVER['DOCUMENT_ROOT'] . "/Controllers") as $file){
+    include_once $file;
+}
 class MasterController{
     private $Path;
 
