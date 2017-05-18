@@ -83,7 +83,8 @@ class MasterController{
             "Post" => $posts
         ];
         $parentListSize = count($parentList);
-        for ($i = $parentListSize-1; $i >= 0; $i--){
+        Helper::Print($parentListSize);
+        for ($i = $parentListSize-1; $i > 0; $i--){
             Helper::Print($i . " " . $parentList[$i]);
             $newElement[$parentList[$i]] = [$element];
             $element = $newElement;
