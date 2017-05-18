@@ -90,6 +90,7 @@ class MasterController{
         ];
         Helper::Print("element: " . $base);
         Helper::PrintArray($last);
+        Helper::PrintArray($element);
         return $element;
     }
 
