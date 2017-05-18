@@ -48,23 +48,45 @@ class MasterController{
     public function GenerateRouteTable(){
         $table = [];
         foreach ($this->controllers as $controller){
-            $controllerName = Helper::GetClassName($controller);
-            $base = $this->GetControllerBaseName($controllerName);
-            $methods =  get_class_methods($controllerName);
-            $gets = [];
-            $posts = [];
-            foreach ($methods as $methodName){
-                if ( strpos($methodName, "Get") !== false) array_push($gets, substr($methodName, 3));
-                if (strpos($methodName, "Post") !== false) array_push($posts, substr($methodName, 4));
+            $this->GenerateRouteTableElement($controller);
+        }
+        Helper::PrintArray($table);
+        return $table;
+    }
+
+    private function GenerateParentList($controllerPath){
+        $lastDash = strrpos($controllerPath, "/");
+        $prefixLength =  strlen($_SERVER['DOCUMENT_ROOT'] . "/Controllers/");
+        $relativePath = substr($controllerPath, $prefixLength , $lastDash - $prefixLength);
+        return array_filter(explode("/", $relativePath));
+    }
+
+    private function GenerateRouteTableElement($controller){
+        $parentList = $this->GenerateParentList($controller);
+        $controllerName = Helper::GetClassName($controller);
+        $base = $this->GetControllerBaseName($controllerName);
+        $methods = get_class_methods($controllerName);
+        $gets = [];
+        $posts = [];
+        $element = [];
+        foreach ($methods as $methodName){
+            if ( strpos($methodName, "Get") !== false) array_push($gets, substr($methodName, 3));
+            if (strpos($methodName, "Post") !== false) array_push($posts, substr($methodName, 4));
+        }
+        if ($parentList != null){
+            $last = $element;
+            foreach ($parentList as $parent){
+                $last[$parent] = [];
+                $last = $last[$parent];
             }
-            $table[$base] = [
+            $last[$base] =[
                 "Controller" => $controllerName,
                 "Get" => $gets,
                 "Post" => $posts
             ];
+            return $element;
         }
-        Helper::PrintArray($table);
-        return $table;
+        return false;
     }
 
     private function GetControllerBaseName($name){
