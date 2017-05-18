@@ -17,7 +17,6 @@ class MasterController{
     {
         $this->GetControllers();
         foreach ($this->controllers as $file){
-            Helper::Print("include ". $file);
             include_once $file;
         }
         $this->Path = $path;
@@ -43,7 +42,6 @@ class MasterController{
 
     public function GenerateRouteTable(){
         $table = [];
-        Helper::PrintArray($this->controllers);
         foreach ($this->controllers as $controller){
             array_merge($table, $this->GenerateRouteTableElement($controller));
         }
@@ -55,7 +53,6 @@ class MasterController{
         $lastDot = strrpos($controllerPath, ".");
         $prefixLength =  strlen($_SERVER['DOCUMENT_ROOT'] . "/Controllers/");
         $relativePath = substr($controllerPath, $prefixLength , $lastDot - $prefixLength);
-        Helper::Print($relativePath);
         $list = array_filter(explode("/", $relativePath));
         array_pop($list);
         return $list;
