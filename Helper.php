@@ -13,7 +13,7 @@ class Helper
     }
 
     public static function PrintArray($array){
-        print ("<pre>" . print_r($array) . "</pre>");
+        print ("<pre>" . print_r($array, true) . "</pre>");
     }
 
     public static function GetClassName($filename) {
