@@ -10,7 +10,7 @@ include_once 'RouteTable.php';
 include_once 'MasterController.php';
 
 $uri = $_SERVER['REQUEST_URI'];
-if ($uri == '\\'){
+if ($uri == '/'){
     $uri = RouteTable::$Default;
 }
 $path = explode($uri, "/");
