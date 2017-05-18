@@ -15,6 +15,7 @@ class MasterController{
 
     function __construct($path)
     {
+        $this->GetControllers();
         $this->controllers = glob($_SERVER['DOCUMENT_ROOT'] . "/Controllers/*.php");
         foreach ($this->controllers as $file){
             include_once $file;
@@ -66,6 +67,14 @@ class MasterController{
     private function GetControllerBaseName($name){
         $controllerText = strpos($name, "Controller");
         return substr($name, 0, $controllerText);
+    }
+
+    private function GetControllers(){
+        $dir = $_SERVER['DOCUMENT_ROOT'] . "/Controllers/";
+        $controllers = [];
+        foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir)) as $controller){
+            Helper::Print($controller);
+        }
     }
 
     private function CallController(){
