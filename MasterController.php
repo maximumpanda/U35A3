@@ -20,8 +20,8 @@ class MasterController{
         foreach ($this->controllers as $file){
             include_once $file;
         }
-        RouteTable::$Routes = $this->GenerateRouteTable();
         $this->Path = $path;
+        RouteTable::$Routes = $this->GenerateRouteTable();
         $this->BuildView();
     }
 
