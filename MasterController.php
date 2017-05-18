@@ -42,10 +42,17 @@ class MasterController{
     public function GenerateRouteTable(){
         $table = [];
         foreach ($this->controllers as $controller){
-            Helper::Print(Helper::GetClassName($controller));
+            $controllerName = Helper::GetClassName($controller);
+            Helper::Print($controllerName);
+            Helper::Print($this->GetControllerBaseName($controllerName));
             $table[$controller] = $controller;
         }
         return $table;
+    }
+
+    private function GetControllerBaseName($name){
+        $controllerText = strpos($name, "Controller");
+        return substr($name, 0, $controllerText);
     }
 
     private function CallController(){
