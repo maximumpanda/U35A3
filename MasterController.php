@@ -50,8 +50,8 @@ class MasterController{
             Helper::Print($controllerName);
             Helper::Print(count($methods));
             foreach ($methods as $methodName){
-                if (strpos($methodName, "Get") !== false) array_push($gets, $methodName);
-                if (strpos($methodName, "Post") !== false) array_push($posts, $methodName);
+                if ( strpos($methodName, "Get") !== false) array_push($gets, substr($methodName, 3));
+                if (strpos($methodName, "Post") !== false) array_push($posts, substr($methodName, 4));
             }
             $table[$base] = [
                 "Controller" => $controllerName,
@@ -59,7 +59,7 @@ class MasterController{
                 "Post" => $posts
             ];
         }
-        print_r($table);
+        Helper::PrintArray($table);
         return $table;
     }
 
