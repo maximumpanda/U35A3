@@ -9,8 +9,7 @@ include_once 'RouterHelper.php';
 include_once 'RouteTable.php';
 include_once 'MasterController.php';
 
-$uri = $_SERVER['REQUEST_URI'];
-print $uri;
-if (strpos(end($uri), ".php") == false) $uri = $uri . "Index.php";
-$path = RouterHelper::GetPath($uri);
+print $_SERVER['argc'];
+print_r($_SERVER['argv']);
+$path = RouterHelper::GetPath("test");
 new MasterController($path);
