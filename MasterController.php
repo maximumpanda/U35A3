@@ -27,13 +27,13 @@ class MasterController{
 
     private function BuildView(){
         if ($this->Path == "") {
-            $objData = RouteTable::$Routes["Home"]["Home"];
+            $objData = RouteTable::$DefaultPath;
         }
         else {
             $objData = RouteTable::PathToDestination($this->Path);
         }
         if ($objData == null) {
-            $this->Path = "/Error/Index";
+            $this->Path = RouteTable::$DefaultErrorPath;
         }
         $this->CallController();
         Session::SetView($this->Path);
