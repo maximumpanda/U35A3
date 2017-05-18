@@ -15,28 +15,19 @@ class MasterController{
 
     function __construct($path)
     {
+        $this->ReadParams();
         $this->GetControllers();
         foreach ($this->controllers as $file){
             include_once $file;
         }
         RouteTable::$Routes = $this->GenerateRouteTable();
         $this->Path = $path;
-        $this->ReadParams();
         $this->BuildView();
     }
 
     private function BuildView(){
-        if ($this->Path == "") {
-            $objData = RouteTable::$DefaultPath;
-        }
-        else {
-            $objData = RouteTable::PathToDestination($this->Path);
-        }
-        if ($objData == null) {
-            $objData = RouteTable::$DefaultErrorPath;
-        }
-        $this->Path = $objData;
 
+        RouteTable::ValidatePath($this->Path);
         $this->CallController();
         Session::SetView($this->Path);
     }
