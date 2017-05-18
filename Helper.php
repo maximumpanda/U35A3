@@ -6,7 +6,7 @@
  * Date: 4/25/2017
  * Time: 3:21 PM
  */
-class RouterHelper
+class Helper
 {
     public static function GetPath($uri){
         $path = explode("/", $uri);
@@ -15,5 +15,8 @@ class RouterHelper
             $path[$count] = substr($path[$count], 0, strpos($path[$count], "?"));
 
         return array_filter($path);
+    }
+    public static function Print($message){
+        print ("<div>" . $message . "</div>");
     }
 }
