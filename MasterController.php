@@ -17,6 +17,7 @@ class MasterController{
     {
         $this->GetControllers();
         foreach ($this->controllers as $file){
+            Helper::Print("include ". $file);
             include_once $file;
         }
         $this->Path = $path;
