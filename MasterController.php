@@ -60,7 +60,6 @@ class MasterController{
 
     private function GenerateRouteTableElement($controller){
         $parentList = $this->GenerateParentList($controller);
-        Helper::PrintArray($parentList);
         $controllerName = Helper::GetClassName($controller);
         $base = $this->GetControllerBaseName($controllerName);
         $methods = get_class_methods($controllerName);
