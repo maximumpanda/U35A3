@@ -6,9 +6,6 @@
  * Time: 3:54 PM
  */
 
-namespace Api;
-
-
 class AlphaController
 {
     public static function GetIndex(){
