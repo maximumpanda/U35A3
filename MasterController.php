@@ -15,10 +15,6 @@ class MasterController{
 
     function __construct($path)
     {
-        if (end($path)[0] == "?"){
-            Session::SetParams(end($path));
-            array_pop($path);
-        }
         $this->GetControllers();
         $this->controllers = glob($_SERVER['DOCUMENT_ROOT'] . "/Controllers/*.php");
         foreach ($this->controllers as $file){
