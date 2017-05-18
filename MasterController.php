@@ -87,7 +87,7 @@ class MasterController{
         Helper::PrintArray($parentList);
         for ($i = $parentListSize-1; $i >= 0; $i--){
             Helper::Print($i . " " . $parentList[$i]);
-            $newElement[$parentList[$i]] = [$element];
+            $newElement = [ $parentList[$i] => $element];
             $element = $newElement;
         }
         Helper::Print("element: " . $base);
