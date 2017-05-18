@@ -86,7 +86,7 @@ class MasterController{
             "Get" => $gets,
             "Post" => $posts
         ];
-        Helper::Print("element:");
+        Helper::Print("element: " . $base);
         Helper::PrintArray($element);
         return $element;
     }
