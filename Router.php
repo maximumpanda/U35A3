@@ -14,5 +14,5 @@ if (strpos($uri, ".php") == false || $uri == '\\'){
     $uri = RouteTable::$Default;
 }
 $path = Helper::GetPath("test");
-Helper::Print($path);
+Helper::PrintArray($path);
 $masterController = new MasterController($path);

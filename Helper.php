@@ -21,9 +21,7 @@ class Helper
     }
 
     public static function PrintArray($array){
-        foreach ($array as $line){
-            self::Print($line);
-        }
+        print ("<pre>" . print_r($array) . "</pre>");
     }
 
     public static function GetClassName($filename) {
