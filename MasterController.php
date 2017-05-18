@@ -64,11 +64,8 @@ class MasterController{
     private function GenerateRouteTableElement($controller){
         $parentList = $this->GenerateParentList($controller);
         $controllerName = Helper::GetClassName($controller);
-        Helper::Print($controllerName);
         $base = $this->GetControllerBaseName($controllerName);
-        Helper::Print($base);
         $methods = (new ReflectionClass($controllerName))->getMethods(ReflectionMethod::IS_PUBLIC);
-        Helper::PrintArray($methods);
         $gets = [];
         $posts = [];
         $element = [];
@@ -83,7 +80,6 @@ class MasterController{
         ];
         $parentListSize = count($parentList);
         for ($i = $parentListSize-1; $i >= 0; $i--){
-            Helper::Print($i . " " . $parentList[$i]);
             $newElement = [ $parentList[$i] => $element];
             $element = $newElement;
         }
