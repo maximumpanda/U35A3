@@ -9,7 +9,6 @@ include_once 'RouterHelper.php';
 include_once 'RouteTable.php';
 include_once 'MasterController.php';
 
-print $_SERVER['argc'];
-print_r($_SERVER['argv']);
+print $_SERVER['REQUEST_URI'];
 $path = RouterHelper::GetPath("test");
 new MasterController($path);
