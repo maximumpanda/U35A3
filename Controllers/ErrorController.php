@@ -8,7 +8,7 @@
  */
 class ErrorController
 {
-    public static function Index(){
+    public static function GetIndex(){
         Session::$Bag["Title"] = "404";
         Session::$Bag["Message"] = "Page Not Found";
     }

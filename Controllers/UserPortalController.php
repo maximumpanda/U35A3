@@ -9,19 +9,19 @@
 class UserPortalController
 {
 
-    public static function Index(){
+    public static function GetIndex(){
 
     }
 
-    public static function Login(){
+    public static function GetLogin(){
 
     }
 
-    public static function Logout(){
+    public static function GetLogout(){
 
     }
 
-    public static function History(){
+    public static function GetHistory(){
 
     }
 }

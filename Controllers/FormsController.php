@@ -8,10 +8,10 @@
  */
 class FormsController
 {
-    public function Index(){
+    public function GetIndex(){
 
     }
-    public function Form(){
+    public function GetForm(){
         
     }
 }

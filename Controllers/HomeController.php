@@ -8,7 +8,7 @@
  */
 class HomeController
 {
-    public static function Index(){
+    public static function GetIndex(){
 
     }
 }

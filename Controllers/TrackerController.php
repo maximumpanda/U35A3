@@ -8,7 +8,7 @@
  */
 class TrackerController
 {
-    public static function Index(){
+    public static function GetIndex(){
 
     }
 }
