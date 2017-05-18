@@ -2,8 +2,8 @@
 include_once $_SERVER["DOCUMENT_ROOT"] ."/MasterController.php";
 class RouteTable
 {
-    public static $Default = "Home/Index";
-    public static $DefaultError = "Error/Index/?code=404";
+    public static $DefaultPath = ["Home","Index"];
+    public static $DefaultErrorPath = ["Error", "Index", "?code=404"];
     public static $Routes = [];
 
     public static $HiddenBranches = [
