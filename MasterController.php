@@ -72,7 +72,7 @@ class MasterController{
         $gets = [];
         $posts = [];
         $element = [];
-        foreach ($methods as $methodName){
+        foreach ($methods as $x['Name'] => $methodName){
             if ( strpos($methodName, "Get") !== false) array_push($gets, substr($methodName, 3));
             if (strpos($methodName, "Post") !== false) array_push($posts, substr($methodName, 4));
         }
