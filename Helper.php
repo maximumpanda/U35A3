@@ -36,12 +36,16 @@ class Helper
 
     public static function ArrayKeysToLower($array){
         $newArray = [];
-        Helper::PrintArray($array);
         foreach ($array as $key => $value){
             $newArray[strtolower($key)] = $value;
         }
-        Helper::PrintArray($newArray);
-        Helper::Print("lower keys done");
+        return $newArray;
+    }
+    public static function ArrayValuesToLower($array){
+        $newArray = [];
+        foreach ($array as $key => $value){
+            $newArray[$key] = strtolower($value);
+        }
         return $newArray;
     }
 }

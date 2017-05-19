@@ -19,7 +19,7 @@ class MasterController{
         foreach ($this->controllers as $file){
             include_once $file;
         }
-        $this->Path = Helper::ArrayKeysToLower($path);
+        $this->Path = Helper::ArrayValuesToLower($path);
         $this->ReadParams();
         RouteTable::$Routes = $this->GenerateRouteTable();
         $this->BuildView();
