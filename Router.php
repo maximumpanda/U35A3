@@ -8,11 +8,10 @@
 include_once $_SERVER["DOCUMENT_ROOT"] . "/Helper.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/RouteTable.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/MasterController.php";
-include_once $_SERVER["DOCUMENT_ROOT"] . "/InsensitiveArray.php";
 
 $uri = $_SERVER['REQUEST_URI'];
 if ($uri == '/'){
     $uri = RouteTable::$DefaultPath;
 }
-$path = new InsensitiveArray(array_values(array_filter(explode("/", $uri))));
+$path = array_values(array_filter(explode("/", $uri)));
 new MasterController($path);
