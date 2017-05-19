@@ -20,7 +20,7 @@ class RouteTable
             exit();
         }
         if ($result == 0){
-            $path = array_push($path, self::$DefaultView);
+            array_push($path, self::$DefaultView);
             Helper::PrintArray($path);
             //header("location: " . Helper::GetBaseUrl() . "/" . implode("/", $path));
         }
