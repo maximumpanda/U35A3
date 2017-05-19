@@ -28,7 +28,6 @@ class RouteTable
         Helper::PrintArray($current);
         for ($i = 0; $i < $count; $i++) {
             Helper::Print("CheckPath");
-
             if (isset($current[$path[$i]])){
                 Helper::Print($path[$i]);
                 Helper::PrintArray($current[$path[$i]]);
@@ -36,6 +35,7 @@ class RouteTable
                     Helper::Print($path[$i+1]);
                     Helper::PrintArray($current[$path[$i]]);
                     if (isset($current[$path[$i]]["Get"][$path[$i+1]])){
+                        Helper::Print("it's true");
                         return true;
                     }
                 }
