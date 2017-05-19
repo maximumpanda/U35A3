@@ -67,7 +67,7 @@ class MasterController{
             if ( strpos($method->name, "Get") !== false) $gets[strtolower(substr($method->name, 3))] = $method->name;
             if (strpos($method->name, "Post") !== false) $posts[strtolower(substr($method->name, 4))] = $method->name;
         }
-        $element[$base] =[
+        $element[strtolower($base)] =[
             "Controller" => $controllerName,
             "Get" => $gets,
             "Post" => $posts
