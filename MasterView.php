@@ -14,7 +14,6 @@ class MasterView
 
         if ($view != false){
             Session::SetView($view);
-            Helper::Print(Session::$View);
             include_once $_SERVER["DOCUMENT_ROOT"] . "/Views/Shared/_Layout.php";
             return;
         }
