@@ -5,9 +5,12 @@
  * Date: 4/25/2017
  * Time: 3:17 PM
  */
+session_start();
+Session::$Bag =& $_SESSION;
 class Session{
-    public Static $Bag = [];
+    public Static $Bag;
     public static $View;
+
 
     public static function SetView($val){
         self::$View = $_SERVER['DOCUMENT_ROOT'] . $val;
