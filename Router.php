@@ -5,9 +5,10 @@
  * Date: 4/25/2017
  * Time: 3:20 PM
  */
-include_once 'Helper.php';
-include_once 'RouteTable.php';
-include_once 'MasterController.php';
+include_once $_SERVER["DOCUMENT_ROOT"] . "/Helper.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/RouteTable.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/MasterController.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/InsensitiveArray.php";
 
 $uri = $_SERVER['REQUEST_URI'];
 if ($uri == '/'){
