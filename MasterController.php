@@ -99,6 +99,7 @@ class MasterController{
     {
         if (strpos(end($this->Path), "?" ) != false){
             $exploded = explode("?", end($this->Path));
+            Helper::PrintArray($exploded);
             Session::SetParams(end($exploded));
             $count = count($this->Path);
             $this->Path[$count-1] = $exploded[0];
