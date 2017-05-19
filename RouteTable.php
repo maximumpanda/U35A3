@@ -28,11 +28,14 @@ class RouteTable
         Helper::PrintArray($current);
         for ($i = 0; $i < $count; $i++) {
             Helper::Print("CheckPath");
-            Helper::Print($path[$i]);
-            Helper::Print($_SERVER["REQUEST_METHOD"]);
+
             if (isset($current[$path[$i]])){
-                if ($_SERVER["REQUEST_METHOD"] == 'GET' && array_key_exists("Get", $current[$i])){
-                    if (isset($current[$i]["Get"][$path[$i+1]])){
+                Helper::Print($path[$i]);
+                Helper::Print($current[$path[$i]]);
+                if ($_SERVER["REQUEST_METHOD"] == 'GET' && array_key_exists("Get", $current[$path[$i]])){
+                    Helper::Print($path[$i]+1);
+                    Helper::Print($current[$path[$i]]);
+                    if (isset($current[$path[$i]]["Get"][$path[$i+1]])){
                         return true;
                     }
                     else
