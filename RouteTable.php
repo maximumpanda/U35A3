@@ -25,6 +25,7 @@ class RouteTable
     public static function ReDirectError($code = 404, $message = ""){
         Session::$Bag["Code"] = $code;
         Session::$Bag["ErrorMessage"] = $message;
+        Session::$Bag["ErrorMessage"] = debug_backtrace();
         header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath);
         exit();
     }
