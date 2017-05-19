@@ -13,5 +13,5 @@ $uri = $_SERVER['REQUEST_URI'];
 if ($uri == '/'){
     $uri = RouteTable::$DefaultPath;
 }
-$path = array_values(array_filter(explode("/", $uri)));
+$path = new InsensitiveArray(array_values(array_filter(explode("/", $uri))));
 new MasterController($path);
