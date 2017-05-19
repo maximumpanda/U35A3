@@ -17,6 +17,7 @@ class MasterView
 
     public static function GenerateView($path){
         $view = self::ViewExists($path);
+        Helper::
         if ($view != false){
             Session::SetView($view);
             include_once self::$Layout;
@@ -35,7 +36,7 @@ class MasterView
             $itemName = strtolower($item);
             $found = false;
             foreach ($files as $file){
-                if (strtolower($file) == $itemName) {
+                if (strtolower($file) == $itemName || strtolower($file) == $itemName.".html") {
                     $currentDir = $currentDir . "/" . $file;
                     $found = true;
                     continue;
