@@ -34,14 +34,15 @@ class MasterView
             $files = glob($currentDir ."*");
             $itemName = strtolower($currentDir) . strtolower($item);
             $found = false;
+            $lastFound = "";
             Helper::PrintArray($files);
             foreach ($files as $file){
                 Helper::Print(strtolower($file));
                 Helper::Print($itemName);
                 Helper::Print(strtolower($file) == $itemName);
                 if (strtolower($file) == $itemName || strtolower($file) == $itemName . ".html") {
-
                     $currentDir = $currentDir . basename($file). "/";
+                    $lastFound = $file;
                     $found = true;
                     Helper::Print($currentDir);
                     continue;
@@ -50,6 +51,6 @@ class MasterView
             if ($found == false)
                 return false;
         }
-        return $currentDir;
+        return $lastFound;
     }
 }
