@@ -8,7 +8,7 @@
 include_once $_SERVER["DOCUMENT_ROOT"] . "/Helper.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/RouteTable.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/MasterController.php";
-
+session_start();
 $uri = $_SERVER['REQUEST_URI'];
 if ($uri == '/'){
     $uri = RouteTable::$DefaultPath;

@@ -9,7 +9,6 @@
 class ErrorController
 {
     public static function GetIndex(){
-        Helper::Print("Inside GetIndex");
         Session::$Bag["Title"] = "404";
         Session::$Bag["Message"] = "Page Not Found";
     }
