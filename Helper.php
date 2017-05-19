@@ -48,4 +48,13 @@ class Helper
         }
         return $newArray;
     }
+
+    public static function GetRequestMethod(){
+        if ($_SERVER['REQUEST_METHOD'] == "GET")  return "Get";
+        if ($_SERVER['REQUEST_METHOD'] == "POST") return"Post";
+        if ($_SERVER['REQUEST_METHOD'] == "UPDATE") return "Update";
+        else
+            RouteTable::ReDirectError(405);
+
+    }
 }

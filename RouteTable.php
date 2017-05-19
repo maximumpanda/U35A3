@@ -15,16 +15,25 @@ class RouteTable
         $result = RouteTable::CheckPathToDestination($path);
         Helper::Print($result);
         if ($result == -1) {
-            Session::$Bag["Code"] = "404";
-            header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath);
-            exit();
-        }
+            self::ReDirectError();
+    }
         if ($result == 0){
-            array_push($path, self::$DefaultView);
-            header("location: " . Helper::GetBaseUrl() . "/" . implode("/", $path));
-            exit();
+            self::ReDirectIncomplete($path);
         }
         return $result;
+    }
+
+    public static function ReDirectError($code = "404", $message = ""){
+        Session::$Bag["Code"] = $code;
+        Session::$Bag["ErrorMessage"] = $message;
+        header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath);
+        exit();
+    }
+
+    public static function ReDirectIncomplete($path){
+        array_push($path, self::$DefaultView);
+        header("location: " . Helper::GetBaseUrl() . "/" . implode("/", $path));
+        exit();
     }
 
     public static function CheckPathToDestination($path){
@@ -50,9 +59,7 @@ class RouteTable
 
     private static function CheckMethodExists($array, $controllerKey, $viewKey){
         $requestMethod = "";
-        if ($_SERVER['REQUEST_METHOD'] == "GET")  $requestMethod = "Get";
-        if ($_SERVER['REQUEST_METHOD'] == "POST") $requestMethod = "Post";
-        if ($_SERVER['REQUEST_METHOD'] == "UPDATE") $requestMethod = "Update";
+
         if (isset($array[$controllerKey][$requestMethod][$viewKey])){
             return true;
         }
