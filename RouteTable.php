@@ -42,7 +42,6 @@ class RouteTable
         for ($i = 0; $i < $count; $i++) {
             if (isset($current[$path[$i]])){
                 if ($i+1 >= $count){
-                    Helper::Print("incomplete");
                     return 0;
                 }
                 if (self::CheckMethodExists($current, $path[$i], $path[$i+1])){
