@@ -10,6 +10,4 @@
     <?php foreach ($buttons as $button): ?>
         <a href=<?="/".$button?> class="Element"><?=$button?></a>
     <?php endforeach?>
-
-    ?>
 </div>
