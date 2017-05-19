@@ -13,7 +13,6 @@ class RouteTable
 
     public static function ValidatePath($path){
         $result = RouteTable::CheckPathToDestination($path);
-        Helper::Print($result);
         if ($result == -1) {
             self::ReDirectError();
     }
@@ -40,9 +39,6 @@ class RouteTable
         $current = self::$Routes;
         $count = count($path);
         for ($i = 0; $i < $count; $i++) {
-            Helper::Print("looped");
-            Helper::PrintArray($path);
-            Helper::PrintArray($current);
             if (isset($current[$path[$i]])){
                 if ($i+1 >= $count){
                     Helper::Print("incomplete");
