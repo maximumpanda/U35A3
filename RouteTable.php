@@ -38,8 +38,6 @@ class RouteTable
                     if (isset($current[$path[$i]]["Get"][$path[$i+1]])){
                         return true;
                     }
-                    else
-                        return false;
                 }
                 else if ( $_SERVER["REQUEST_METHOD"] == 'POST' && array_key_exists("Post", $current[$i])){
                     if (isset($current[$i]["Post"][$path[$i+1]])){
