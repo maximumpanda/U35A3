@@ -40,6 +40,8 @@ class RouteTable
                 }
                 else{
                     Helper::PrintArray($current[$path[$i]]);
+                    Helper::Print($path[$i+1]);
+                    Helper::PrintArray($current[$path[$i]]);
                     Helper::Print("Test");
                 }
             }
