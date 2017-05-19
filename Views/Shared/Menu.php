@@ -6,10 +6,10 @@
         if (in_array($routeRoot, RouteTable::$HiddenBranches)) continue;
         array_push($buttons, $routeRoot);
     }
-    sort($buttons );
-    foreach ($buttons as $button) {
-        print '<a href="/' . $button . '" class="Element">' . $button . '</a>'."\n";
-    }
+    sort($buttons);?>
+    <?php foreach ($buttons as $button): ?>
+        '<a href="<?=$button;?>" class="Element"><?=$button;?></a>';
+    <?php endforeach; ?>
 
     ?>
 </div>
