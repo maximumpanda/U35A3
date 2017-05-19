@@ -16,7 +16,7 @@ class RouteTable
         $result = RouteTable::CheckPathToDestination($path);
         Helper::Print($result);
         if ($result == false) {
-            header("location: .." . self::$DefaultErrorPath);
+            header("location: " . $_SERVER["SERVER_NAME"] . self::$DefaultErrorPath);
             exit();
         }
         return $result;
