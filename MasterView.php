@@ -8,19 +8,13 @@
  */
 class MasterView
 {
-    public static $Layout;
-
-    function __construct()
-    {
-        self::$Layout = $_SERVER["DOCUMENT_ROOT"] . "/Views/Shared/_Layout.php";
-    }
 
     public static function GenerateView($path){
         $view = self::ViewExists($path);
         Helper::PrintArray($view);
         if ($view != false){
             Session::SetView($view);
-            include_once self::$Layout;
+            include_once $_SERVER["DOCUMENT_ROOT"] . "/Views/Shared/_Layout.php";
             return;
         }
         Helper::Print($view);
