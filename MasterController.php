@@ -47,6 +47,7 @@ class MasterController{
     }
 
     private function ReadParams() {
+        Helper::PrintArray($this->Path);
         if (strpos(end($this->Path), "?" ) != false){
             $exploded = explode("?", end($this->Path));
             Session::SetParams(end($exploded));
