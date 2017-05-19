@@ -8,7 +8,6 @@
  */
 class MasterView
 {
-    public static $file;
     public static $Layout;
 
     function __construct()
@@ -23,6 +22,7 @@ class MasterView
             include_once self::$Layout;
             return;
         }
-        RouteTable::ReDirectError(404);
+        Helper::Print($file);
+        //RouteTable::ReDirectError(404);
     }
 }
