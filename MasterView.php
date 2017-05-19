@@ -17,8 +17,7 @@ class MasterView
             include_once $_SERVER["DOCUMENT_ROOT"] . "/Views/Shared/_Layout.php";
             return;
         }
-        Helper::Print($view);
-        //RouteTable::ReDirectError(404);
+        RouteTable::ReDirectError(404);
     }
 
     public static function ViewExists($path){
@@ -29,16 +28,11 @@ class MasterView
             $itemName = strtolower($currentDir) . strtolower($item);
             $found = false;
             $lastFound = "";
-            Helper::PrintArray($files);
             foreach ($files as $file){
-                Helper::Print(strtolower($file));
-                Helper::Print($itemName);
-                Helper::Print(strtolower($file) == $itemName);
                 if (strtolower($file) == $itemName || strtolower($file) == $itemName . ".html") {
                     $currentDir = $currentDir . basename($file). "/";
                     $lastFound = $file;
                     $found = true;
-                    Helper::Print($currentDir);
                     continue;
                 }
             }
