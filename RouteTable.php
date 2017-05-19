@@ -36,6 +36,7 @@ class RouteTable
             Helper::PrintArray($current);
             if (isset($current[$path[$i]])){
                 if ($i+1 >= $count){
+                    Helper::Print("incomplete");
                     return 0;
                 }
                 if ($_SERVER["REQUEST_METHOD"] == 'GET' && array_key_exists("Get", $current[$path[$i]])){
