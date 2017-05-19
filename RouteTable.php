@@ -49,7 +49,10 @@ class RouteTable
     }
 
     private static function CheckMethodExists($array, $controllerKey, $viewKey){
-        $requestMethod = $_SERVER["REQUEST_METHOD"];
+        $requestMethod = "";
+        if ($_SERVER['REQUEST_METHOD'] == "GET")  $requestMethod = "Get";
+        if ($_SERVER['REQUEST_METHOD'] == "POST") $requestMethod = "Post";
+        if ($_SERVER['REQUEST_METHOD'] == "UPDATE") $requestMethod = "Update";
         if (isset($array[$controllerKey][$requestMethod][$viewKey])){
             return true;
         }
