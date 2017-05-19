@@ -8,7 +8,7 @@
     }
     sort($buttons );
     foreach ($buttons as $button) {
-        print '<a href="/' . $button . '" class="Element">' . $button . '</a>\n';
+        print '<a href="/' . $button . '" class="Element">' . $button . '</a>'."\n";
     }
 
     ?>
