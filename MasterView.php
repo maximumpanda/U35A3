@@ -39,6 +39,7 @@ class MasterView
                 Helper::Print($file);
                 Helper::Print($itemName);
                 if (strtolower($file) == $itemName || strtolower($file) == $itemName.".html") {
+                    Helper::Print($currentDir);
                     $currentDir = $currentDir . "/" . $file;
                     $found = true;
                 }
