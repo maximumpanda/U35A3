@@ -17,7 +17,7 @@ class MasterView
 
     public static function GenerateView($path){
         $view = self::ViewExists($path);
-        Helper::
+        Helper::PrintArray($view);
         if ($view != false){
             Session::SetView($view);
             include_once self::$Layout;
