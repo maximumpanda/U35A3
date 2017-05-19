@@ -41,7 +41,6 @@ class MasterView
                 if (strtolower($file) == $itemName || strtolower($file) == $itemName.".html") {
                     $currentDir = $currentDir . "/" . $file;
                     $found = true;
-                    continue;
                 }
             }
             if ($found == false)
