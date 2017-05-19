@@ -67,8 +67,8 @@ class MasterController{
         }
         $element[strtolower($base)] =[
             "Controller" => $controllerName,
-            "Get" => $gets,
-            "Post" => $posts
+            "GET" => $gets,
+            "POST" => $posts
         ];
         $parentListSize = count($parentList);
         for ($i = $parentListSize-1; $i >= 0; $i--){
