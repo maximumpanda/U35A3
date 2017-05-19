@@ -16,12 +16,13 @@ class RouteTable
         Helper::Print($result);
         if ($result == -1) {
             Session::$Bag["Code"] = "404";
-            header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath);
+            //header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath);
             exit();
         }
         if ($result == 0){
             array_push($path, self::$DefaultView);
-            header("location: " . Helper::GetBaseUrl() . "/" . implode("/", $path));
+            //header("location: " . Helper::GetBaseUrl() . "/" . implode("/", $path));
+            exit();
         }
         return $result;
     }
