@@ -31,6 +31,6 @@ class Helper
         else{
             $protocol = 'http';
         }
-        return $protocol . "://" . parse_url($_SERVER["REQUEST_URI"], PHP_Url_Host);
+        return $protocol . "://" . parse_url($_SERVER["REQUEST_URI"])['host'];
     }
 }
