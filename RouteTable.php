@@ -2,9 +2,9 @@
 include_once $_SERVER["DOCUMENT_ROOT"] ."/MasterController.php";
 class RouteTable
 {
-    public static $DefaultPath = "/Home/Index";
-    public static $DefaultView = "Index";
-    public static $DefaultErrorPath = "/Error/Index?code=404";
+    public static $DefaultPath = "/home/index";
+    public static $DefaultView = "index";
+    public static $DefaultErrorPath = "/error/index?code=404";
     public static $Routes = [];
 
     public static $HiddenBranches = [
