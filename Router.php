@@ -15,4 +15,5 @@ if ($uri == '/'){
 }
 $path = array_values(array_filter(explode("/", $uri)));
 Helper::Print($_SERVER['SERVER_NAME']);
+Helper::Print(Helper::GetBaseUrl());
 new MasterController($path);

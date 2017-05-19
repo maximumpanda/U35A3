@@ -23,4 +23,14 @@ class Helper
         if ($lastDot == false) return false;
         return substr($filename, $lastSlash + 1, $lastDot - $lastSlash -1);
     }
+
+    public static function GetBaseUrl(){
+        if (isset($_SERVER["https"])){
+            $protocol = ($_SERVER['https'] && $_SERVER["HTTPS"] != "off") ? "https" : "http";
+        }
+        else{
+            $protocol = 'http';
+        }
+        return $protocol . "://" . parse_url($_SERVER["REQUEST_URI"], PHP_Url_Host);
+    }
 }
