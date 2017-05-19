@@ -14,7 +14,7 @@ class RouteTable
     public static function ValidatePath($path){
         $result = RouteTable::CheckPathToDestination($path);
         if ($result == -1) {
-            self::ReDirectError(404, "test");
+            self::ReDirectError(404);
     }
         if ($result == 0){
             self::ReDirectIncomplete($path);
