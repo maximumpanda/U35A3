@@ -97,7 +97,7 @@ class MasterController{
 
     private function ReadParams()
     {
-        if (end($this->Path)[0] == "?"){
+        if (strpos(end($this->Path), "?" ) != false){
             Session::SetParams(end($this->Path));
             array_pop($this->Path);
         }
