@@ -4,7 +4,7 @@ class RouteTable
 {
     public static $DefaultPath = "/Home/Index";
     public static $DefaultView = "Index";
-    public static $DefaultErrorPath = "/Error/Index/?code=404";
+    public static $DefaultErrorPath = "/Error/Index?code=404";
     public static $Routes = [];
 
     public static $HiddenBranches = [
@@ -16,7 +16,7 @@ class RouteTable
         $result = RouteTable::CheckPathToDestination($path);
         Helper::Print($result);
         if ($result == false) {
-            //header("location: .." . self::$DefaultErrorPath);
+            header("location: .." . self::$DefaultErrorPath);
             exit();
         }
         return $result;
