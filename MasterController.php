@@ -50,10 +50,8 @@ class MasterController{
 
     private function FindController($name){
         foreach ($this->controllers as $controller){
-            Helper::Print(strtolower($controller));
-            Helper::Print(strtolower($name."Controller"));
-            Helper::Print(basename($controller));
-            if (basename(strtolower($controller)) == strtolower($name."controller.php")){
+            $pathParts = pathinfo($controller);
+            if (strtolower($pathParts['filename']) == strtolower($name."controller")){
                 Helper::Print($controller);
             }
 
