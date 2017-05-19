@@ -28,7 +28,7 @@ class MasterController{
 
         RouteTable::ValidatePath($this->Path);
         $this->CallController();
-        Session::SetView($this->Path);
+        MasterView::GenerateView($this->Path);
     }
 
     private function GetControllers(){

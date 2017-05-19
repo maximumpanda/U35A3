@@ -22,7 +22,7 @@ class RouteTable
         return $result;
     }
 
-    public static function ReDirectError($code = "404", $message = ""){
+    public static function ReDirectError($code = 404, $message = ""){
         Session::$Bag["Code"] = $code;
         Session::$Bag["ErrorMessage"] = $message;
         header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath);
