@@ -31,7 +31,7 @@ class Helper
         else{
             $protocol = 'http';
         }
-        Helper::PrintArray(parse_url($_SERVER["REQUEST_URI"]));
+        Helper::Print($_SERVER['HTTP_HOST']);
         return $protocol . "://";
     }
 }
