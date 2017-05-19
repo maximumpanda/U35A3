@@ -4,8 +4,7 @@ class RouteTable
 {
     public static $DefaultPath = "/home/index";
     public static $DefaultView = "index";
-    public static $DefaultErrorPath = "/error/index?code=404&msg=";
-    public static $Message = "";
+    public static $DefaultErrorPath = "/error/index";
     public static $Routes = [];
     public static $HiddenBranches = [
         "Api",
@@ -16,7 +15,8 @@ class RouteTable
         $result = RouteTable::CheckPathToDestination($path);
         Helper::Print($result);
         if ($result == -1) {
-            header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath . self::$Message);
+            Session::$Bag["Code"] = "404";
+            header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath);
             exit();
         }
         if ($result == 0){
@@ -44,7 +44,6 @@ class RouteTable
                 $current = $current[$path[$i]];
             }
         }
-        self::$Message =  implode( "_", $path);
         return -1;
     }
 
@@ -54,5 +53,56 @@ class RouteTable
             return true;
         }
         return false;
+    }
+
+    public static function GenerateRouteTable($controllers){
+        $table = [];
+        foreach ($controllers as $controller){
+            $table = array_merge($table, self::GenerateRouteTableElement($controller));
+        }
+        self::$Routes = $table;
+    }
+
+    private static function GenerateParentList($controllerPath){
+        $lastDot = strrpos($controllerPath, ".");
+        $prefixLength =  strlen($_SERVER['DOCUMENT_ROOT'] . "/Controllers/");
+        $relativePath = substr($controllerPath, $prefixLength , $lastDot - $prefixLength);
+        $list = array_filter(explode("/", $relativePath));
+        array_pop($list);
+        $res = [];
+        foreach ($list as $key => $value){
+            $res[$key] = strtolower($value);
+        }
+        return $res;
+    }
+
+    private static function GenerateRouteTableElement($controller){
+        $parentList = self::GenerateParentList($controller);
+        $controllerName = Helper::GetClassName($controller);
+        $base = self::GetControllerBaseName($controllerName);
+        $methods = (new ReflectionClass($controllerName))->getMethods(ReflectionMethod::IS_PUBLIC);
+        $gets = [];
+        $posts = [];
+        $element = [];
+        foreach ($methods as $method){
+            if ( strpos($method->name, "Get") !== false) $gets[strtolower(substr($method->name, 3))] = $method->name;
+            if (strpos($method->name, "Post") !== false) $posts[strtolower(substr($method->name, 4))] = $method->name;
+        }
+        $element[strtolower($base)] =[
+            "Controller" => $controllerName,
+            "Get" => $gets,
+            "Post" => $posts
+        ];
+        $parentListSize = count($parentList);
+        for ($i = $parentListSize-1; $i >= 0; $i--){
+            $newElement = [ $parentList[$i] => $element];
+            $element = $newElement;
+        }
+        return $element;
+    }
+
+    private static function GetControllerBaseName($name){
+        $controllerText = strpos($name, "Controller");
+        return substr($name, 0, $controllerText);
     }
 }

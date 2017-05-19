@@ -13,15 +13,14 @@ class MasterController{
     private $Path = [];
     private $controllers = [];
 
-    function __construct($path)
-    {
+    function __construct($path) {
         $this->GetControllers();
         foreach ($this->controllers as $file){
             include_once $file;
         }
         $this->Path = Helper::ArrayValuesToLower($path);
         $this->ReadParams();
-        RouteTable::$Routes = $this->GenerateRouteTable();
+        RouteTable::GenerateRouteTable($this->controllers);
         $this->BuildView();
     }
 
@@ -30,57 +29,6 @@ class MasterController{
         RouteTable::ValidatePath($this->Path);
         $this->CallController();
         Session::SetView($this->Path);
-    }
-
-    public function GenerateRouteTable(){
-        $table = [];
-        foreach ($this->controllers as $controller){
-            $table = array_merge($table, $this->GenerateRouteTableElement($controller));
-        }
-        return $table;
-    }
-
-    private function GenerateParentList($controllerPath){
-        $lastDot = strrpos($controllerPath, ".");
-        $prefixLength =  strlen($_SERVER['DOCUMENT_ROOT'] . "/Controllers/");
-        $relativePath = substr($controllerPath, $prefixLength , $lastDot - $prefixLength);
-        $list = array_filter(explode("/", $relativePath));
-        array_pop($list);
-        $res = [];
-        foreach ($list as $key => $value){
-            $res[$key] = strtolower($value);
-        }
-        return $res;
-    }
-
-    private function GenerateRouteTableElement($controller){
-        $parentList = $this->GenerateParentList($controller);
-        $controllerName = Helper::GetClassName($controller);
-        $base = $this->GetControllerBaseName($controllerName);
-        $methods = (new ReflectionClass($controllerName))->getMethods(ReflectionMethod::IS_PUBLIC);
-        $gets = [];
-        $posts = [];
-        $element = [];
-        foreach ($methods as $method){
-            if ( strpos($method->name, "Get") !== false) $gets[strtolower(substr($method->name, 3))] = $method->name;
-            if (strpos($method->name, "Post") !== false) $posts[strtolower(substr($method->name, 4))] = $method->name;
-        }
-        $element[strtolower($base)] =[
-            "Controller" => $controllerName,
-            "GET" => $gets,
-            "POST" => $posts
-        ];
-        $parentListSize = count($parentList);
-        for ($i = $parentListSize-1; $i >= 0; $i--){
-            $newElement = [ $parentList[$i] => $element];
-            $element = $newElement;
-        }
-        return $element;
-    }
-
-    private function GetControllerBaseName($name){
-        $controllerText = strpos($name, "Controller");
-        return substr($name, 0, $controllerText);
     }
 
     private function GetControllers(){
@@ -96,8 +44,7 @@ class MasterController{
         call_user_func($controller."::".$this->Path[$count-1]);
     }
 
-    private function ReadParams()
-    {
+    private function ReadParams() {
         if (strpos(end($this->Path), "?" ) != false){
             $exploded = explode("?", end($this->Path));
             Session::SetParams(end($exploded));
