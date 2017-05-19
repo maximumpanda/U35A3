@@ -19,7 +19,7 @@ class MasterController{
         foreach ($this->controllers as $file){
             include_once $file;
         }
-        $this->Path = $path;
+        $this->Path = Helper::ArrayValuesToLower($path);
         $this->ReadParams();
         RouteTable::GenerateRouteTable($this->controllers);
         $this->BuildView();
@@ -47,7 +47,6 @@ class MasterController{
     }
 
     private function ReadParams() {
-        Helper::PrintArray($this->Path);
         if (strpos(end($this->Path), "?" ) != false){
             $exploded = explode("?", end($this->Path));
             Session::SetParams(end($exploded));
