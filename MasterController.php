@@ -51,6 +51,7 @@ class MasterController{
         foreach ($list as $key => $value){
             $res[strtolower($key)] = $value;
         }
+        Helper::PrintArray($res);
         return $res;
     }
 
