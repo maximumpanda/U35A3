@@ -7,8 +7,9 @@ class RouteTable
     public static $DefaultErrorPath = "/error/index";
     public static $Routes = [];
     public static $HiddenBranches = [
-        "Api",
-        "Error"
+        "api",
+        "error",
+        "forms"
     ];
 
     public static function ValidatePath($path){
