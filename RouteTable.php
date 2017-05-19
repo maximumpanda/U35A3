@@ -27,13 +27,13 @@ class RouteTable
         Session::$Bag["ErrorMessage"] = $message;
         print debug_backtrace();
         //header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath);
-        exit();
+        //exit();
     }
 
     public static function ReDirectIncomplete($path){
         array_push($path, self::$DefaultView);
         //header("location: " . Helper::GetBaseUrl() . "/" . implode("/", $path));
-        exit();
+        //exit();
     }
 
     public static function CheckPathToDestination($path){
