@@ -22,7 +22,7 @@ class RouteTable
         if ($result == 0){
             $path = array_push($path, self::$DefaultView);
             Helper::PrintArray($path);
-            header("location: " . Helper::GetBaseUrl() . "/" . implode("/", $path));
+            //header("location: " . Helper::GetBaseUrl() . "/" . implode("/", $path));
         }
         return $result;
     }
