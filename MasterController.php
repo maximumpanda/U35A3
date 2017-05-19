@@ -98,8 +98,11 @@ class MasterController{
     private function ReadParams()
     {
         if (strpos(end($this->Path), "?" ) != false){
-            Session::SetParams(end($this->Path));
-            array_pop($this->Path);
+            $exploded = explode("?", end($this->Path));
+            Session::SetParams(end($exploded));
+            $count = count($this->Path);
+            $this->Path[$count-1] = $exploded[0];
+            array_filter($this->Path);
         }
         Helper::PrintArray($this->Path);
         Helper::PrintArray(Session::$Bag);

@@ -13,5 +13,5 @@ $uri = $_SERVER['REQUEST_URI'];
 if ($uri == '/'){
     $uri = RouteTable::$DefaultPath;
 }
-$path = array_filter(preg_split("/(\\/|\\?)/", $uri)) ;
+$path = array_filter(explode("/", $uri)) ;
 new MasterController($path);
