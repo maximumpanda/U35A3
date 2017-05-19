@@ -16,7 +16,7 @@ class MasterView
             include_once $_SERVER["DOCUMENT_ROOT"] . "/Views/Shared/_Layout.php";
             return;
         }
-        RouteTable::ReDirectError(404);
+        RouteTable::ReDirectError(404, $view);
     }
 
     public static function FindView($path){
