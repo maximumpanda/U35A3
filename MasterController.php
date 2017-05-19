@@ -52,6 +52,7 @@ class MasterController{
         foreach ($this->controllers as $controller){
             Helper::Print(strtolower($controller));
             Helper::Print(strtolower($name."Controller"));
+            Helper::Print(basename($controller));
             if (strtolower($controller) == strtolower($name."Controller")){
                 Helper::Print($controller);
             }
