@@ -37,10 +37,6 @@ class RouteTable
                         return true;
                     }
                 }
-                else {
-                    $current = $current[$i];
-                    Helper::PrintArray($current);
-                }
             }
         }
         self::$Message =  implode( "_", $path);
