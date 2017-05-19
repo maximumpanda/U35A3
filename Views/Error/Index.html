@@ -11,6 +11,7 @@
     </div>
     <div class="Message">
         <?php
+            Helper::Print(Session::$Bag["ErrorMessage"]);
             print Session::$Bag["ErrorMessage"];
         ?>
     </div>

@@ -9,7 +9,6 @@
 class ErrorController
 {
     public static function GetIndex(){
-        Session::$Bag["Title"] = Session::$Bag["Code"];
         Session::$Bag["Message"] = "Page Not Found";
     }
 }
