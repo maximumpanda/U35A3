@@ -37,6 +37,9 @@ class RouteTable
                         return true;
                     }
                 }
+                else{
+                    Helper::PrintArray($current[$path[$i]]);
+                }
             }
         }
         self::$Message =  implode( "_", $path);
