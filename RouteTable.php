@@ -15,9 +15,13 @@ class RouteTable
     public static function ValidatePath($path){
         $result = RouteTable::CheckPathToDestination($path);
         Helper::Print($result);
-        if ($result == false) {
+        if ($result == -1) {
             //header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath . self::$Message);
             exit();
+        }
+        if ($result == 0){
+            $path = array_push(self::$DefaultView);
+            header("location: " . Helper::GetBaseUrl() . "/" . implode("/", $path));
         }
         return $result;
     }
@@ -32,19 +36,22 @@ class RouteTable
             if (isset($current[$path[$i]])){
                 if ($_SERVER["REQUEST_METHOD"] == 'GET' && array_key_exists("Get", $current[$path[$i]])){
                     if (isset($current[$path[$i]]["Get"][$path[$i+1]])){
-                        return true;
+                        return 1;
                     }
                 }
                 else if ( $_SERVER["REQUEST_METHOD"] == 'POST' && array_key_exists("Post", $current[$i])){
                     if (isset($current[$i]["Post"][$path[$i+1]])){
-                        return true;
+                        return 1;
                     }
+                }
+                if ($i+1 >= $count){
+                    return 0;
                 }
                 $current = $current[$path[$i]];
             }
         }
         Helper::Print("Failed");
         self::$Message =  implode( "_", $path);
-        return false;
+        return -1;
     }
 }
