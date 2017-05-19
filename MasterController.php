@@ -42,9 +42,19 @@ class MasterController{
     private function CallController(){
         $count = count($this->Path);
         $controller = $this->FindController($this->Path[$count-2]);
-        Helper::Print($controller."::".Helper::GetRequestMethod().$this->Path[$count-1]);
-        call_user_func($controller."::".Helper::GetRequestMethod().$this->Path[$count-1]);
+        $method = $this->FindMethod($controller, end($this->Path));
+        Helper::Print($controller."::".$method);
+        call_user_func($controller."::".$method);
 
+    }
+
+    public function FindMethod($class, $name){
+        $methods = (new ReflectionClass($class))->getMethods(ReflectionMethod::IS_PUBLIC);
+        foreach ($methods as $method){
+            if (strtolower($method) == strtolower(Helper::GetRequestMethod().$name))
+                return $method;
+        }
+        return false;
     }
 
     private function FindController($name){
