@@ -36,7 +36,7 @@ class MasterView
             $found = false;
             Helper::PrintArray($files);
             foreach ($files as $file){
-                Helper::Print($file);
+                Helper::Print(strtolower($file));
                 Helper::Print($itemName);
                 if (strtolower($file) == $itemName || strtolower($file) == $itemName . ".html") {
                     Helper::Print($currentDir);
