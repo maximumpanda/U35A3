@@ -13,14 +13,8 @@ class RouteTable
     ];
 
     public static function ValidatePath($path){
-        Helper::PrintArray($path);
-        if ($path == "") {
-            //header("location: .." . self::$DefaultPath);
-            exit();
-        }
-        else {
-            $result = RouteTable::CheckPathToDestination($path);
-        }
+        $result = RouteTable::CheckPathToDestination($path);
+        Helper::Print($result);
         if ($result == false) {
             //header("location: .." . self::$DefaultErrorPath);
             exit();
