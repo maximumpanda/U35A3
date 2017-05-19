@@ -32,7 +32,7 @@ class RouteTable
 
     public static function ReDirectIncomplete($path){
         array_push($path, self::$DefaultView);
-        header("location: " . Helper::GetBaseUrl() . "/" . implode("/", $path));
+        //header("location: " . Helper::GetBaseUrl() . "/" . implode("/", $path));
         exit();
     }
 
