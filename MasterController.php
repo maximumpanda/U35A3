@@ -53,7 +53,7 @@ class MasterController{
             Helper::Print(strtolower($controller));
             Helper::Print(strtolower($name."Controller"));
             Helper::Print(basename($controller));
-            if (strtolower($controller) == strtolower($name."Controller")){
+            if (basename(strtolower($controller)) == strtolower($name."controller.php")){
                 Helper::Print($controller);
             }
 
