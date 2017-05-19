@@ -43,8 +43,6 @@ class RouteTable
                     if (isset($current[$i]["Post"][$path[$i+1]])){
                         return true;
                     }
-                    else
-                        return false;
                 }
                 else
                     $current = $current[$i];
