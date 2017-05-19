@@ -14,4 +14,5 @@ if ($uri == '/'){
     $uri = RouteTable::$DefaultPath;
 }
 $path = array_values(array_filter(explode("/", $uri)));
+Helper::PrintArray($path);
 new MasterController($path);
