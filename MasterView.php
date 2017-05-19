@@ -31,8 +31,8 @@ class MasterView
         $currentDir = $_SERVER['DOCUMENT_ROOT'] . "/Views";;
 
         foreach ($path as $item){
-            $files = glob($currentDir ."/", GLOB_NOSORT);
-            $itemName = strtolower($item);
+            $files = glob($currentDir ."/");
+            $itemName = strtolower($currentDir) . strtolower($item);
             $found = false;
             Helper::PrintArray($files);
             foreach ($files as $file){
