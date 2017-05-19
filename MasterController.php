@@ -19,7 +19,7 @@ class MasterController{
         foreach ($this->controllers as $file){
             include_once $file;
         }
-        $this->Path = $path;
+        $this->Path = Helper::ArrayKeysToLower($path);
         $this->ReadParams();
         RouteTable::$Routes = $this->GenerateRouteTable();
         $this->BuildView();
@@ -48,7 +48,7 @@ class MasterController{
         array_pop($list);
         $res = [];
         foreach ($list as $key => $value){
-            $res[strtolower($key)] = strtolower($value);
+            $res[$key] = strtolower($value);
         }
         return $res;
     }

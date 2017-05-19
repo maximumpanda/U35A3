@@ -33,4 +33,12 @@ class Helper
         }
         return $protocol . "://" . $_SERVER['HTTP_HOST'];
     }
+
+    public static function ArrayKeysToLower($array){
+        $newArray = [];
+        foreach ($array as $key => $value){
+            $newArray[strtolower($key)] = $value;
+        }
+        return $newArray;
+    }
 }
