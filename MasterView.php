@@ -11,9 +11,10 @@ class MasterView
 
     public static function GenerateView($path){
         $view = self::FindView($path);
-        Helper::Print($view);
+
         if ($view != false){
             Session::SetView($view);
+            Helper::Print(Session::$View);
             include_once $_SERVER["DOCUMENT_ROOT"] . "/Views/Shared/_Layout.php";
             return;
         }
