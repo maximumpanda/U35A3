@@ -14,7 +14,7 @@ class RouteTable
     public static function ValidatePath($path){
         $result = RouteTable::CheckPathToDestination($path);
         if ($result == -1) {
-            self::ReDirectError();
+            self::ReDirectError(404);
     }
         if ($result == 0){
             self::ReDirectIncomplete($path);
@@ -22,10 +22,9 @@ class RouteTable
         return $result;
     }
 
-    public static function ReDirectError($code = 404, $message = ""){
+    public static function ReDirectError($code, $message = ""){
         Session::$Bag["Code"] = $code;
         Session::$Bag["ErrorMessage"] = $message;
-        print debug_backtrace();
         header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath);
         exit();
     }
