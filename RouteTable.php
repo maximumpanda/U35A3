@@ -25,7 +25,6 @@ class RouteTable
     public static function CheckPathToDestination($path){
         $current = self::$Routes;
         $count = count($path);
-        Helper::PrintArray($current);
         for ($i = 0; $i < $count; $i++) {
             if (isset($current[$path[$i]])){
                 if ($_SERVER["REQUEST_METHOD"] == 'GET' && array_key_exists("Get", $current[$path[$i]])){

@@ -92,10 +92,7 @@ class MasterController{
 
     private function CallController(){
         $count = count($this->Path);
-        Helper::Print($count);
-        Helper::PrintArray($this->Path);
         $controller = $this->Path[$count-2] . "Controller";
-        Helper::Print($controller);
         call_user_func($controller."::".$this->Path[$count-1]);
     }
 
