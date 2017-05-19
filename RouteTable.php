@@ -26,7 +26,7 @@ class RouteTable
         Session::$Bag["Code"] = $code;
         Session::$Bag["ErrorMessage"] = $message;
         print debug_backtrace();
-        header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath);
+        //header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath);
         exit();
     }
 
