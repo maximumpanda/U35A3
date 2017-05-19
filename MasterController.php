@@ -7,7 +7,7 @@
  */
 include_once $_SERVER['DOCUMENT_ROOT'] . "/Sql/Sql.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/Session.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "MasterView.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/MasterView.php";
 
 
 class MasterController{
