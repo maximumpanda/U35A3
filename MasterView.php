@@ -44,6 +44,7 @@ class MasterView
                     $currentDir = $currentDir . basename($file). "/";
                     $found = true;
                     Helper::Print($currentDir);
+                    continue;
                 }
             }
             if ($found == false)
