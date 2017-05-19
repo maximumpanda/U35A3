@@ -58,8 +58,7 @@ class RouteTable
     }
 
     private static function CheckMethodExists($array, $controllerKey, $viewKey){
-        $requestMethod = "";
-
+        $requestMethod = Helper::GetRequestMethod();
         if (isset($array[$controllerKey][$requestMethod][$viewKey])){
             return true;
         }
