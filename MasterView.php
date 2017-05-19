@@ -28,17 +28,17 @@ class MasterView
     }
 
     public static function ViewExists($path){
-        $file = $_SERVER['DOCUMENT_ROOT'] . "/Views";
-        $currentDir = $file;
+        $currentDir = $_SERVER['DOCUMENT_ROOT'] . "/Views";;
 
         foreach ($path as $item){
             $files = glob($currentDir .'/*', GLOB_NOSORT);
             $itemName = strtolower($item);
             $found = false;
+            Helper::PrintArray($files);
             foreach ($files as $file){
                 Helper::Print($file);
                 Helper::Print($itemName);
-                if (strtolower($file) == $itemName || strtolower($file) == $itemName.".html") {
+                if (strtolower($file) == $itemName || strtolower($file) == $itemName . ".html") {
                     Helper::Print($currentDir);
                     $currentDir = $currentDir . "/" . $file;
                     $found = true;
