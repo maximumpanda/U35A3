@@ -16,7 +16,7 @@ class RouteTable
         $result = RouteTable::CheckPathToDestination($path);
         Helper::Print($result);
         if ($result == false) {
-            header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath . self::$Message);
+            //header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath . self::$Message);
             exit();
         }
         return $result;
@@ -37,8 +37,10 @@ class RouteTable
                         return true;
                     }
                 }
-                else
+                else {
                     $current = $current[$i];
+                    Helper::PrintArray($current);
+                }
             }
         }
         self::$Message =  implode( "_", $path);
