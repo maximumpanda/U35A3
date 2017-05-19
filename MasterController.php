@@ -22,6 +22,7 @@ class MasterController{
         $this->Path = $path;
         $this->ReadParams();
         RouteTable::$Routes = $this->GenerateRouteTable();
+        Helper::PrintArray(RouteTable::$Routes);
         $this->BuildView();
     }
 
@@ -46,7 +47,11 @@ class MasterController{
         $relativePath = substr($controllerPath, $prefixLength , $lastDot - $prefixLength);
         $list = array_filter(explode("/", $relativePath));
         array_pop($list);
-        return $list;
+        $res = [];
+        foreach ($list as $key => $value){
+            $res[strtolower($key)] = $value;
+        }
+        return $res;
     }
 
     private function GenerateRouteTableElement($controller){
@@ -58,8 +63,8 @@ class MasterController{
         $posts = [];
         $element = [];
         foreach ($methods as $method){
-            if ( strpos($method->name, "Get") !== false) $gets[substr($method->name, 3)] = $method->name;
-            if (strpos($method->name, "Post") !== false) $posts[substr($method->name, 4)] = $method->name;
+            if ( strpos($method->name, "Get") !== false) $gets[strtolower(substr($method->name, 3))] = $method->name;
+            if (strpos($method->name, "Post") !== false) $posts[strtolower(substr($method->name, 4))] = $method->name;
         }
         $element[$base] =[
             "Controller" => $controllerName,
