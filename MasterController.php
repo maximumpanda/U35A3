@@ -22,7 +22,6 @@ class MasterController{
         $this->Path = $path;
         $this->ReadParams();
         RouteTable::$Routes = $this->GenerateRouteTable();
-        Helper::PrintArray(RouteTable::$Routes);
         $this->BuildView();
     }
 
@@ -51,7 +50,6 @@ class MasterController{
         foreach ($list as $key => $value){
             $res[strtolower($key)] = $value;
         }
-        Helper::PrintArray($res);
         return $res;
     }
 
