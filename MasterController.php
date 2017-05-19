@@ -42,6 +42,7 @@ class MasterController{
     private function CallController(){
         $count = count($this->Path);
         $controller = $this->Path[$count-2] . "Controller";
+        Helper::Print($controller."::".Helper::GetRequestMethod().$this->Path[$count-1]);
         call_user_func($controller."::".Helper::GetRequestMethod().$this->Path[$count-1]);
 
     }
