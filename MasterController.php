@@ -42,9 +42,18 @@ class MasterController{
     private function CallController(){
         $count = count($this->Path);
         $controller = $this->Path[$count-2] . "Controller";
+        $this->FindController($this->Path[$count-2]);
         Helper::Print($controller."::".Helper::GetRequestMethod().$this->Path[$count-1]);
         call_user_func($controller."::".Helper::GetRequestMethod().$this->Path[$count-1]);
 
+    }
+
+    private function FindController($name){
+        foreach ($this->controllers as $controller){
+            if (strtolower($controller) == strtolower($name."Controller")){
+                Helper::Print($controller);
+            }
+        }
     }
 
     private function ReadParams() {
