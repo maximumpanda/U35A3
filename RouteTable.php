@@ -40,6 +40,7 @@ class RouteTable
                         return true;
                     }
                 }
+                $current = $current[$path[$i]];
             }
         }
         Helper::Print("Failed");
