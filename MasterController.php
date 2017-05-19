@@ -45,7 +45,6 @@ class MasterController{
         $method = $this->FindMethod($controller, end($this->Path));
         Helper::Print($controller."::".$method);
         call_user_func($controller."::".$method);
-
     }
 
     public function FindMethod($class, $name){
