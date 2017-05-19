@@ -13,7 +13,7 @@ class Session{
 
 
     public static function SetView($val){
-        self::$View = $_SERVER['DOCUMENT_ROOT'] . $val;
+        self::$View = $val;
     }
     public static function SetParams($paramsString){
         $splitParams = explode("&", $paramsString);
