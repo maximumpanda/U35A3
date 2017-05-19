@@ -15,14 +15,35 @@ class MasterView
         self::$Layout = $_SERVER["DOCUMENT_ROOT"] . "/Views/Shared/_Layout.php";
     }
 
-    public static function GenerateView($Path){
-        $file = $_SERVER['DOCUMENT_ROOT'] . "/Views/" . implode("/", $Path);
-        if (file_exists($file)){
-            Session::SetView($file);
+    public static function GenerateView($path){
+        $view = self::ViewExists($path);
+        if ($view != false){
+            Session::SetView($view);
             include_once self::$Layout;
             return;
         }
-        Helper::Print($file);
+        Helper::Print($view);
         //RouteTable::ReDirectError(404);
+    }
+
+    public static function ViewExists($path){
+        $file = $_SERVER['DOCUMENT_ROOT'] . "/Views";
+        $currentDir = $file;
+
+        foreach ($path as $item){
+            $files = glob($currentDir .'/*', GLOB_NOSORT);
+            $itemName = strtolower($item);
+            $found = false;
+            foreach ($files as $file){
+                if (strtolower($file) == $itemName) {
+                    $currentDir = $currentDir . "/" . $file;
+                    $found = true;
+                    continue;
+                }
+            }
+            if ($found == false)
+                return false;
+        }
+        return $currentDir;
     }
 }
