@@ -41,8 +41,7 @@ class MasterController{
 
     private function CallController(){
         $count = count($this->Path);
-        $controller = $this->Path[$count-2] . "Controller";
-        $this->FindController($this->Path[$count-2]);
+        $controller = $this->FindController($this->Path[$count-2]);
         Helper::Print($controller."::".Helper::GetRequestMethod().$this->Path[$count-1]);
         call_user_func($controller."::".Helper::GetRequestMethod().$this->Path[$count-1]);
 
@@ -51,11 +50,11 @@ class MasterController{
     private function FindController($name){
         foreach ($this->controllers as $controller){
             $pathParts = pathinfo($controller);
-            Helper::Print($pathParts['filename']);
             if (strtolower($pathParts['filename']) == strtolower($name."controller")){
-                Helper::Print($controller);
+                return $pathParts['filename'];
             }
         }
+        return false;
     }
 
     private function ReadParams() {
