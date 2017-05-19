@@ -26,6 +26,7 @@ class RouteTable
         $current = self::$Routes;
         $count = count($path);
         for ($i = 0; $i < $count; $i++) {
+            Helper::PrintArray($path[$i]);
             if (isset($current[$path[$i]])){
                 if ($_SERVER["REQUEST_METHOD"] == 'GET' && array_key_exists("Get", $current[$path[$i]])){
                     if (isset($current[$path[$i]]["Get"][$path[$i+1]])){
