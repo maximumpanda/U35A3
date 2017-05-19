@@ -25,12 +25,12 @@ class RouteTable
     public static function CheckPathToDestination($path){
         $current = self::$Routes;
         $count = count($path);
-        Helper::PrintArray(self::$Routes);
+        Helper::PrintArray($current);
         for ($i = 0; $i < $count; $i++) {
             Helper::Print("CheckPath");
             Helper::Print($current[$i]);
             Helper::Print($_SERVER["REQUEST_METHOD"]);
-            if (isset($current[$i])){
+            if (isset($current[$path[$i]])){
                 if ($_SERVER["REQUEST_METHOD"] == 'GET' && array_key_exists("Get", $current[$i])){
                     if (isset($current[$i]["Get"][$path[$i+1]])){
                         return true;
