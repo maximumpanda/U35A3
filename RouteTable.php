@@ -38,14 +38,9 @@ class RouteTable
                         return true;
                     }
                 }
-                else{
-                    Helper::PrintArray($current[$path[$i]]);
-                    Helper::Print($path[$i+1]);
-                    Helper::PrintArray($current[$path[$i]]);
-                    Helper::Print("Test");
-                }
             }
         }
+        Helper::Print("Failed");
         self::$Message =  implode( "_", $path);
         return false;
     }
