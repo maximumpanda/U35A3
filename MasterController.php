@@ -48,10 +48,8 @@ class MasterController{
         array_pop($list);
         $res = [];
         foreach ($list as $key => $value){
-            Helper::Print($key . ":" . strtolower($key));
-            $res[strtolower($key)] = $value;
+            $res[strtolower($key)] = strtolower($value);
         }
-        Helper::PrintArray($res);
         return $res;
     }
 
