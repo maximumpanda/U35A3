@@ -18,7 +18,6 @@
     ?>
     <div id="ViewContainer">
     <?php
-        Session::SetView("/Views/Error/Index.html");
         include_once(Session::$View);
     ?>
     </div>
