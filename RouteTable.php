@@ -35,6 +35,9 @@ class RouteTable
             Helper::PrintArray($path);
             Helper::PrintArray($current);
             if (isset($current[$path[$i]])){
+                if ($i+1 >= $count){
+                    return 0;
+                }
                 if ($_SERVER["REQUEST_METHOD"] == 'GET' && array_key_exists("Get", $current[$path[$i]])){
                     if (isset($current[$path[$i]]["Get"][$path[$i+1]])){
                         return 1;
@@ -45,9 +48,7 @@ class RouteTable
                         return 1;
                     }
                 }
-                if ($i+1 >= $count){
-                    return 0;
-                }
+
                 $current = $current[$path[$i]];
             }
         }
