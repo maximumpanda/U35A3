@@ -50,6 +50,8 @@ class MasterController{
     public function FindMethod($class, $name){
         $methods = (new ReflectionClass($class))->getMethods(ReflectionMethod::IS_PUBLIC);
         foreach ($methods as $method){
+            Helper::Print($method);
+            Helper::Print(Helper::GetRequestMethod().$name);
             if (strtolower($method) == strtolower(Helper::GetRequestMethod().$name))
                 return $method;
         }
