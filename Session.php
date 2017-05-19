@@ -13,8 +13,7 @@ class Session{
         self::$View = $_SERVER['DOCUMENT_ROOT'] . $val;
     }
     public static function SetParams($paramsString){
-        $params = substr($paramsString, 1);
-        $splitParams = explode("&", $params);
+        $splitParams = explode("&", $paramsString);
         foreach ($splitParams as $param){
             $splitParam = explode("=", $param);
             Session::$Bag[$splitParam[0]] = $splitParam[1];
