@@ -11,7 +11,7 @@ include_once "SqlTable.php";
 class Sql
 {
     private static $_dbConnection;
-    private static $_dbName = "U35A1";
+    private static $_dbName = "u35a1";
 
     public static function UseDatabase($name){
         self::$_dbName = $name;
