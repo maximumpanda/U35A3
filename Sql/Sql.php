@@ -42,6 +42,7 @@ class Sql
         if ($res = self::$_dbConnection->query("DESCRIBE " . self::$_dbName . ".{$name}")){
             while ($row = mysqli_fetch_array($res)){
                 if ($row['Key'] == "MUL"){
+                    Helper::PrintArray($row);
                     $foreignTableInfo = self::GetForeignTableInfo($name, $row['Field']);
                     if ($foreignTableInfo['source'] != "") {
                         $subModel->Members[$row['Field']] = self::GenerateSubModel($foreignTableInfo['source']);
