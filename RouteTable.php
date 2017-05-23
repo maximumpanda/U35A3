@@ -76,8 +76,8 @@ class RouteTable
         $posts = [];
         $element = [];
         foreach ($methods as $method){
-            if ( strpos($method->name, "Get") !== false) $gets[strtolower(substr($method->name, 3))] = $method->name;
-            if (strpos($method->name, "Post") !== false) $posts[strtolower(substr($method->name, 4))] = $method->name;
+            if ( strpos($method->name, "Get") !== false) $gets[substr($method->name, 3)] = $method->name;
+            if (strpos($method->name, "Post") !== false) $posts[substr($method->name, 4)] = $method->name;
         }
         $element[$base] =[
             "Controller" => $controllerName,
