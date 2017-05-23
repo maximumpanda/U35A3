@@ -9,4 +9,5 @@
 include_once 'Sql.php';
 
 $model = Sql::GenerateModel("Clients", true);
+Sql::Query("Select * from Clients");
 $model->Print();

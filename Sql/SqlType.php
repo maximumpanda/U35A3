@@ -55,4 +55,13 @@ class SqlType
         $end = strpos($raw, ")");
         return substr($raw, $start,$end-$start);
     }
+
+    public function GetValueOfKey(){
+        if ($this->ForeignTable == null) return null;
+        $query = <<<QUERY
+Select * from $this->ForeignTable->Name
+where $this->ForeignTable->Members[$this->ForeignTable->PrimaryKey] = $this->Value
+QUERY;
+        Sql::Query($query ,$this->ForeignTable);
+    }
 }

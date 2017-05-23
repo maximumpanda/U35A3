@@ -28,7 +28,6 @@ class Sql
     public static function Use($name){
         self::$_dbConnection->select_db($name);
     }
-
     public static function GenerateModel($name, $includeSubTables = true){
         self::Connect();
         self::Use("information_schema");
@@ -75,7 +74,7 @@ class Sql
         }
     }
 
-    public static function Query($sql, $model){
+    public static function Query($sql){
         self::Connect();
         self::Use(self::$_dbName);
         $result = [];
@@ -86,10 +85,6 @@ class Sql
         }
         self::Disconnect();
         return $result;
-    }
-
-    public static function GetValue(SqlType $type){
-        $query = "Select {$type->Name} from {$type->TableName} where ";
     }
     
     public static function ParseRowToModel($row, $model){
