@@ -26,7 +26,7 @@ class RouteTable
         Helper::PrintArray($path);
         for ($i = 0; $i < $count; $i++) {
             Helper::PrintArray($current);
-            if (isset($current[strtolower($path[$i])])){
+            if (isset($current[$path[$i]])){
                 if ($i+1 >= $count){
                     return 0;
                 }
@@ -41,8 +41,19 @@ class RouteTable
 
     private static function CheckMethodExists($array, $controllerKey, $viewKey){
         $requestMethod = Helper::GetRequestMethod();
-        if (isset($array[$controllerKey][$requestMethod][$viewKey])){
-            return true;
+        if ($controllerKey = self::InsensitveKeySearch($array, $controllerKey)){
+            if ($viewKey = self::InsensitveKeySearch($array[$controllerKey][$requestMethod], $viewKey))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static function InsensitveKeySearch($array, $key){
+        foreach ($array as $currentKey => $value){
+            if (strtolower($currentKey) == strtolower($key))
+                return $currentKey;
         }
         return false;
     }
