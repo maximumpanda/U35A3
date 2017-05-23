@@ -11,6 +11,7 @@ class RouteTable
 
     public static function ValidatePath($path){
         $result = RouteTable::CheckPathToDestination($path);
+        Helper::PrintArray($path)
         if ($result == -1) {
             Router::ReDirectError(404);
         }
@@ -25,7 +26,6 @@ class RouteTable
         $count = count($path);
         for ($i = 0; $i < $count; $i++) {
             $key = self::InsensitiveKeySearch($current, $path[$i]);
-            Helper::Print($key);
             if ($key !== false) {
                 if ($i + 1 >= $count) {
                     return 0;
@@ -49,12 +49,8 @@ class RouteTable
 
     private static function InsensitiveKeySearch($array, $key){
         $keys = array_keys($array);
-        Helper::Print("Insensitive Search");
-        Helper::PrintArray($keys);
-        Helper::Print($key);
         foreach ($keys as $val){
             if (strtolower($val) == strtolower($key)) {
-                Helper::Print("Found " . $val);
                 return $val;
             }
         }
