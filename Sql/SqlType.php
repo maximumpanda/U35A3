@@ -34,6 +34,7 @@ class SqlType
 
     public function Print(){
         print "<ul style='list-style-type: none'>{$this->Name} [";
+        print "<ul>" . "Owner" . $this->TableName . ",</ul>";
         print "<ul>" . "Type: " . $this->Type . ",</ul>";
         print "<ul>" . "Length: " . $this->Length . ",</ul>";
         print "<ul>" . "Unsigned: " . $this->Unsigned . ",</ul>";
