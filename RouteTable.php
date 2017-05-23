@@ -25,6 +25,7 @@ class RouteTable
         $count = count($path);
         for ($i = 0; $i < $count; $i++) {
             $key = self::InsensitiveKeySearch($current, $path[$i]);
+            Helper::Print($key);
             if ($key !== false) {
                 if ($i + 1 >= $count) {
                     return 0;
