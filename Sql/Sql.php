@@ -44,7 +44,6 @@ class Sql
                 if ($row['Key'] == "MUL"){
                     $foreignTableInfo = self::GetForeignTableInfo($name, $row['Field']);
                     if ($foreignTableInfo['Source'] != "") {
-                        $subModel->Print();
                         $subModel->Members[$row['Field']] = self::GenerateSubModel($foreignTableInfo['Source']);
                     }
                     else {
