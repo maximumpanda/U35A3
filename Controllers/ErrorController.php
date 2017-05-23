@@ -10,14 +10,18 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/Models/ErrorModel.php";
 class ErrorController
 {
     private static $ErrorCodes = [
-        404 => "Page Not Found"
+        400 => "Bad Request",
+        401 => "Unauthorized",
+        403 => "Forbidden",
+        404 => "Page Not Found",
+        405 => "MethodNotAllowed"
         ];
 
 
     public static function GetIndex(){
         $model = new ErrorModel();
         $model->Title = Session::$Bag['Code'];
-        $model->Message = "";
+        $model->Message = Session::$Bag['Message'];
         $model->ErrorMessage = self::$ErrorCodes[Session::$Bag['Code']];
         return $model;
     }
