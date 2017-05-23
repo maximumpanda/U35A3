@@ -2,9 +2,7 @@
 include_once $_SERVER["DOCUMENT_ROOT"] ."/MasterController.php";
 class RouteTable
 {
-    public static $DefaultPath = "/home/index";
-    public static $DefaultView = "index";
-    public static $DefaultErrorPath = "/error/index";
+
     public static $Routes = [];
     public static $HiddenBranches = [
         "api",
@@ -15,25 +13,12 @@ class RouteTable
     public static function ValidatePath($path){
         $result = RouteTable::CheckPathToDestination($path);
         if ($result == -1) {
-            self::ReDirectError(404);
+            Router::ReDirectError(404);
     }
         if ($result == 0){
-            self::ReDirectIncomplete($path);
+            Router::ReDirectIncomplete($path);
         }
         return $result;
-    }
-
-    public static function ReDirectError($code, $message = ""){
-        Session::$Bag["Code"] = $code;
-        Session::$Bag["ErrorMessage"] = $message;
-        header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath);
-        exit();
-    }
-
-    public static function ReDirectIncomplete($path){
-        array_push($path, self::$DefaultView);
-        header("location: " . Helper::GetBaseUrl() . "/" . implode("/", $path));
-        exit();
     }
 
     public static function CheckPathToDestination($path){

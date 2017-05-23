@@ -54,7 +54,6 @@ class Helper
         if ($_SERVER['REQUEST_METHOD'] == "POST") return"Post";
         if ($_SERVER['REQUEST_METHOD'] == "UPDATE") return "Update";
         else
-            RouteTable::ReDirectError(405);
-
+            Router::ReDirectError(405);
     }
 }

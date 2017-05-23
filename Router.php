@@ -1,16 +1,26 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: maxim
- * Date: 4/25/2017
- * Time: 3:20 PM
+ * User: steve
+ * Date: 5/23/2017
+ * Time: 4:55 PM
  */
-include_once $_SERVER["DOCUMENT_ROOT"] . "/Helper.php";
-include_once $_SERVER["DOCUMENT_ROOT"] . "/RouteTable.php";
-include_once $_SERVER["DOCUMENT_ROOT"] . "/MasterController.php";
-$uri = $_SERVER['REQUEST_URI'];
-if ($uri == '/'){
-    $uri = RouteTable::$DefaultPath;
+
+class Router{
+    public static $DefaultPath = "/home/index";
+    public static $DefaultView = "index";
+    public static $DefaultErrorPath = "/error/index";
+
+    public static function ReDirectError($code, $message = ""){
+        Session::$Bag["Code"] = $code;
+        Session::$Bag["ErrorMessage"] = $message;
+        header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath);
+        exit();
+    }
+
+    public static function ReDirectIncomplete($path){
+        array_push($path, self::$DefaultView);
+        header("location: " . Helper::GetBaseUrl() . "/" . implode("/", $path));
+        exit();
+    }
 }
-$path = array_values(array_filter(explode("/", $uri)));
-new MasterController($path);

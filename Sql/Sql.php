@@ -50,13 +50,12 @@ class Sql
                         $subModel->Members[$row['Field']] = [];
                     }
                 }
-                else{
-                    if ($row['Key'] == "PRI"){
+                else {
+                    if ($row['Key'] == "PRI") {
                         $subModel->PrimaryKey = $row['Field'];
                     }
                     $subModel->Members[$row['Field']] = new SqlType($row);
                 }
-
             }
         }
         return $subModel;
