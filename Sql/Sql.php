@@ -11,7 +11,7 @@ include_once "SqlTable.php";
 class Sql
 {
     private static $_dbConnection;
-    private static $_dbName = "U33A2";
+    private static $_dbName = "U35A1";
 
     public static function UseDatabase($name){
         self::$_dbName = $name;
@@ -39,7 +39,7 @@ class Sql
 
     private static function GenerateSubModel($name){
         $subModel = new SqlTable($name);
-        if ($res = self::$_dbConnection->query("DESCRIBE u33a2.{$name}")){
+        if ($res = self::$_dbConnection->query("DESCRIBE " . self::$_dbName . ".{$name}")){
             while ($row = mysqli_fetch_array($res)){
                 if ($row['Key'] == "MUL"){
                     $foreignTableInfo = self::GetForeignTableInfo($name, $row['Field']);
