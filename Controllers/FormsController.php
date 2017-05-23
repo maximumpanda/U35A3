@@ -9,12 +9,9 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . "/Sql/Sql.php";
 class FormsController
 {
-    public function GetIndex(){
+    public static function GetIndex(){
 
 
 
-    }
-    public function GetForm(){
-        
     }
 }
