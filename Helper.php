@@ -9,11 +9,11 @@
 class Helper
 {
     public static function Print($message){
-        print ("<div>" . $message . "</div>");
+        print ("<pre>$message</pre>");
     }
 
     public static function PrintArray($array){
-        print ("<pre>" . print_r($array, true) . "</pre>");
+        print ("<pre>print_r($array, true)</pre>");
     }
 
     public static function GetClassName($filename) {
@@ -52,7 +52,7 @@ class Helper
     public static function GetRequestMethod(){
         if ($_SERVER['REQUEST_METHOD'] == "GET")  return "Get";
         if ($_SERVER['REQUEST_METHOD'] == "POST") return"Post";
-        if ($_SERVER['REQUEST_METHOD'] == "UPDATE") return "Update";
+        if ($_SERVER['REQUEST_METHOD'] == "Delete") return "Delete";
         else
             Router::ReDirectError(405);
     }

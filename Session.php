@@ -10,6 +10,7 @@ Session::$Bag =& $_SESSION;
 class Session{
     public Static $Bag;
     public static $View;
+    public static $Model;
 
 
     public static function SetView($val){
