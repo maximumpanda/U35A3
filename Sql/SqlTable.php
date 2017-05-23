@@ -21,10 +21,9 @@ class SqlTable
 
     public function Print(){
         print "<pre>{$this->Name} [";
-        Helper::PrintArray($this->Members);
-        /*foreach ($this->Members as $val){
+        foreach ($this->Members as $val){
             $val->Print();
-        }*/
+        }
         print "]</pre>";
     }
 }

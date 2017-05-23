@@ -29,22 +29,22 @@ class Sql
         self::$_dbConnection->select_db($name);
     }
 
-    public static function GenerateModel($name){
+    public static function GenerateModel($name, $includeSubTables = true){
         self::Connect();
         self::Use("information_schema");
-        $model = self::GenerateSubModel($name);
+        $model = self::GenerateSubModel($name, $includeSubTables);
         self::Disconnect();
         return $model;
     }
 
-    private static function GenerateSubModel($name){
+    private static function GenerateSubModel($name, $includeSubTables = true){
         $subModel = new SqlTable($name);
         if ($res = self::$_dbConnection->query("DESCRIBE " . self::$_dbName . ".{$name}")){
             while ($row = mysqli_fetch_array($res)){
-                if ($row['Key'] == "MUL"){
+                if ($row['Key'] == "MUL" && $includeSubTables){
                     $foreignTableInfo = self::GetForeignTableInfo($name, $row['Field']);
                     if ($foreignTableInfo['Source'] != "") {
-                        $subModel->Members[$row['Field']] = new SqlType($row ,self::GenerateSubModel($foreignTableInfo['Source']));
+                        $subModel->Members[$row['Field']] = new SqlType($row, $name ,self::GenerateSubModel($foreignTableInfo['Source']));
                     }
                     else {
                         $subModel->Members[$row['Field']] = [];
@@ -54,7 +54,7 @@ class Sql
                     if ($row['Key'] == "PRI") {
                         $subModel->PrimaryKey = $row['Field'];
                     }
-                    $subModel->Members[$row['Field']] = new SqlType($row);
+                    $subModel->Members[$row['Field']] = new SqlType($row, $name);
                 }
             }
         }
@@ -88,6 +88,10 @@ class Sql
         return $result;
     }
 
+    public static function GetValue(SqlType $type){
+        $query = "Select {$type->Name} from {$type->TableName} where ";
+    }
+    
     public static function ParseRowToModel($row, $model){
 
     }

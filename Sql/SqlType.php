@@ -9,6 +9,7 @@
 class SqlType
 {
     public $Name;
+    public $TableName;
     public $Type;
     public $Length;
     public $Unsigned;
@@ -18,9 +19,10 @@ class SqlType
     public $AutoIncrement;
     public $Value;
 
-    function __construct($row, SqlTable $foreignTable = null)
+    function __construct($row, $tableName, SqlTable $foreignTable = null)
     {
         $this->Name = $row['Field'];
+        $this->TableName = $tableName;
         $this->Type = self::ParseType($row['Type']);
         $this->Length = self::ParseLength($row['Type']);
         $this->Unsigned = strpos($row['Type'], 'unsigned') !== false;
