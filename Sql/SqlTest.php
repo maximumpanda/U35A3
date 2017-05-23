@@ -8,5 +8,5 @@
 
 include_once 'Sql.php';
 
-$model = Sql::GenerateModel("Invoice");
+$model = Sql::GenerateModel("Invoices");
 $model->Print();
