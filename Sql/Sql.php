@@ -40,8 +40,8 @@ class Sql
     private static function GenerateSubModel($name){
         $subModel = new SqlTable($name);
         if ($res = self::$_dbConnection->query("DESCRIBE " . self::$_dbName . ".{$name}")){
+            print $res;
             while ($row = mysqli_fetch_array($res)){
-                Helper::PrintArray($row);
                 if ($row['Key'] == "MUL"){
                     $foreignTableInfo = self::GetForeignTableInfo($name, $row['Field']);
                     if ($foreignTableInfo['source'] != "") {
