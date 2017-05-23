@@ -1,17 +1,17 @@
 <div class="Center Wrapper">
     <div class="Center Title">
         <?php
-            print Session::$Bag["Code"];
+            print Session::$Bag["Model"]->Title;
         ?>
     </div>
     <div class="Message">
         <?php
-            print Session::$Bag["Message"];
+            print Session::$Bag["Model"]->Message;
         ?>
     </div>
     <div>
         <?php
-            print Session::$Bag["ErrorMessage"];
+            print Session::$Bag["Model"]->ErrorMessage;
         ?>
     </div>
 </div>
