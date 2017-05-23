@@ -57,7 +57,7 @@ class RouteTable
         Helper::Print($key);
         foreach ($keys as $val){
             if (strtolower($val) == strtolower($key)) {
-                Helper::Print("Found");
+                Helper::Print("Found " . $val);
                 return $val;
             }
         }
