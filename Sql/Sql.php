@@ -71,7 +71,7 @@ class Sql
             "and column_name = '{$field}';";
         //print $query;
         if ($res = self::$_dbConnection->query($query)){
-            Helper::PrintArray($res);
+            Helper::PrintArray($res->fetch_array(MYSQLI_ASSOC));
             return mysqli_fetch_array($res);
         }
     }
