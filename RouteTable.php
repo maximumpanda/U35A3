@@ -50,6 +50,7 @@ class RouteTable
 
     private static function InsensitiveKeySearch($array, $key){
         $keys = array_keys($array);
+        Helper::PrintArray($keys);
         foreach ($keys as $currentKey){
             if (strtolower($currentKey) == strtolower($key))
                 return $currentKey;
