@@ -66,7 +66,7 @@ class Sql
             "select referenced_table_name as Source,referenced_column_name ".
             "from information_schema.key_column_usage ".
             "where referenced_table_name is not null ".
-            "and table_schema = 'u33a2' ".
+            "and table_schema = '". self::$_dbName . "' ".
             "and table_name = '{$table}' ".
             "and column_name = '{$field}';";
         //print $query;
