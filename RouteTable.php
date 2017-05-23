@@ -24,7 +24,8 @@ class RouteTable
         $current = self::$Routes;
         $count = count($path);
         for ($i = 0; $i < $count; $i++) {
-            if ($key = self::InsensitiveKeySearch($current, $path[$i]) !== false) {
+            $key = self::InsensitiveKeySearch($current, $path[$i]);
+            if ($key !== false) {
                 if ($i + 1 >= $count) {
                     return 0;
                 }
@@ -51,9 +52,12 @@ class RouteTable
     private static function InsensitiveKeySearch($array, $key){
         $keys = array_keys($array);
         Helper::PrintArray($keys);
+        Helper::Print($key);
         foreach ($keys as $val){
-            if (strtolower($val) == strtolower($key))
+            if (strtolower($val) == strtolower($key)) {
+                Helper::Print("Found");
                 return $val;
+            }
         }
         return false;
     }
