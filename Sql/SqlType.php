@@ -40,7 +40,7 @@ class SqlType
         print "<ul>" . "Nullable: " . $this->Nullable . ",</ul>";
         print "<ul>" . 'IsKey: ' . $this->IsKey . ",</ul>";
         if ($this->ForeignTable != null) print "<li>" . $this->ForeignTable->Print() . ",</li>";
-        print "<ul>" . "AI: " . $this->AutoIncrement . "</ul>";
+        print "<ul>" . "Auto-Increment: " . $this->AutoIncrement . "</ul>";
         print "]</ul>";
     }
 
