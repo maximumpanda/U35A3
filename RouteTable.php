@@ -24,6 +24,7 @@ class RouteTable
         $current = self::$Routes;
         $count = count($path);
         for ($i = 0; $i < $count; $i++) {
+            Helper::PrintArray($current);
             if (isset($current[strtolower($path[$i])])){
                 if ($i+1 >= $count){
                     return 0;
