@@ -7,14 +7,14 @@
  */
 
 class Router{
-    public static $DefaultPath = "/home/index";
-    public static $DefaultView = "index";
-    public static $DefaultErrorPath = "/error/index";
+    public static $DefaultPath = "/Home/Index";
+    public static $DefaultView = "Index";
+    public static $DefaultErrorPath = "/Error/Index";
 
     public static function ReDirectError($code, $message = ""){
         Session::$Bag["Code"] = $code;
         Session::$Bag["Message"] = $message;
-        //header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath);
+        header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath);
         exit();
     }
 
