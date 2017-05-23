@@ -14,7 +14,7 @@ class Router{
     public static function ReDirectError($code, $message = ""){
         Session::$Bag["Code"] = $code;
         Session::$Bag["Message"] = $message;
-        //header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath);
+        header("location: " . Helper::GetBaseUrl() . self::$DefaultErrorPath);
         exit();
     }
 
