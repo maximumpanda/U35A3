@@ -77,7 +77,7 @@ class Sql
     public static function Query($sql){
         self::Connect();
         self::Use(self::$_dbName);
-        $result = [];
+        $result = new SqlCollection([]);
         if ($res = self::$_dbConnection->query($sql)){
             while($row = $res->fetch_array(MYSQLI_ASSOC)){
                 Helper::PrintArray($row);

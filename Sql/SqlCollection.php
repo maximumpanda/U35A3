@@ -8,12 +8,7 @@
  */
 class SqlCollection
 {
-    public $Members;
-
-    function __construct(array $members)
-    {
-        $this->Members = $members;
-    }
+    public $Members = [];
 
     public function AddMember(SqlType $newMember){
         array_push($this->Members, $newMember->Name, $newMember);
