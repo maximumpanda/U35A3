@@ -43,9 +43,8 @@ class Sql
             while ($row = mysqli_fetch_array($res)){
                 if ($row['Key'] == "MUL"){
                     $foreignTableInfo = self::GetForeignTableInfo($name, $row['Field']);
-                    Helper::PrintArray($foreignTableInfo);
-                    if ($foreignTableInfo['source'] != "") {
-                        $subModel->Members[$row['Field']] = self::GenerateSubModel($foreignTableInfo['source']);
+                    if ($foreignTableInfo['Source'] != "") {
+                        $subModel->Members[$row['Field']] = self::GenerateSubModel($foreignTableInfo['Source']);
                     }
                     else {
                         $subModel->Members[$row['Field']] = [];
@@ -64,7 +63,7 @@ class Sql
 
     private static function GetForeignTableInfo($table, $field){
         $query =
-            "select referenced_table_name as source,referenced_column_name ".
+            "select referenced_table_name as Source,referenced_column_name ".
             "from information_schema.key_column_usage ".
             "where referenced_table_name is not null ".
             "and table_schema = 'u33a2' ".
@@ -72,6 +71,7 @@ class Sql
             "and column_name = '{$field}';";
         //print $query;
         if ($res = self::$_dbConnection->query($query)){
+            Helper::PrintArray($res);
             return mysqli_fetch_array($res);
         }
     }
