@@ -52,7 +52,8 @@ class RouteTable
         $keys = array_keys($array);
         Helper::PrintArray($keys);
         foreach ($keys as $val){
-            Helper::Print(gettype($val));
+            Helper::Print($key);
+            Helper::Print(gettype($key));
             if (strtolower($val) == strtolower($key))
                 return $val;
         }
