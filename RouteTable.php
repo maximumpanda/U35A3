@@ -24,13 +24,15 @@ class RouteTable
         $current = self::$Routes;
         $count = count($path);
         for ($i = 0; $i < $count; $i++) {
-            if ($i+1 >= $count){
-                return 0;
+            if ($key = self::InsensitiveKeySearch($current, $path) !== false) {
+                if ($i + 1 >= $count) {
+                    return 0;
+                }
+                if (self::CheckRouteExists($current, $key, $path[$i + 1])) {
+                    return 1;
+                }
+                $current = $current[$key];
             }
-            if (self::CheckRouteExists($current, $path[$i], $path[$i+1])){
-                return 1;
-            }
-            $current = $current[$path[$i]];
         }
         return -1;
     }
