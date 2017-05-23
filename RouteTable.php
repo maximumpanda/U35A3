@@ -11,7 +11,6 @@ class RouteTable
 
     public static function ValidatePath($path){
         $result = RouteTable::CheckPathToDestination($path);
-        Helper::PrintArray($path);
         if ($result == -1) {
             Router::ReDirectError(404);
         }
@@ -73,7 +72,7 @@ class RouteTable
         array_pop($list);
         $res = [];
         foreach ($list as $key => $value){
-            $res[$key] = strtolower($value);
+            $res[$key] = $value;
         }
         return $res;
     }
