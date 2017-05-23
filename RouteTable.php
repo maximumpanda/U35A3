@@ -51,6 +51,7 @@ class RouteTable
 
     private static function InsensitiveKeySearch($array, $key){
         $keys = array_keys($array);
+        Helper::Print("Insensitive Search");
         Helper::PrintArray($keys);
         Helper::Print($key);
         foreach ($keys as $val){
