@@ -80,7 +80,7 @@ class Sql
         $result = [];
         if ($res = self::$_dbConnection->query($sql)){
             while($row = $res->fetch_row()){
-                print_r($row);
+                Helper::PrintArray($row);
             }
         }
         self::Disconnect();
