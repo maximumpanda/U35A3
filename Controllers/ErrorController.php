@@ -6,6 +6,7 @@
  * Date: 4/25/2017
  * Time: 3:31 PM
  */
+include_once $_SERVER["DOCUMENT_ROOT"] . "/Models/ErrorModel.php";
 class ErrorController
 {
     private static $ErrorCodes = [
