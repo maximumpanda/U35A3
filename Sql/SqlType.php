@@ -14,12 +14,11 @@ class SqlType
     public $Unsigned;
     public $Nullable;
     public $IsKey;
-    public $ForeignTable = "";
-    public $ForeignColumn = "";
+    public $ForeignTable;
     public $AutoIncrement;
     public $Value;
 
-    function __construct($row, $foreignTable = "", $foreignColumn = "")
+    function __construct($row, SqlTable $foreignTable = null)
     {
         $this->Name = $row['Field'];
         $this->Type = self::ParseType($row['Type']);
@@ -28,7 +27,6 @@ class SqlType
         $this->Nullable = $row['Null'] !== 'NO';
         $this->IsKey = $row['Key'] !== "";
         $this->ForeignTable = $foreignTable;
-        $this->ForeignColumn = $foreignColumn;
         $this->AutoIncrement = strpos($row['Extra'], "auto_increment") !== false;
     }
 
@@ -39,8 +37,7 @@ class SqlType
         print "<ul>" . "Unsigned: " . $this->Unsigned . ",</ul>";
         print "<ul>" . "Nullable: " . $this->Nullable . ",</ul>";
         print "<ul>" . 'IsKey: ' . $this->IsKey . ",</ul>";
-        if ($this->ForeignTable != "") print "<li>" . "FKTable: " . $this->ForeignTable . ",</li>";
-        if ($this->ForeignColumn != "") print "<li>" . "FKCol: " . $this->ForeignColumn. ",</li>";
+        if ($this->ForeignTable != null) print "<li>" . $this->ForeignTable->Print() . ",</li>";
         print "<ul>" . "AI: " . $this->AutoIncrement . "</ul>";
         print "]</ul>";
     }

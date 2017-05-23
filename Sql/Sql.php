@@ -44,7 +44,7 @@ class Sql
                 if ($row['Key'] == "MUL"){
                     $foreignTableInfo = self::GetForeignTableInfo($name, $row['Field']);
                     if ($foreignTableInfo['Source'] != "") {
-                        $subModel->Members[$row['Field']] = self::GenerateSubModel($foreignTableInfo['Source']);
+                        $subModel->Members[$row['Field']] = new SqlType($row ,self::GenerateSubModel($foreignTableInfo['Source']));
                     }
                     else {
                         $subModel->Members[$row['Field']] = [];
