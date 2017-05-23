@@ -80,11 +80,15 @@ class Sql
         self::Use(self::$_dbName);
         $result = [];
         if ($res = self::$_dbConnection->query($sql)){
-            while($object = $res->fetch_object($model)){
-                array_push($result, $object);
+            while($row = $res->fetch_row()){
+                print_r($row);
             }
         }
         self::Disconnect();
         return $result;
+    }
+
+    public static function ParseRowToModel($row, $model){
+
     }
 }
