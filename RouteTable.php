@@ -25,15 +25,15 @@ class RouteTable
         $count = count($path);
         for ($i = 0; $i < $count; $i++) {
             $key = self::InsensitiveKeySearch($current, $path[$i]);
-            if ($key !== false) {
+            if (isset($current[$key])) {
                 if ($i + 1 >= $count) {
                     return 0;
                 }
                 if (self::CheckRouteExists($current, $key, $path[$i + 1])) {
                     return 1;
                 }
-                $current = $current[$key];
             }
+            $current = $current[$key];
         }
         return -1;
     }
@@ -41,6 +41,7 @@ class RouteTable
     private static function CheckRouteExists($array, $controllerKey, $viewKey){
         $requestMethod = Helper::GetRequestMethod();
         Helper::PrintArray($array);
+
             if ($viewKey = self::InsensitiveKeySearch($array[$controllerKey][$requestMethod], $viewKey) !== false) {
                 return true;
             }
