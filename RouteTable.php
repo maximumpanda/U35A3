@@ -26,15 +26,13 @@ class RouteTable
         Helper::PrintArray($path);
         for ($i = 0; $i < $count; $i++) {
             Helper::PrintArray($current);
-            if (isset($current[$path[$i]])){
-                if ($i+1 >= $count){
-                    return 0;
-                }
-                if (self::CheckRouteExists($current, $path[$i], $path[$i+1])){
-                    return 1;
-                }
-                $current = $current[$path[$i]];
+            if ($i+1 >= $count){
+                return 0;
             }
+            if (self::CheckRouteExists($current, $path[$i], $path[$i+1])){
+                return 1;
+            }
+            $current = $current[$path[$i]];
         }
         return -1;
     }
