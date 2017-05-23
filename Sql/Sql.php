@@ -41,6 +41,7 @@ class Sql
         $subModel = new SqlTable($name);
         if ($res = self::$_dbConnection->query("DESCRIBE " . self::$_dbName . ".{$name}")){
             while ($row = mysqli_fetch_array($res)){
+                Helper::PrintArray($row);
                 if ($row['Key'] == "MUL"){
                     $foreignTableInfo = self::GetForeignTableInfo($name, $row['Field']);
                     if ($foreignTableInfo['source'] != "") {
