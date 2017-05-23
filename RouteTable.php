@@ -7,7 +7,6 @@ class RouteTable
     public static $HiddenBranches = [
         "api",
         "error",
-        "forms"
     ];
 
     public static function ValidatePath($path){

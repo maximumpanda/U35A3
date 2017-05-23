@@ -17,6 +17,7 @@ class SqlType
     public $ForeignTable = "";
     public $ForeignColumn = "";
     public $AutoIncrement;
+    public $value;
 
     function __construct($row, $foreignTable = "", $foreignColumn = "")
     {
