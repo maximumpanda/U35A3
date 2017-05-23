@@ -37,8 +37,8 @@ class RouteTable
 
     private static function CheckRouteExists($array, $controllerKey, $viewKey){
         $requestMethod = Helper::GetRequestMethod();
-        if ($controllerKey = self::InsensitveKeySearch($array, $controllerKey)){
-            if ($viewKey = self::InsensitveKeySearch($array[$controllerKey][$requestMethod], $viewKey))
+        if ($controllerKey = self::InsensitiveKeySearch($array, $controllerKey !== false)){
+            if ($viewKey = self::InsensitiveKeySearch($array[$controllerKey][$requestMethod], $viewKey) !== false)
             {
                 return true;
             }
@@ -46,7 +46,7 @@ class RouteTable
         return false;
     }
 
-    private static function InsensitveKeySearch($array, $key){
+    private static function InsensitiveKeySearch($array, $key){
         foreach ($array as $currentKey => $value){
             if (strtolower($currentKey) == strtolower($key))
                 return $currentKey;
