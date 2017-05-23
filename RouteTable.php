@@ -30,7 +30,7 @@ class RouteTable
                 if ($i+1 >= $count){
                     return 0;
                 }
-                if (self::CheckMethodExists($current, $path[$i], $path[$i+1])){
+                if (self::CheckRouteExists($current, $path[$i], $path[$i+1])){
                     return 1;
                 }
                 $current = $current[$path[$i]];
@@ -39,11 +39,13 @@ class RouteTable
         return -1;
     }
 
-    private static function CheckMethodExists($array, $controllerKey, $viewKey){
+    private static function CheckRouteExists($array, $controllerKey, $viewKey){
         $requestMethod = Helper::GetRequestMethod();
         if ($controllerKey = self::InsensitveKeySearch($array, $controllerKey)){
+            Helper::Print("Controller found");
             if ($viewKey = self::InsensitveKeySearch($array[$controllerKey][$requestMethod], $viewKey))
             {
+                Helper::Print("RouteFound");
                 return true;
             }
         }
