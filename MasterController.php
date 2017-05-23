@@ -43,7 +43,7 @@ class MasterController{
         $count = count($this->Path);
         $controller = $this->FindController($this->Path[$count-2]);
         $method = $this->FindMethod($controller, end($this->Path));
-        call_user_func($controller."::".$method);
+        Session::$Bag['Model'] = call_user_func($controller."::".$method);
     }
 
     public function FindMethod($class, $name){
