@@ -20,13 +20,11 @@ class SqlTable
     }
 
     public function Print(){
-        print "<ul style='list-style-type: none'>{$this->Name} [";
-        print "<ul> Key: {$this->PrimaryKey} </ul>";
-        print "<ul>[</ul>";
+        print "<pre>{$this->Name} [";
         Helper::PrintArray($this->Members);
         /*foreach ($this->Members as $val){
             $val->Print();
         }*/
-        print "]</ul>";
+        print "]</pre>";
     }
 }
