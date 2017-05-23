@@ -31,7 +31,7 @@ class MasterView
                     $currentDir = $currentDir . basename($file). "/";
                     $lastFound = $file;
                     $found = true;
-                    continue;
+                    break;
                 }
             }
             if ($found == false)

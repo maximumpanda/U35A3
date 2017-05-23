@@ -48,6 +48,7 @@ class RouteTable
     }
 
     private static function InsensitiveKeySearch($array, $key){
+        if ($array == null) return false;
         $keys = array_keys($array);
         foreach ($keys as $val){
             if (strtolower($val) == strtolower($key)) {
