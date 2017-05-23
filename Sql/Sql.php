@@ -8,6 +8,8 @@
  */
 include_once "SqlType.php";
 include_once "SqlTable.php";
+include_once "SqlCollection.php";
+include_once "SqlObject.php";
 class Sql
 {
     private static $_dbConnection;
