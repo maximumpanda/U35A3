@@ -7,6 +7,7 @@
  */
 include_once $_SERVER['DOCUMENT_ROOT'] . "/Session.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/Helper.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/Router.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/RouteTable.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/MasterController.php";
 $uri = $_SERVER['REQUEST_URI'];
