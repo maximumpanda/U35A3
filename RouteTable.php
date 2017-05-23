@@ -11,7 +11,7 @@ class RouteTable
 
     public static function ValidatePath($path){
         $result = RouteTable::CheckPathToDestination($path);
-        Helper::PrintArray($path)
+        Helper::PrintArray($path);
         if ($result == -1) {
             Router::ReDirectError(404);
         }
