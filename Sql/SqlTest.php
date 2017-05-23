@@ -8,5 +8,5 @@
 
 include_once 'Sql.php';
 
-$model = Sql::GenerateModel("Clients", false);
+$model = Sql::GenerateModel("Clients", true);
 $model->Print();
