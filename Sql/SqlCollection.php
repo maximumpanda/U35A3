@@ -20,7 +20,9 @@ class SqlCollection
     }
 
     public function Print(){
-        Helper::PrintArray($this->Members);
+        foreach ($this->Members as $member){
+            $member->Print();
+        }
     }
 
 }

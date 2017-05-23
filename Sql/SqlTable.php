@@ -20,10 +20,10 @@ class SqlTable
     }
 
     public function Print(){
-        print "<pre>{$this->Name} [";
+        print "<ol style='list-style-type:none'>{$this->Name}[";
         foreach ($this->Members as $val){
             $val->Print();
         }
-        print "]</pre>";
+        print "]</ol>";
     }
 }
