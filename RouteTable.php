@@ -23,6 +23,7 @@ class RouteTable
     public static function CheckPathToDestination($path){
         $current = self::$Routes;
         $count = count($path);
+        Helper::PrintArray($path);
         for ($i = 0; $i < $count; $i++) {
             Helper::PrintArray($current);
             if (isset($current[strtolower($path[$i])])){
