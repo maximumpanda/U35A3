@@ -23,9 +23,7 @@ class RouteTable
     public static function CheckPathToDestination($path){
         $current = self::$Routes;
         $count = count($path);
-        Helper::PrintArray($path);
         for ($i = 0; $i < $count; $i++) {
-            Helper::PrintArray($current);
             if ($i+1 >= $count){
                 return 0;
             }
@@ -40,10 +38,8 @@ class RouteTable
     private static function CheckRouteExists($array, $controllerKey, $viewKey){
         $requestMethod = Helper::GetRequestMethod();
         if ($controllerKey = self::InsensitveKeySearch($array, $controllerKey)){
-            Helper::Print("Controller found");
             if ($viewKey = self::InsensitveKeySearch($array[$controllerKey][$requestMethod], $viewKey))
             {
-                Helper::Print("RouteFound");
                 return true;
             }
         }
