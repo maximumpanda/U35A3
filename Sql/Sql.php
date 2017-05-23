@@ -79,7 +79,7 @@ class Sql
         self::Use(self::$_dbName);
         $result = [];
         if ($res = self::$_dbConnection->query($sql)){
-            while($row = $res->fetch_row()){
+            while($row = $res->fetch_row(MYSQLI_ASSOC)){
                 Helper::PrintArray($row);
             }
         }
