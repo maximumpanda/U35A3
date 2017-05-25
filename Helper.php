@@ -67,7 +67,6 @@ class Helper
                 array_push($caps, $i);
             }
         }
-        preg_match('/[A-Z]/', $string, $caps, PREG_OFFSET_CAPTURE);
         for ($i = count($caps)-1; $i >=0; $i--){
             $start = $caps[$i];
             if ($i == count($caps)-1){
