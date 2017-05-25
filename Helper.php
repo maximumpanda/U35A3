@@ -58,7 +58,6 @@ class Helper
     }
 
     public static function SplitPascalCase($string){
-        Helper::PrintArray($string);
         $chars = str_split($string);
         $caps = [];
         $result = "";
@@ -74,7 +73,7 @@ class Helper
             }
             else{
                 $end = $caps[$i+1];
-                $result = substr($string, $string, $end) . " " . $result;
+                $result = substr($string, $start, $end) . ' ' . $result;
             }
         }
         return $result;
