@@ -53,7 +53,7 @@ class Sql
                 }
                 else {
                     if ($row['Key'] == "PRI") {
-                        $subModel->PrimaryKey = 1;
+                        $subModel->PrimaryKey = SqlType::$KeyTypes['Primary'];
                     }
                     $subModel->Members[$row['Field']] = SqlType::NewFromDescribe($row, $name);
                 }
