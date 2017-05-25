@@ -43,9 +43,9 @@ class Sql
         if ($res = self::$_dbConnection->query("DESCRIBE " . self::$_dbName . ".{$name}")){
             while ($row = mysqli_fetch_array($res)){
                 if ($row['Key'] == "MUL" && $includeSubTables){
-                    $foreignTableInfo = self::GetForeignTableInfo($name, $row['Field']);
+                    $foreignTableInfo = self::GetForeignTableInfo(self::$_dbName, $name, $row['Field']);
                     if ($foreignTableInfo['Source'] != "") {
-                        $subModel->Members[$row['Field']] = new SqlType($row, $name ,self::GenerateSubModel($foreignTableInfo['Source']));
+                        $subModel->Members[$row['Field']] = SqlType::NewFromDescribe($row, $name ,self::GenerateSubModel($foreignTableInfo['Source']));
                     }
                     else {
                         $subModel->Members[$row['Field']] = [];
@@ -53,23 +53,24 @@ class Sql
                 }
                 else {
                     if ($row['Key'] == "PRI") {
-                        $subModel->PrimaryKey = $row['Field'];
+                        $subModel->PrimaryKey = 1;
                     }
-                    $subModel->Members[$row['Field']] = new SqlType($row, $name);
+                    $subModel->Members[$row['Field']] = SqlType::NewFromDescribe($row, $name);
                 }
             }
         }
         return $subModel;
     }
 
-    private static function GetForeignTableInfo($table, $field){
-        $query =
-            "select referenced_table_name as Source,referenced_column_name ".
-            "from information_schema.key_column_usage ".
-            "where referenced_table_name is not null ".
-            "and table_schema = '". self::$_dbName . "' ".
-            "and table_name = '{$table}' ".
-            "and column_name = '{$field}';";
+    private static function GetForeignTableInfo($db, $table, $field){
+        $query = <<<"QUERY"
+select referenced_table_name as Source,referenced_column_name
+from information_schema.key_column_usage
+where referenced_table_name is not null
+and table_schema = '{$db}'
+and table_name = '{$table}'
+and column_name = '{$field}';
+QUERY;
         //print $query;
         if ($res = self::$_dbConnection->query($query)){
             return $res->fetch_array(MYSQLI_ASSOC);
@@ -81,15 +82,25 @@ class Sql
         self::Use(self::$_dbName);
         $result = new SqlCollection([]);
         if ($res = self::$_dbConnection->query($sql)){
+            $model = self::GenerateModelFromResult($res);
             while($row = $res->fetch_array(MYSQLI_ASSOC)){
-                Helper::PrintArray($row);
+                $object = clone $model;
+                foreach ($row as $key => $value){
+                    $object[$key]->Value = $value;
+                }
+                $result->AddMember($object);
             }
         }
         self::Disconnect();
         return $result;
     }
-    
-    public static function ParseRowToModel($row, $model){
 
+    private static function GenerateModelFromResult($array){
+        $model = new SqlObject();
+        while ($result = mysqli_fetch_field($array)){
+            $newType = SqlType::NewFromFetch($result);
+            $Model[$newType->Name] = $newType;
+        }
+        return $model;
     }
 }

@@ -8,7 +8,22 @@
  */
 class SqlObject
 {
-    public $Name = "";
+    public $Name;
     public $Fields = [];
 
+    public function __construct($name = "")
+    {
+        $this->Name = $name;
+    }
+
+    public function AddField(SqlType $field){
+        $this->Fields[$field->Name] = $field;
+    }
+
+    public function Print(){
+        print "<ol style='list-style-type:none'>$this->Name [";
+        foreach ($this->Fields as $field){
+            $field->Print();
+        }
+    }
 }

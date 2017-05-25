@@ -9,32 +9,94 @@
 class SqlType
 {
     public $Name;
-    public $TableName;
+    public $OriginalName;
+    public $Table;
+    public $OriginalTable;
+    public $Database;
     public $Type;
     public $Length;
     public $Unsigned;
     public $Nullable;
-    public $IsKey;
+    public $KeyType;
     public $ForeignTable;
     public $AutoIncrement;
+    public $Decimals;
     public $Value;
 
-    function __construct($row, $tableName, SqlTable $foreignTable = null)
+    public static $TypeCodes = [
+        16 => 'BIT',
+        1 => 'BOOL',
+        2 => 'SMALLINT',
+        9 => 'MEDIUMINT',
+        3 => 'INTEGER',
+        8 => 'BIGINT',
+        4 => 'FLOAT',
+        5 => 'DOUBLE',
+        246 => 'DECIMAL',
+        10 => 'DATE',
+        12 => 'DATETIME',
+        7 => 'TIMESTAMP',
+        13 => 'YEAR',
+        254 => 'CHAR',
+        253 => 'VARCHAR',
+        252 => 'TINYBLOB'
+    ];
+    public static $KeyTypes = [
+        'None' => 0,
+        'Primary' => 1,
+        'Foreign' => 2
+    ];
+
+    public function __construct()
     {
-        $this->Name = $row['Field'];
-        $this->TableName = $tableName;
-        $this->Type = self::ParseType($row['Type']);
-        $this->Length = self::ParseLength($row['Type']);
-        $this->Unsigned = strpos($row['Type'], 'unsigned') !== false;
-        $this->Nullable = $row['Null'] !== 'NO';
-        $this->IsKey = $row['Key'] !== "";
-        $this->ForeignTable = $foreignTable;
-        $this->AutoIncrement = strpos($row['Extra'], "auto_increment") !== false;
+    }
+
+    private function SetFlags($flags){
+        if ($flags & 1){
+            $this->Nullable = 0;
+        }
+        if ($flags & 2){
+            $this->KeyType = 1;
+        }
+        if ($flags & 32){
+            $this->Unsigned = true;
+        }
+        if ($flags & 512){
+            $this->AutoIncrement = true;
+        }
+    }
+
+    public static function NewFromDescribe($row, $tableName, SqlTable $foreignTable = null)
+    {
+        $newType = new SqlType();
+        $newType->Name = $row['Field'];
+        $newType->Table = $tableName;
+        $newType->Type = self::ParseType($row['Type']);
+        $newType->Length = self::ParseLength($row['Type']);
+        $newType->Unsigned = strpos($row['Type'], 'unsigned') !== false;
+        $newType->Nullable = $row['Null'] !== 'NO';
+        $newType->KeyType = $row['Key'] !== "";
+        $newType->ForeignTable = $foreignTable;
+        $newType->AutoIncrement = strpos($row['Extra'], "auto_increment") ? true : false;
+        return $newType;
+    }
+
+    public static function NewFromFetch($definition){
+        $newType = new SqlType();
+        $newType->Name = $definition->name;
+        $newType->OriginalName = $definition->orgname;
+        $newType->Table = $definition->table;
+        $newType->Table = $definition->orgtable;
+        $newType->Length = $definition->max_length;
+        $newType->Type = $definition->type;
+        $newType->Decimals = $definition->type;
+        $newType->SetFlags($definition->flags);
+        return $newType;
     }
 
     public function Print(){
         print "<ol style='list-style-type:none'>{$this->Name} [";
-        print "<ul>" . "Table: " . $this->TableName . ",</ul>";
+        print "<ul>" . "Table: " . $this->Table . ",</ul>";
         print "<ul>" . "Type: " . $this->Type . ",</ul>";
         print "<ul>" . "Length: " . $this->Length . ",</ul>";
         print "<ul>" . "Unsigned: " . $this->Unsigned . ",</ul>";
