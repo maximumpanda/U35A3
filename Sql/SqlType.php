@@ -96,14 +96,14 @@ class SqlType
 
     public function Print(){
         print "<ol style='list-style-type:none'>{$this->Name} [";
-        print "<ul>" . "Table: " . $this->Table . ",</ul>";
-        print "<ul>" . "Type: " . $this->Type . ",</ul>";
-        print "<ul>" . "Length: " . $this->Length . ",</ul>";
-        print "<ul>" . "Unsigned: " . $this->Unsigned . ",</ul>";
-        print "<ul>" . "Nullable: " . $this->Nullable . ",</ul>";
-        print "<ul>" . 'IsKey: ' . $this->IsKey . ",</ul>";
-        print "<ul>" . "Auto-Increment: " . $this->AutoIncrement . "</ul>";
-        if ($this->ForeignTable != null) print "<li>" . $this->ForeignTable->Print() . ",</li>";
+        print "<ul>Table: $this->Table ,</ul>";
+        print "<ul>Type: $this->Type,</ul>";
+        print "<ul>Length: $this->Length,</ul>";
+        print "<ul>Unsigned: $this->Unsigned,</ul>";
+        print "<ul>Nullable: $this->Nullable,</ul>";
+        print "<ul>KeyType: $this->KeyType,</ul>";
+        print "<ul>Auto-Increment: $this->AutoIncrement </ul>";
+        if ($this->ForeignTable != null) print "<li>$this->ForeignTable->Print() ,</li>";
         print "]</ol>";
     }
 
