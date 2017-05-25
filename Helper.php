@@ -56,4 +56,21 @@ class Helper
         else
             Router::ReDirectError(405);
     }
+
+    public static function SplitPascalCase($string){
+        $caps = [];
+        $result = "";
+        preg_match('/[A-Z]', $string, $caps, PREG_OFFSET_CAPTURE);
+        for ($i = count($caps)-1; $i >=0; $i--){
+            $start = $caps[$i][1];
+            if ($i == count($caps)-1){
+                    $result = substr($string, $start);
+            }
+            else{
+                $end = $caps[$i+1][1];
+                $result = substr($string, $string, $end) . " " . $result;
+            }
+        }
+        return $result;
+    }
 }

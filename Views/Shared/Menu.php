@@ -8,6 +8,6 @@
     }
     sort($buttons);?>
     <?php foreach ($buttons as $button): ?>
-        <a href=<?="/".$button?> class="Element"><?=$button?></a>
+        <a href=<?="/".$button?> class="Element"><?=Helper::SplitPascalCase($button)?></a>
     <?php endforeach?>
 </div>
