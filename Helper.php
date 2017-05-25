@@ -60,7 +60,8 @@ class Helper
     public static function SplitPascalCase($string){
         $caps = [];
         $result = "";
-        preg_match('/([A-Z])/', $string, $caps, PREG_OFFSET_CAPTURE);
+        Helper::Print($string);
+        preg_match('/[A-Z]/', $string, $caps, PREG_OFFSET_CAPTURE);
         Helper::PrintArray($caps);
         for ($i = count($caps)-1; $i >=0; $i--){
             $start = $caps[$i][1];
