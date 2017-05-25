@@ -58,21 +58,29 @@ class Helper
     }
 
     public static function SplitPascalCase($string){
+        $chars = str_split($string);
         $caps = [];
         $result = "";
-        Helper::PrintArray(str_split($string));
+        for ($i = 0; $i < count($chars); $i++){
+            if (self::CharIsCapitalized($chars[$i])){
+                array_push($caps, $i);
+            }
+        }
         preg_match('/[A-Z]/', $string, $caps, PREG_OFFSET_CAPTURE);
-        Helper::PrintArray($caps);
         for ($i = count($caps)-1; $i >=0; $i--){
-            $start = $caps[$i][1];
+            $start = $caps[$i];
             if ($i == count($caps)-1){
                     $result = substr($string, $start);
             }
             else{
-                $end = $caps[$i+1][1];
+                $end = $caps[$i+1];
                 $result = substr($string, $string, $end) . " " . $result;
             }
         }
         return $result;
+    }
+
+    public static function CharIsCapitalized($char){
+        return (bool) preg_match('/[A-Z]/', $char);
     }
 }
