@@ -86,7 +86,7 @@ QUERY;
             while($row = $res->fetch_array(MYSQLI_ASSOC)){
                 $object = clone $model;
                 foreach ($row as $key => $value){
-                    $object[$key]->Value = $value;
+                    $object->Fields[$key]->Value = $value;
                 }
                 $result->AddMember($object);
             }
@@ -99,7 +99,7 @@ QUERY;
         $model = new SqlObject();
         while ($result = mysqli_fetch_field($array)){
             $newType = SqlType::NewFromFetch($result);
-            $Model[$newType->Name] = $newType;
+            $model->AddField($newType);
         }
         return $model;
     }
