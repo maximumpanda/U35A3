@@ -38,7 +38,7 @@ class FormElement
 
     public function BuildHtml(){
         Helper::PrintArray($this);
-        $html =
+        $html = $this->Name . ': ' .
             '<input type="' . $this->InputType .
             ' name="' . $this->Name .
             ' maxlength="' . $this->MaxLength .
