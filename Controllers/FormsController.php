@@ -35,8 +35,9 @@ class FormsController
     }
     public static function GetModify(){
         $model = Sql::GenerateModel(Session::$Bag['Table'], true);
-        $model->Query('Id=' . Session::$Bag['Id']);
+        $res = $model->Query('Id=' . Session::$Bag['Id']);
         Helper::PrintArray($model);
+        $res->Print();
     }
     public static function PostModify(){
 
