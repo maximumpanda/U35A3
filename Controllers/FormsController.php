@@ -7,6 +7,7 @@
  * Time: 5:06 PM
  */
 include_once $_SERVER['DOCUMENT_ROOT'] . "/Sql/Sql.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/Models/FormsModel.php";
 class FormsController
 {
     public static function GetIndex(){
