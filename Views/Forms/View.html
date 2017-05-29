@@ -1,13 +1,13 @@
 view test
 <table>
     <tr>
-    <?php foreach (Session::$Model->Fields as $field):?>
+    <?php foreach (Session::$Model->Fields as $field): ?>
         <th><?=$field?></th>
     <?php endforeach?>
     </tr>
     <?php foreach (Session::$Model->Collection as $obj): ?>
     <tr>
-        <?php foreach ($obj->Fields as $field)?>
+        <?php foreach ($obj->Fields as $field): ?>
             <td><?=$field->Value?></td>
         <?php endforeach?>
     </tr>
