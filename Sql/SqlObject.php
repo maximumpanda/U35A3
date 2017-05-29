@@ -17,7 +17,7 @@ class SqlObject
     }
 
     public function AddField(SqlType $field){
-        $this->Fields[$field->Name] = $field;
+        $this->Fields[$field->Alias] = $field;
     }
 
     public function Print(){

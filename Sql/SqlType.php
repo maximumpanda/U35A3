@@ -8,10 +8,10 @@
  */
 class SqlType
 {
+    public $Alias;
     public $Name;
-    public $OriginalName;
-    public $Table;
-    public $OriginalTable;
+    public $TableAlias;
+    public $TableName;
     public $Database;
     public $Type;
     public $Length;
@@ -70,8 +70,8 @@ class SqlType
     public static function NewFromDescribe($row, $tableName, SqlTable $foreignTable = null)
     {
         $newType = new SqlType();
-        $newType->Name = $row['Field'];
-        $newType->Table = $tableName;
+        $newType->Alias = $row['Field'];
+        $newType->TableAlias = $tableName;
         $newType->Type = self::ParseType($row['Type']);
         $newType->Length = self::ParseLength($row['Type']);
         $newType->Unsigned = strpos($row['Type'], 'unsigned') !== false;
@@ -84,10 +84,10 @@ class SqlType
 
     public static function NewFromFetch($definition){
         $newType = new SqlType();
-        $newType->Name = $definition->name;
-        $newType->OriginalName = $definition->orgname;
-        $newType->Table = $definition->table;
-        $newType->Table = $definition->orgtable;
+        $newType->Alias = $definition->name;
+        $newType->Name = $definition->orgname;
+        $newType->TableName = $definition->table;
+        $newType->TableAlias = $definition->orgtable;
         $newType->Length = $definition->max_length;
         $newType->Type = SqlType::$TypeCodes[$definition->type];
         $newType->Decimals = $definition->type;
@@ -96,8 +96,9 @@ class SqlType
     }
 
     public function Print(){
-        print "<ol style='list-style-type:none'>{$this->Name} [";
-        print "<ul>Table: $this->Table ,</ul>";
+        print "<ol style='list-style-type:none'>$this->Alias [";
+        print "<ul>original name: $this->Name,</ul>";
+        print "<ul>Table: $this->TableAlias ,</ul>";
         print "<ul>Type: $this->Type,</ul>";
         print "<ul>Length: $this->Length,</ul>";
         print "<ul>Unsigned: $this->Unsigned,</ul>";
