@@ -25,7 +25,7 @@ class SqlType
 
     public static $TypeCodes = [
         16 => 'bit',
-        1 => 'bool',
+        1 => 'tinyint',
         2 => 'smallint',
         9 => 'mediumint',
         3 => 'int',

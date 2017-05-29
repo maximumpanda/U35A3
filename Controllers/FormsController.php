@@ -27,7 +27,6 @@ class FormsController
         $model = new FormsViewModel();
         $model->Table= $table;
         $model->Collection = $collection;
-        Helper::PrintArray($collection);
         foreach ($collection[0]->Fields as $field){
             array_push($model->Fields, $field->alias);
         }

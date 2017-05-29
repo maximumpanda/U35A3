@@ -42,29 +42,25 @@ class Sql
         return self::Query($query);
     }
     public static function GetAllFromTable($table){
-        $name = self::$_dbName . '.' . $table;
         $query = "Select * From $table";
-        Helper::Print($name);
-        return self::Query($query);
+        $model = self::GenerateModel($table, false);
+        return self::Query($query, $model);
     }
     private static function GenerateSubModel($name, $includeSubTables = true){
-        $subModel = new SqlTable($name);
+        $subModel = new SqlObject($name);
         if ($res = self::$_dbConnection->query("DESCRIBE " . self::$_dbName . ".{$name}")){
             while ($row = mysqli_fetch_array($res)){
                 if ($row['Key'] == "MUL" && $includeSubTables){
                     $foreignTableInfo = self::GetForeignTableInfo(self::$_dbName, $name, $row['Field']);
                     if ($foreignTableInfo['Source'] != "") {
-                        $subModel->Members[$row['Field']] = SqlType::NewFromDescribe($row, $name ,self::GenerateSubModel($foreignTableInfo['Source']));
+                        $subModel->Fields[$row['Field']] = SqlType::NewFromDescribe($row, $name ,self::GenerateSubModel($foreignTableInfo['Source']));
                     }
                     else {
-                        $subModel->Members[$row['Field']] = [];
+                        $subModel->Fields[$row['Field']] = [];
                     }
                 }
                 else {
-                    if ($row['Key'] == "PRI") {
-                        $subModel->PrimaryKey = SqlType::$KeyTypes['Primary'];
-                    }
-                    $subModel->Members[$row['Field']] = SqlType::NewFromDescribe($row, $name);
+                    $subModel->Fields[$row['Field']] = SqlType::NewFromDescribe($row, $name);
                 }
             }
         }
@@ -86,17 +82,14 @@ QUERY;
         }
     }
 
-    public static function Query($sql){
+    public static function Query($sql, $model = null){
         self::Connect();
         self::Use(self::$_dbName);
         $result = new SqlCollection();
         Helper::Print("StartQuery");
         Helper::Print("Query: $sql");
         if ($res = self::$_dbConnection->query($sql)){
-            $count = mysqli_num_rows($res);
-            Helper::Print($count);
-            $model = self::GenerateModelFromResult($res);
-            $model->Print();
+            if ($model == null) $model = self::GenerateModelFromResult($res);
             while($row = $res->fetch_array(MYSQLI_ASSOC)){
                 $object = $model->Clone();
                 foreach ($row as $key => $value){
