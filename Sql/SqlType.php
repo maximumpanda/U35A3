@@ -113,6 +113,7 @@ class SqlType
     }
 
     private static function ParseType($raw){
+        Helper::Print($raw);
         $end = strpos($raw, "(");
         return substr($raw, 0, $end);
     }
