@@ -42,7 +42,7 @@ class FormElement
             '<input type="' . $this->InputType .
             ' name="' . $this->Name .
             ' maxlength="' . $this->MaxLength .
-            ' value="' . $this->DefaultValue .'"';
+            '" value="' . $this->DefaultValue .'"';
         if ($this->Disabled == true ){
             $html = $html . 'disabled';
         }
