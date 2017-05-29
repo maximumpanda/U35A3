@@ -20,7 +20,7 @@ class MasterController{
             include_once $file;
         }
         $this->ReadParams();
-        $this->Path = Helper::ArrayValuesToLower($path);
+        $this->Path = Helper::ArrayValuesToLower($this->Path);
         RouteTable::GenerateRouteTable($this->controllers);
         $this->BuildView();
     }
