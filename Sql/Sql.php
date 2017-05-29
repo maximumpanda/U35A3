@@ -91,6 +91,7 @@ QUERY;
         $result = new SqlCollection();
         if ($res = self::$_dbConnection->query($sql)){
             $model = self::GenerateModelFromResult($res);
+            $model->Print();
             while($row = $res->fetch_array(MYSQLI_ASSOC)){
                 $object = $model->Clone();
                 foreach ($row as $key => $value){
