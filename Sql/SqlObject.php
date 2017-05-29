@@ -26,6 +26,12 @@ class SqlObject
         return $newObject;
     }
 
+    public function Query($where = ""){
+        $query = 'Select * From ' . reset($this->Fields)->Table;
+        if ($where !== "") $query = $query. ' ' . $where;
+        return Sql::Query($query);
+    }
+
     public function Print(){
         print "<ol style='list-style-type:none'>[";
         foreach ($this->Fields as $field){

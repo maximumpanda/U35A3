@@ -12,7 +12,6 @@ class SqlType
     public $Name;
     public $TableAlias;
     public $TableName;
-    public $Database;
     public $Type;
     public $Length;
     public $Unsigned;
