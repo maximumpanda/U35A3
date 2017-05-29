@@ -28,7 +28,7 @@ class FormsController
         $model = new FormsViewModel();
         $model->Table= $table;
         $model->Collection = $collection;
-        foreach ($collection[0]->Fields as $field){
+        foreach ($collection->Members[0]->Fields as $field){
             array_push($model->Fields, $field->alias);
         }
         return $model;
