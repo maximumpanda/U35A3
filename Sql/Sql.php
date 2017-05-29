@@ -46,21 +46,21 @@ class Sql
         $model = self::GenerateModel($table, false);
         return self::Query($query, $model);
     }
-    private static function GenerateSubModel($name, $includeSubTables = true){
-        $subModel = new SqlObject($name);
-        if ($res = self::$_dbConnection->query("DESCRIBE " . self::$_dbName . ".{$name}")){
+    private static function GenerateSubModel($tableName, $includeSubTables = true){
+        $subModel = new SqlObject($tableName);
+        if ($res = self::$_dbConnection->query("DESCRIBE " . self::$_dbName . ".{$tableName}")){
             while ($row = mysqli_fetch_array($res)){
                 if ($row['Key'] == "MUL" && $includeSubTables){
-                    $foreignTableInfo = self::GetForeignTableInfo(self::$_dbName, $name, $row['Field']);
+                    $foreignTableInfo = self::GetForeignTableInfo(self::$_dbName, $tableName, $row['Field']);
                     if ($foreignTableInfo['Source'] != "") {
-                        $subModel->Fields[$row['Field']] = SqlType::NewFromDescribe($row, $name ,self::GenerateSubModel($foreignTableInfo['Source']));
+                        $subModel->Fields[$row['Field']] = SqlType::NewFromDescribe($row, $tableName ,self::GenerateSubModel($foreignTableInfo['Source']));
                     }
                     else {
                         $subModel->Fields[$row['Field']] = [];
                     }
                 }
                 else {
-                    $subModel->Fields[$row['Field']] = SqlType::NewFromDescribe($row, $name);
+                    $subModel->Fields[$row['Field']] = SqlType::NewFromDescribe($row, $tableName);
                 }
             }
         }
