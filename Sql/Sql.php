@@ -42,6 +42,7 @@ class Sql
         return self::Query($query);
     }
     public static function GetAllFromTable($table){
+        Helper::Print($table);
         $query = "Select * From $table";
         return self::Query($query);
     }
