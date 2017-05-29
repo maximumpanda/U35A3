@@ -44,7 +44,7 @@ class FormsController
     }
     public static function GetAdd(){
         $table = Session::$Bag['Table'];
-        $model = Sql::GenerateModel($table, false);
+        $model = Sql::GenerateModel($table, true);
         $form = Form::NewFromModel($model);
         return $form;
 
