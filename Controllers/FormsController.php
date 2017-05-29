@@ -37,6 +37,9 @@ class FormsController
         $model = Sql::GenerateModel(Session::$Bag['Table'], true);
         $query = 'Select * from '. Session::$Bag['Table'] . ' Where id =' . Session::$Bag['Id'];
         $res = Sql::Query($query, $model);
+        Helper::PrintArray($model);
+        Helper::Print($query);
+        Helper::PrintArray($res);
     }
     public static function PostModify(){
 
