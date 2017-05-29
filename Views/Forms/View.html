@@ -9,6 +9,7 @@
         <?php foreach ($obj->Fields as $field): ?>
             <td><?=$field->Value?></td>
         <?php endforeach?>
+        <td><a href=<?='/Forms/Modify?table='.Session::$Bag['Table'].'&Id='.$obj->Field['Id']->Value?> class="Button"></a></td>
     </tr>
     <?php endforeach?>
 </table>
