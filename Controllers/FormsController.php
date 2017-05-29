@@ -24,4 +24,7 @@ class FormsController
     public static function GetView(){
         $table = Session::$Bag["table"];
     }
+    public static function GetModify(){
+        
+    }
 }
