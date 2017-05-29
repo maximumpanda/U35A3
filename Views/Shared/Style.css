@@ -16,6 +16,10 @@
 table{
     text-align: left;
     margin:0px auto;
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black;
 }
 .Title{
     font-size: 500%;
