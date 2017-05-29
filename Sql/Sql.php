@@ -94,6 +94,7 @@ QUERY;
                     $object->Fields[$key]->Value = $value;
                     Helper::Print("$key :: $value");
                 }
+                Helper::Print("Added");
                 $result->AddMember($object);
             }
         }
