@@ -27,7 +27,7 @@ class SqlObject
         return $newObject;
     }
 
-    public function Query($where = ""){
+    public function SelectAll($where = ""){
         $query = 'Select * From ' . reset($this->Fields)->TableName;
         if ($where !== "") $query = $query. ' where ' . $where;
         return Sql::Query($query);
