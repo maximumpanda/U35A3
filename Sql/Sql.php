@@ -92,6 +92,7 @@ QUERY;
                 $object = clone $model;
                 foreach ($row as $key => $value){
                     $object->Fields[$key]->Value = $value;
+                    Helper::Print("$key :: $value");
                 }
                 $result->AddMember($object);
             }
