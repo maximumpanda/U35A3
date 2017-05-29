@@ -58,6 +58,7 @@ class SqlType
         if ($flags & 2){
             $this->KeyType = 1;
         }
+        else $this->KeyType = 0;
         if ($flags & 32){
             $this->Unsigned = true;
         }
@@ -88,7 +89,7 @@ class SqlType
         $newType->Table = $definition->table;
         $newType->Table = $definition->orgtable;
         $newType->Length = $definition->max_length;
-        $newType->Type = $definition->type;
+        $newType->Type = SqlType::$TypeCodes[$definition->type];
         $newType->Decimals = $definition->type;
         $newType->SetFlags($definition->flags);
         return $newType;
