@@ -11,6 +11,6 @@ class FormsController
 {
     public static function GetIndex(){
         $list = new FormsModel();
-        Sql::
+        Sql::GetTables("u33a2");
     }
 }
