@@ -32,7 +32,7 @@ class FormElement
         $this->_source = $object;
         $this->MaxLength = $object->Length;
         if($object->KeyType = 1) $this->Enabled = false;
-        $this->DefaultValue = $object->Value;
+        $this->DefaultValue = $object->Value != null ? $object->Value : "";
         $this->InputType = FormElement::$InputTypes[$this->ParseInputType($object)];
     }
 
@@ -44,16 +44,16 @@ class FormElement
 
     private function ParseInputType(SqlType $object){
         if ($object->KeyType == 2) return 2;
-        if (strpos($object->KeyType, 'int') !== false){
-            if ($object->KeyType == "tinyint") {
+        if (strpos($object->Type, 'int') !== false){
+            if ($object->Type == "tinyint") {
                 if ($object->Length == 1) return 4;
             }
             return 1;
         }
-        if (strpos($object->KeyType, "char")!== false){
+        if (strpos($object->Type, "char")!== false){
             return 0;
         }
-        if (strpos($object->KeyType, 'date') !== false){
+        if (strpos($object->Type, 'date') !== false){
             return 3;
         }
         return 0;
