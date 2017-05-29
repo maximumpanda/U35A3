@@ -23,7 +23,7 @@ class FormsController
 
     public static function GetView(){
         $table = Session::$Bag["table"];
-        $collection = Sql::GetAllFromTable($table)->Members;
+        $collection = Sql::GetAllFromTable($table);
         $model = new FormsViewModel();
         $model->Table= $table;
         $model->Collection = $collection;
