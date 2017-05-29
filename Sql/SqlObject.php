@@ -30,7 +30,7 @@ class SqlObject
     public function Query($where = ""){
         $query = 'Select * From ' . reset($this->Fields)->TableName;
         if ($where !== "") $query = $query. ' where ' . $where;
-        return Sql::Query($query);
+        return Sql::Query($query, $this);
     }
 
     public function Print(){
