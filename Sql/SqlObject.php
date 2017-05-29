@@ -41,12 +41,15 @@ class SqlObject
     }
 
     public function Summarize(){
+        $summary = [];
         $values = [];
         foreach ($this->Fields as $field){
             if ($field->Name == 'Id') continue;
             array_push($values, $field->Value);
         }
-        return [$this->Fields['Id']->Value => implode(" ,", $values)];
+
+        $summary[$this->Fields['Id']->Value] = implode(" ,", $values);
+        return $summary;
     }
 
     public function Print(){
