@@ -1,1 +1,10 @@
-<?php Session::$Model->Build()?>
+<form>
+    <table>
+        /** @var FormElement $element */
+        <?php foreach (Session::$Model->Elements as $element):?>
+            <tr>
+                <td><?=$element->Name?></td>
+            </tr>
+        <?php endforeach?>
+    </table>
+</form>

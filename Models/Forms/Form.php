@@ -8,8 +8,8 @@
  */
 include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Forms/FormElement.php';
 class Form{
-    /** @var FormElement[] $Fields */
-    public $Fields = [];
+    /** @var FormElement[] $Elements */
+    public $Elements = [];
     /** @var  SqlObject $Model */
     public $Model;
     public $Status = "Success";
@@ -25,14 +25,6 @@ class Form{
     }
 
     public function AddElement(SqlType $modelField){
-        array_push($this->Fields, new FormElement($modelField));
-    }
-
-    public function Build(){
-        $html = "";
-        foreach ($this->Fields as $field){
-            $html = $html . $field->BuildHtml();
-        }
-        Helper::Print($html);
+        array_push($this->Elements, new FormElement($modelField));
     }
 }
