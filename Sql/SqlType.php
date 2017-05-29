@@ -71,7 +71,9 @@ class SqlType
     {
         $newType = new SqlType();
         $newType->Alias = $row['Field'];
+        $newType->Name = $newType->Alias;
         $newType->TableAlias = $tableName;
+        $newType->TableName = $newType->TableAlias;
         $newType->Type = self::ParseType($row['Type']);
         $newType->Length = self::ParseLength($row['Type']);
         $newType->Unsigned = strpos($row['Type'], 'unsigned') !== false;

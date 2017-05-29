@@ -41,7 +41,10 @@ class Sql
         $query = "Select table_name as name from Information_schema.tables Where table_type = 'base table'and table_schema = '$database'";
         return self::Query($query);
     }
-
+    public static function GetAllFromTable($table){
+        $query = "Select * From $table";
+        return self::Query($query);
+    }
     private static function GenerateSubModel($name, $includeSubTables = true){
         $subModel = new SqlTable($name);
         if ($res = self::$_dbConnection->query("DESCRIBE " . self::$_dbName . ".{$name}")){

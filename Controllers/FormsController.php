@@ -7,7 +7,7 @@
  * Time: 5:06 PM
  */
 include_once $_SERVER['DOCUMENT_ROOT'] . "/Sql/Sql.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/Models/FormsModel.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/Models/FormsViewModel.php";
 class FormsController
 {
     public static function GetIndex(){
@@ -23,6 +23,13 @@ class FormsController
 
     public static function GetView(){
         $table = Session::$Bag["table"];
+        $collection = Sql::GetAllFromTable($table);
+        $model = new FormsViewModel();
+        $model->Table= $table;
+        $model->Collection = $collection;
+        foreach ($collection->Members[0]->Fields as $field){
+            array_push($model->Fields, $field->alias);
+        }
 
     }
     public static function GetModify(){
