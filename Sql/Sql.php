@@ -44,7 +44,6 @@ class Sql
     public static function GetAllFromTable($table){
         $query = "Select * From $table";
         $model = self::GenerateModel($table, false);
-        $model->Print();
         return self::Query($query, $model);
     }
     private static function GenerateSubModel($name, $includeSubTables = true){
@@ -87,8 +86,6 @@ QUERY;
         self::Connect();
         self::Use(self::$_dbName);
         $result = new SqlCollection();
-        Helper::Print("StartQuery");
-        Helper::Print("Query: $sql");
         if ($res = self::$_dbConnection->query($sql)){
             if ($model == null) $model = self::GenerateModelFromResult($res);
             while($row = $res->fetch_array(MYSQLI_ASSOC)){
@@ -102,7 +99,6 @@ QUERY;
         else{
             Helper::Print("Error: " . self::$_dbConnection->error);
         }
-        Helper::Print("EndQuery");
         self::Disconnect();
         return $result;
     }
