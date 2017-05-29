@@ -17,6 +17,7 @@ class SqlType
     public $Unsigned;
     public $Nullable;
     public $KeyType;
+    /** @var  SqlObject $ForeignTable */
     public $ForeignTable;
     public $AutoIncrement;
     public $Decimals;

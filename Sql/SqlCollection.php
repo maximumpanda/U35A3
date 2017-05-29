@@ -8,6 +8,7 @@
  */
 class SqlCollection
 {
+    /** @var SqlObject[] $Members */
     public $Members = [];
 
     public function AddMember(SqlObject $newMember){
@@ -20,4 +21,11 @@ class SqlCollection
         }
     }
 
+    public function Summarize(){
+        $summary = [];
+        foreach ($this->Members as $member){
+            array_push($summary, $member->Summarize());
+        }
+        return $summary;
+    }
 }

@@ -34,6 +34,7 @@ class FormElement
         $this->Disabled = $object->KeyType == 1 ? true : false;
         $this->DefaultValue = $object->Value != null ? $object->Value : "";
         $this->InputType = FormElement::$InputTypes[$this->ParseInputType($object)];
+        if ($this->InputType == 'select') $this->Values = $object->ForeignTable->SelectAll()->Summarize();
     }
 
     private function ParseInputType(SqlType $object){

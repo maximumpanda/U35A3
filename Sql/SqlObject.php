@@ -34,6 +34,24 @@ class SqlObject
         return Sql::Query($query);
     }
 
+    public function Select($elements = "*", $where = ""){
+        $query = 'Select ' . $elements . ' From ' . reset($this->Fields)->TableName;
+        if ($where !== "") $query = $query . ' where ' . $where;
+        return Sql::Query($query);
+    }
+
+    public function Summarize(){
+        $summary = [];
+        $values = [];
+        foreach ($this->Fields as $field){
+            if ($field->Name == 'Id') continue;
+            array_push($values, $field->Value);
+        }
+
+        $summary[$this->Fields['Id']->Value] = implode(" ,", $values);
+        return $summary;
+    }
+
     public function Print(){
         print "<ol style='list-style-type:none'>[";
         foreach ($this->Fields as $field){
