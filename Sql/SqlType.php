@@ -76,11 +76,11 @@ class SqlType
         $newType->TableName = $newType->TableAlias;
         $newType->Type = self::ParseType($row['Type']);
         $newType->Length = self::ParseLength($row['Type']);
-        $newType->Unsigned = strpos($row['Type'], 'unsigned') !== false;
-        $newType->Nullable = $row['Null'] !== 'NO';
+        $newType->Unsigned = strpos($row['Type'], 'unsigned') !== false ? 1 : 0;
+        $newType->Nullable = $row['Null'] !== 'NO' ? 1 : 0;
         $newType->KeyType = self::ParseKeyType($row['Key']);
         $newType->ForeignTable = $foreignTable;
-        $newType->AutoIncrement = strpos($row['Extra'], "auto_increment") ? true : false;
+        $newType->AutoIncrement = strpos($row['Extra'], "auto_increment") !== false ? 1 : 0;
         return $newType;
     }
 
