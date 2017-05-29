@@ -21,4 +21,8 @@ class FormsController
         }
         return $output;
     }
+
+    public static function GetView(){
+        $table = Session::$Bag["table"];
+    }
 }

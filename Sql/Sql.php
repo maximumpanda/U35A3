@@ -86,16 +86,12 @@ QUERY;
         self::Use(self::$_dbName);
         $result = new SqlCollection();
         if ($res = self::$_dbConnection->query($sql)){
-            $val = mysqli_num_rows($res);
             $model = self::GenerateModelFromResult($res);
             while($row = $res->fetch_array(MYSQLI_ASSOC)){
                 $object = $model->Clone();
-                Helper::Print($object->Fields['name']->Value);
                 foreach ($row as $key => $value){
                     $object->Fields[$key]->Value = $value;
-                    Helper::Print("$key :: $value");
                 }
-                Helper::Print("Added");
                 $result->AddMember($object);
             }
         }

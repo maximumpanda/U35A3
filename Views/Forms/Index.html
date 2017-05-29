@@ -1,3 +1,11 @@
-<?php
-    Helper::PrintArray(Session::$Model);
-    ?>
+<div class="Center Wrapper">
+    <table>
+        <tr>
+            <?php foreach (Session::$Model as $table):?>
+                <td><?$table?></td>
+                <td><a href=<?"/Forms/View?table=".$table?> class="Button">View</a></td>
+                <td><a href=<?"/Forms/Modify?table=".$table?> class="Button">Modify</a></td>
+            <?php endforeach?>
+        </tr>
+    </table>
+</div>
