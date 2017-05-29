@@ -38,7 +38,7 @@ class Sql
         return $model;
     }
     public static function GetTables($database){
-        $query = "Select table_name as name from Information_schema.tables Where table_type = 'base table' and table_schema = '$database'";
+        $query = "Select table_name as name from Information_schema.tables Where table_type = 'base table'";
         return self::Query($query);
     }
 
@@ -94,7 +94,6 @@ QUERY;
             $model->Print();
             while($row = $res->fetch_array(MYSQLI_ASSOC)){
                 $object = clone $model;
-                Helper::PrintArray($row);
                 foreach ($row as $key => $value){
                     Helper::Print("$key :: $value");
                     $object->Fields[$key]->Value = $value;
