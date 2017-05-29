@@ -78,7 +78,7 @@ class SqlType
         $newType->Length = self::ParseLength($row['Type']);
         $newType->Unsigned = strpos($row['Type'], 'unsigned') !== false;
         $newType->Nullable = $row['Null'] !== 'NO';
-        $newType->KeyType = $row['Key'] !== "";
+        $newType->KeyType = self::ParseKeyType($row['Key']);
         $newType->ForeignTable = $foreignTable;
         $newType->AutoIncrement = strpos($row['Extra'], "auto_increment") ? true : false;
         return $newType;
@@ -121,6 +121,12 @@ class SqlType
         $start = strpos($raw, "(")+1;
         $end = strpos($raw, ")");
         return substr($raw, $start,$end-$start);
+    }
+
+    private static function ParseKeyType($key){
+        if ($key == '') return 0;
+        if ($key == 'PRI') return 1;
+        if ($key == 'MUL') return 2;
     }
 
     public function GetValueOfKey(){
