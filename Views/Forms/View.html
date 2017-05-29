@@ -5,7 +5,7 @@ view test
         <th><?=$field?></th>
     <?php endforeach?>
     </tr>
-    <?php foreach (Session::$Model->Collection as $obj): ?>
+    <?php foreach (Session::$Model->Collection->Members as $obj): ?>
     <tr>
         <?php foreach ($obj->Fields as $field): ?>
             <td><?=$field->Value?></td>
