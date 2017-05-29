@@ -7,8 +7,8 @@
  * Time: 5:06 PM
  */
 include_once $_SERVER['DOCUMENT_ROOT'] . "/Sql/Sql.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/Models/FormsViewModel.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/FormsObjectFormModel.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . "/Models/Forms/View.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Forms/Form.php';
 class FormsController
 {
     public static function GetIndex(){
@@ -25,7 +25,7 @@ class FormsController
     public static function GetView(){
         $table = Session::$Bag["Table"];
         $collection = Sql::GetAllFromTable($table);
-        $model = new FormsViewModel();
+        $model = new View();
         $model->Table= $table;
         $model->Collection = $collection;
         foreach ($collection->Members[0]->Fields as $field){
@@ -44,15 +44,17 @@ class FormsController
     }
     public static function GetAdd(){
         $table = Session::$Bag['Table'];
+        $model = Sql::GenerateModel($table, false);
+        $form = Form::NewFromModel($model);
+        return $form;
 
     }
     public static function PostAdd(){
-
     }
 
     private static function GenerateFormSchema($table){
         $sqlSchema = Sql::GenerateModel($table);
-        $model = new FormsObjectFormModel();
+        $model = new Form();
 
     }
 }

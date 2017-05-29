@@ -9,6 +9,7 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . '/Sql/Sql.php';
 class SqlObject
 {
+    /** @var SqlType[] $Fields */
     public $Fields = [];
 
     public function __construct()

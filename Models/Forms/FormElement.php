@@ -6,7 +6,7 @@
  * Date: 5/29/2017
  * Time: 2:01 PM
  */
-class FormObjectFormElement
+class FormElement
 {
     public $Name;
     public $DefaultValue;
@@ -29,11 +29,11 @@ class FormObjectFormElement
         $this->_source = $object;
         if($object->KeyType = 1) $this->Enabled = false;
         $this->DefaultValue = $object->Value;
-        $this->InputType = FormObjectFormElement::$InputTypes[$this->ParseInputType($object)];
+        $this->InputType = FormElement::$InputTypes[$this->ParseInputType($object)];
     }
 
     public function BuildHtml(){
-        print "<input type='$this->InputType' name='$this->Name' maxlength='$this->_source->Length' value='$this->DefaultValue'><br>";
+        return "<input type='$this->InputType' name='$this->Name' maxlength='$this->_source->Length' value='$this->DefaultValue'><br>";
     }
 
     private function ParseInputType(SqlType $object){
