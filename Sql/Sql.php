@@ -38,7 +38,7 @@ class Sql
         return $model;
     }
     public static function GetTables($database){
-        $query = "Select table_name as name from Information_schema.tables Where table_type = 'base table'";
+        $query = "Select table_name as name from Information_schema.tables Where table_type = 'base table'and table_schema = '$database'";
         return self::Query($query);
     }
 

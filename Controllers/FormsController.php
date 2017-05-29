@@ -12,7 +12,7 @@ class FormsController
 {
     public static function GetIndex(){
         $list = new SqlCollection();
-        $list = Sql::GetTables("u33a2");
+        $list = Sql::GetTables("u35a1");
         $list->Print();
         return $list;
     }
