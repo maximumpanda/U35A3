@@ -91,12 +91,9 @@ QUERY;
         Helper::Print("Query: $sql");
         if ($res = self::$_dbConnection->query($sql)){
             if ($model == null) $model = self::GenerateModelFromResult($res);
-            $count = mysqli_num_rows($res);
-            Helper::Print("count: $count");
             while($row = $res->fetch_array(MYSQLI_ASSOC)){
                 $object = $model->Clone();
                 foreach ($row as $key => $value){
-                    Helper::Print("$key::$value");
                     $object->Fields[$key]->Value = $value;
                 }
                 $result->AddMember($object);
