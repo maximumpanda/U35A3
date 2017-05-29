@@ -28,7 +28,7 @@ class SqlObject
 
     public function Query($where = ""){
         $query = 'Select * From ' . reset($this->Fields)->Table;
-        if ($where !== "") $query = $query. ' ' . $where;
+        if ($where !== "") $query = $query. ' where ' . $where;
         return Sql::Query($query);
     }
 
