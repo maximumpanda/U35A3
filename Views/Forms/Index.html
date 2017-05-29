@@ -3,8 +3,8 @@
             <?php foreach (Session::$Model as $table):?>
                 <tr>
                     <td><?=$table?></td>
-                    <td><a href=<?="/Forms/View?table=".$table?> class="Button">View</a></td>
-                    <td><a href=<?="/Forms/Modify?table=".$table?> class="Button">Modify</a></td>
+                    <td><a href=<?="/Forms/View?Table=".$table?> class="Button">View</a></td>
+                    <td><a href=<?="/Forms/Modify?Table=".$table?> class="Button">Modify</a></td>
                 </tr>
             <?php endforeach?>
     </table>
