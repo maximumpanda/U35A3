@@ -51,6 +51,7 @@ a.Button {
     -moz-appearance: button;
     text-decoration: none;
     color: initial;
+    padding:5px;
 }
 
 body{
