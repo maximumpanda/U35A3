@@ -38,19 +38,19 @@ class FormElement
 
     public function BuildHtml(){
         Helper::PrintArray($this);
-        $html = "<input type='$this->InputType' name='$this->Name' maxlength='$this->$this->MaxLength' value='$this->DefaultValue'><br>";
+        $html = '<input type=/"' . $this->InputType . ' name="' . $this->Name .' maxlength="' . $this->$this->MaxLength . ' value="' . $this->DefaultValue .'"><br>';
         return $html;
     }
 
     private function ParseInputType(SqlType $object){
         if ($object->KeyType == 2) return 2;
         if (strpos($object->Type, 'int') !== false){
-            if ($object->Type == "tinyint") {
+            if ($object->Type == 'tinyint') {
                 if ($object->Length == 1) return 4;
             }
             return 1;
         }
-        if (strpos($object->Type, "char")!== false){
+        if (strpos($object->Type, 'char')!== false){
             return 0;
         }
         if (strpos($object->Type, 'date') !== false){
