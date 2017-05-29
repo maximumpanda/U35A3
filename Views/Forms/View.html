@@ -3,6 +3,7 @@
     <?php foreach (Session::$Model->Fields as $field): ?>
         <th><?=$field?></th>
     <?php endforeach?>
+        <th>Edit</th>
     </tr>
     <?php foreach (Session::$Model->Collection->Members as $obj): ?>
     <tr>
