@@ -24,12 +24,11 @@ class FormsController
     public static function GetView(){
         $table = Session::$Bag["table"];
         $collection = Sql::GetAllFromTable($table);
-        $collection->Print();
         $model = new FormsViewModel();
         $model->Table= $table;
         $model->Collection = $collection;
         foreach ($collection->Members[0]->Fields as $field){
-            array_push($model->Fields, $field->alias);
+            array_push($model->Fields, $field->Alias);
         }
         return $model;
     }
