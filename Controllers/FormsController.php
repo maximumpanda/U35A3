@@ -8,6 +8,7 @@
  */
 include_once $_SERVER['DOCUMENT_ROOT'] . "/Sql/Sql.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/Models/FormsViewModel.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/FormsObjectFormModel.php';
 class FormsController
 {
     public static function GetIndex(){
@@ -33,6 +34,24 @@ class FormsController
         return $model;
     }
     public static function GetModify(){
+        $model = Sql::GenerateModel(Session::$Bag['Table'], true);
+        $query = 'Select * from '. Session::$Bag['Table'] . ' Where id =' . Session::$Bag['Id'];
+        $res = Sql::Query($query, $model);
+    }
+    public static function PostModify(){
+
+    }
+    public static function GetAdd(){
+        $table = Session::$Bag['Table'];
+
+    }
+    public static function PostAdd(){
+
+    }
+
+    private static function GenerateFormSchema($table){
+        $sqlSchema = Sql::GenerateModel($table);
+        $model = new FormsObjectFormModel();
 
     }
 }
