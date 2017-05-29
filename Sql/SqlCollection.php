@@ -11,7 +11,7 @@ class SqlCollection
     public $Members = [];
 
     public function AddMember(SqlObject $newMember){
-        array_push($this->Members, $newMember->Name, $newMember);
+        array_push($this->Members, $newMember);
     }
 
     public function Print(){
