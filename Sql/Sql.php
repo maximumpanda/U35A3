@@ -87,6 +87,8 @@ QUERY;
         $result = new SqlCollection([]);
         Helper::Print("Started query");
         if ($res = self::$_dbConnection->query($sql)){
+            $val = mysqli_num_rows($res);
+            Helper::Print("row Count: $val");
             $model = self::GenerateModelFromResult($res);
             Helper::Print("Model:");
             $model->Print();
