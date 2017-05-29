@@ -103,7 +103,7 @@ class SqlType
         print "<ul>Nullable: $this->Nullable,</ul>";
         print "<ul>KeyType: $this->KeyType,</ul>";
         print "<ul>Auto-Increment: $this->AutoIncrement </ul>";
-        if ($this->ForeignTable != null) print "<li>$this->ForeignTable->Print() ,</li>";
+        if ($this->ForeignTable != null) print "<li>" . $this->ForeignTable->Print() . ",</li>";
         print "]</ol>";
     }
 
