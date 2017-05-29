@@ -1,9 +1,11 @@
 <form>
     <table>
-        /** @var FormElement $element */
         <?php foreach (Session::$Model->Elements as $element):?>
             <tr>
                 <td><?=$element->Name?></td>
+                <td>
+                    <input type=<?=$element->InputType?>>
+                </td>
             </tr>
         <?php endforeach?>
     </table>
