@@ -43,7 +43,7 @@ class Sql
     }
     public static function GetAllFromTable($table){
         $name = self::$_dbName . '.' . $table;
-        $query = "Select * From addresses";
+        $query = "Select * From $table";
         Helper::Print($name);
         return self::Query($query);
     }
