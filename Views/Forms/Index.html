@@ -1,10 +1,10 @@
-<div class="Center Wrapper">
+<div class="Center">
     <table>
             <?php foreach (Session::$Model as $table):?>
                 <tr>
-                <td><?=$table?></td>
-                <td><a href=<?="/Forms/View?table=".$table?> class="Button">View</a></td>
-                <td><a href=<?="/Forms/Modify?table=".$table?> class="Button">Modify</a></td>
+                    <td><?=$table?></td>
+                    <td><a href=<?="/Forms/View?table=".$table?> class="Button">View</a></td>
+                    <td><a href=<?="/Forms/Modify?table=".$table?> class="Button">Modify</a></td>
                 </tr
             <?php endforeach?>
     </table>
