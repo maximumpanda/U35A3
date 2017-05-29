@@ -11,7 +11,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/Models/FormsModel.php";
 class FormsController
 {
     public static function GetIndex(){
-        $list = new FormsModel();
-        Sql::GetTables("u33a2");
+        $list = new SqlCollection();
+        $list = Sql::GetTables("u33a2");
+        return $list;
     }
 }
