@@ -94,6 +94,7 @@ QUERY;
             $model->Print();
             while($row = $res->fetch_array(MYSQLI_ASSOC)){
                 $object = clone $model;
+                Helper::PrintArray($row);
                 foreach ($row as $key => $value){
                     Helper::Print("$key :: $value");
                     $object->Fields[$key]->Value = $value;
