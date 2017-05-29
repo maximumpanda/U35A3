@@ -90,6 +90,7 @@ QUERY;
             $model = self::GenerateModelFromResult($res);
             while($row = $res->fetch_array(MYSQLI_ASSOC)){
                 $object = clone $model;
+                Helper::Print($object->Fields['name']->Value);
                 foreach ($row as $key => $value){
                     $object->Fields[$key]->Value = $value;
                     Helper::Print("$key :: $value");
