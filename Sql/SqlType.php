@@ -124,9 +124,9 @@ class SqlType
     }
 
     private static function ParseKeyType($key){
-        if ($key == '') return 0;
         if ($key == 'PRI') return 1;
         if ($key == 'MUL') return 2;
+        return 0;
     }
 
     public function GetValueOfKey(){
