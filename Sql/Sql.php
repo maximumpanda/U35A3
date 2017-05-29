@@ -45,7 +45,7 @@ class Sql
         $name = self::$_dbName . '.' . $table;
         $query = "Select * From $name";
         Helper::Print($name);
-        return self::Query($query);
+        return self::Query($table);
     }
     private static function GenerateSubModel($name, $includeSubTables = true){
         $subModel = new SqlTable($name);
