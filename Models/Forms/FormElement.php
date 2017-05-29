@@ -33,7 +33,8 @@ class FormElement
     }
 
     public function BuildHtml(){
-        return "<input type='$this->InputType' name='$this->Name' maxlength='$this->_source->Length' value='$this->DefaultValue'><br>";
+        $html = "<input type='$this->InputType' name='$this->Name' maxlength='$this->_source->Length' value='$this->DefaultValue'><br>"
+        return $html;
     }
 
     private function ParseInputType(SqlType $object){
