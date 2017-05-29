@@ -36,7 +36,7 @@ class FormElement
     }
 
     public function BuildHtml(){
-        $html = "<input type='$this->InputType' name='$this->Name' maxlength='$this->_source->Length' value='$this->DefaultValue'><br>";
+        $html = "<input type='$this->InputType' name='$this->Name' maxlength='$this->$this->MaxLength' value='$this->DefaultValue'><br>";
         return $html;
     }
 
