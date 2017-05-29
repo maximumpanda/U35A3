@@ -33,5 +33,6 @@ class Form{
         foreach ($this->Fields as $field){
             $html = $html . $field->BuildHtml();
         }
+        Helper::Print($html);
     }
 }
