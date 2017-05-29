@@ -8,12 +8,10 @@
  */
 class SqlObject
 {
-    public $Name = "";
     public $Fields = [];
 
-    public function __construct($name = "")
+    public function __construct()
     {
-        $this->Name = $name;
     }
 
     public function AddField(SqlType $field){
