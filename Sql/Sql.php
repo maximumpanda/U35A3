@@ -105,6 +105,9 @@ QUERY;
                 $result->AddMember($object);
             }
         }
+        else{
+            Helper::Print("Error: " . self::$_dbConnection->error);
+        }
         Helper::Print("EndQuery");
         self::Disconnect();
         return $result;
