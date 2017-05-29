@@ -37,6 +37,10 @@ class Sql
         self::Disconnect();
         return $model;
     }
+    public static function GetTables($database){
+        $query = "Select * from Information_schema.tables Where table_type = 'base table' and table_schema = '$database'";
+        Helper::Print($query);
+    }
 
     private static function GenerateSubModel($name, $includeSubTables = true){
         $subModel = new SqlTable($name);

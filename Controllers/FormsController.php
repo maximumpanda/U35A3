@@ -10,8 +10,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/Sql/Sql.php";
 class FormsController
 {
     public static function GetIndex(){
-
-
-
+        $list = new FormsModel();
+        Sql::
     }
 }

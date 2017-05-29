@@ -24,22 +24,22 @@ class SqlType
     public $Value;
 
     public static $TypeCodes = [
-        16 => 'BIT',
-        1 => 'BOOL',
-        2 => 'SMALLINT',
-        9 => 'MEDIUMINT',
-        3 => 'INTEGER',
-        8 => 'BIGINT',
-        4 => 'FLOAT',
-        5 => 'DOUBLE',
-        246 => 'DECIMAL',
-        10 => 'DATE',
-        12 => 'DATETIME',
-        7 => 'TIMESTAMP',
-        13 => 'YEAR',
-        254 => 'CHAR',
-        253 => 'VARCHAR',
-        252 => 'TINYBLOB'
+        16 => 'bit',
+        1 => 'bool',
+        2 => 'smallint',
+        9 => 'mediumint',
+        3 => 'int',
+        8 => 'bigint',
+        4 => 'float',
+        5 => 'double',
+        246 => 'decimal',
+        10 => 'date',
+        12 => 'datetime',
+        7 => 'timestamp',
+        13 => 'year',
+        254 => 'char',
+        253 => 'varchar',
+        252 => 'tinyblob'
     ];
     public static $KeyTypes = [
         'None' => 0,
