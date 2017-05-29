@@ -6,10 +6,9 @@
  * Date: 4/25/2017
  * Time: 11:00 AM
  */
-include_once "SqlType.php";
-include_once "SqlTable.php";
-include_once "SqlCollection.php";
-include_once "SqlObject.php";
+include_once $_SERVER['DOCUMENT_ROOT']. "/Sql/SqlType.php";
+include_once $_SERVER['DOCUMENT_ROOT']. "/Sql/SqlCollection.php";
+include_once $_SERVER['DOCUMENT_ROOT']. "/Sql/SqlObject.php";
 class Sql
 {
     private static $_dbConnection;
