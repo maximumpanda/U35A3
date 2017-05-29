@@ -93,6 +93,7 @@ QUERY;
             while($row = $res->fetch_array(MYSQLI_ASSOC)){
                 $object = clone $model;
                 foreach ($row as $key => $value){
+                    Helper::Print("$key :: $value");
                     $object->Fields[$key]->Value = $value;
                 }
                 $result->AddMember($object);
