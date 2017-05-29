@@ -8,7 +8,6 @@
  */
 class SqlObject
 {
-    public $Name;
     public $Fields = [];
 
     public function __construct($name = "")
@@ -21,10 +20,10 @@ class SqlObject
     }
 
     public function Print(){
-        print "<ol style='list-style-type:none'>$this->Name [";
+        print "<ol style='list-style-type:none'>[";
         foreach ($this->Fields as $field){
             $field->Print();
         }
-        print "</ol>";
+        print "]</ol>";
     }
 }

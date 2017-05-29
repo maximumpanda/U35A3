@@ -84,22 +84,20 @@ QUERY;
     public static function Query($sql){
         self::Connect();
         self::Use(self::$_dbName);
-        $result = new SqlCollection([]);
+        $result = new SqlCollection();
         Helper::Print("Started query");
         if ($res = self::$_dbConnection->query($sql)){
             $val = mysqli_num_rows($res);
             Helper::Print("row Count: $val");
             $model = self::GenerateModelFromResult($res);
-            Helper::Print("Model:");
-            $model->Print();
             while($row = $res->fetch_array(MYSQLI_ASSOC)){
                 $object = clone $model;
                 foreach ($row as $key => $value){
-                    Helper::Print("$key :: $value");
                     $object->Fields[$key]->Value = $value;
-                    $object->Print();
                 }
                 $result->AddMember($object);
+                $count = count($result->Members);
+                Helper::Print("$count");
             }
         }
         Helper::Print("Ended Query");
