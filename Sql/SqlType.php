@@ -67,7 +67,7 @@ class SqlType
         }
     }
 
-    public static function NewFromDescribe($row, $tableName, SqlTable $foreignTable = null)
+    public static function NewFromDescribe($row, $tableName, SqlObject $foreignTable = null)
     {
         $newType = new SqlType();
         $newType->Alias = $row['Field'];
