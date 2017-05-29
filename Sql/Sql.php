@@ -42,9 +42,9 @@ class Sql
         return self::Query($query);
     }
     public static function GetAllFromTable($table){
-        Helper::Print($table);
         $name = self::$_dbName . '.' . $table;
         $query = "Select * From $name";
+        Helper::Print($name);
         return self::Query($query);
     }
     private static function GenerateSubModel($name, $includeSubTables = true){
