@@ -36,20 +36,6 @@ class FormElement
         $this->InputType = FormElement::$InputTypes[$this->ParseInputType($object)];
     }
 
-    public function BuildHtml(){
-        Helper::PrintArray($this);
-        $html = $this->Name . ': ' .
-            '<input type="' . $this->InputType .
-            ' name="' . $this->Name .
-            ' maxlength="' . $this->MaxLength .
-            '" value="' . $this->DefaultValue .'"';
-        if ($this->Disabled == true ){
-            $html = $html . 'disabled';
-        }
-        $html = $html . '><br>';
-        return $html;
-    }
-
     private function ParseInputType(SqlType $object){
         if ($object->KeyType == 2) return 2;
         if (strpos($object->Type, 'int') !== false){

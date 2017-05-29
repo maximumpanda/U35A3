@@ -3,9 +3,20 @@
         <?php foreach (Session::$Model->Elements as $element):?>
             <tr>
                 <td><?=$element->Name?></td>
-                <td>
-                    <input type="<?=$element->InputType?>" maxlength="<?=$element->MaxLength?>" value="<?=$element->DefaultValue?>" <?= $element->Disabled ? "disabled" : ""?>>
-                </td>
+                <?php if ($element->InputType != 'select'):?>
+                    <td>
+                        <input type="<?=$element->InputType?>" name="<?=$element->Name?>" maxlength="<?=$element->MaxLength?>" value="<?=$element->DefaultValue?>" <?= $element->Disabled ? "disabled" : ""?>>
+                    </td>
+                <?php endif?>
+                <?php if ($element->InputType == 'select'):?>
+                    <td>
+                        <select name="<?=$element->Name?>">
+                            <?php foreach ($element->Values as $key => $value):?>
+                                <option value="<?=$key?>"><?=$value?></option>
+                            <?php endforeach?>
+                        </select>
+                    </td>
+                <?php endif?>
             </tr>
         <?php endforeach?>
     </table>
