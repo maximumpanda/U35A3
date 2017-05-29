@@ -85,8 +85,11 @@ QUERY;
         self::Connect();
         self::Use(self::$_dbName);
         $result = new SqlCollection([]);
+        Helper::Print("Started query");
         if ($res = self::$_dbConnection->query($sql)){
             $model = self::GenerateModelFromResult($res);
+            Helper::Print("Model:");
+            $model->Print();
             while($row = $res->fetch_array(MYSQLI_ASSOC)){
                 $object = clone $model;
                 foreach ($row as $key => $value){
@@ -95,6 +98,7 @@ QUERY;
                 $result->AddMember($object);
             }
         }
+        Helper::Print("Ended Query");
         self::Disconnect();
         return $result;
     }
