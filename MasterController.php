@@ -68,7 +68,7 @@ class MasterController{
         if (strpos(end($path), "?" ) != false){
             $exploded = explode("?", end($path));
             Session::SetParams(end($exploded));
-            $count = count($this->Path);
+            $count = count($path);
             $path[$count-1] = $exploded[0];
             array_filter($path);
         }
