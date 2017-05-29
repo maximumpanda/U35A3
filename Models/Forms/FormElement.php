@@ -31,7 +31,7 @@ class FormElement
         $this->Name = $object->Name;
         $this->_source = $object;
         $this->MaxLength = $object->Length;
-        $this->Disabled = $object->KeyType == 2 ? true : false;
+        $this->Disabled = $object->KeyType == 1 ? true : false;
         $this->DefaultValue = $object->Value != null ? $object->Value : "";
         $this->InputType = FormElement::$InputTypes[$this->ParseInputType($object)];
     }
