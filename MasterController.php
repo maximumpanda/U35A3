@@ -19,8 +19,7 @@ class MasterController{
         foreach ($this->controllers as $file){
             include_once $file;
         }
-        $this->ReadParams();
-        $this->Path = Helper::ArrayValuesToLower($this->Path);
+        $this->ProcessPath($path);
         RouteTable::GenerateRouteTable($this->controllers);
         $this->BuildView();
     }
@@ -65,13 +64,14 @@ class MasterController{
         return false;
     }
 
-    private function ReadParams() {
-        if (strpos(end($this->Path), "?" ) != false){
-            $exploded = explode("?", end($this->Path));
+    private function ProcessPath($path) {
+        if (strpos(end($path), "?" ) != false){
+            $exploded = explode("?", end($path));
             Session::SetParams(end($exploded));
             $count = count($this->Path);
-            $this->Path[$count-1] = $exploded[0];
-            array_filter($this->Path);
+            $path[$count-1] = $exploded[0];
+            array_filter($path);
         }
+        $this->Path = Helper::ArrayValuesToLower($path);
     }
 }
