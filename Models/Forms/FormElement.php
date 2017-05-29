@@ -27,6 +27,7 @@ class FormElement
 
     public function __construct(SqlType $object)
     {
+        Helper::PrintArray($object);
         $this->Name = $object->Name;
         $this->_source = $object;
         $this->MaxLength = $object->Length;
