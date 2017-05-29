@@ -41,7 +41,7 @@ class FormElement
         $html =
             '<input type="' . $this->InputType .
             ' name="' . $this->Name .
-            ' maxlength="' . $this->$this->MaxLength .
+            ' maxlength="' . $this->MaxLength .
             ' value="' . $this->DefaultValue .'"><br>';
         return $html;
     }
