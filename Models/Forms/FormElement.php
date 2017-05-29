@@ -27,7 +27,7 @@ class FormElement
 
     public function __construct(SqlType $object)
     {
-        Helper::PrintArray($object);
+
         $this->Name = $object->Name;
         $this->_source = $object;
         $this->MaxLength = $object->Length;
@@ -37,6 +37,7 @@ class FormElement
     }
 
     public function BuildHtml(){
+        Helper::PrintArray($this);
         $html = "<input type='$this->InputType' name='$this->Name' maxlength='$this->$this->MaxLength' value='$this->DefaultValue'><br>";
         return $html;
     }
