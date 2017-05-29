@@ -10,6 +10,6 @@ class FormsViewModel
 {
     public $Table = "";
     public $Fields = [];
-    public $Collection;
+    public $Collection = [];
 
 }
