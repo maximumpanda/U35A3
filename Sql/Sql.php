@@ -90,7 +90,11 @@ QUERY;
         self::Connect();
         self::Use(self::$_dbName);
         $result = new SqlCollection();
+        Helper::Print("StartQuery");
+        Helper::Print("Query: $sql");
         if ($res = self::$_dbConnection->query($sql)){
+            $count = mysqli_num_rows($res);
+            Helper::Print($count);
             $model = self::GenerateModelFromResult($res);
             $model->Print();
             while($row = $res->fetch_array(MYSQLI_ASSOC)){
@@ -101,6 +105,7 @@ QUERY;
                 $result->AddMember($object);
             }
         }
+        Helper::Print("EndQuery");
         self::Disconnect();
         return $result;
     }
