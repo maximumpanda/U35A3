@@ -13,6 +13,7 @@ class FormsController
     public static function GetIndex(){
         $list = new SqlCollection();
         $list = Sql::GetTables("u35a1");
+        $list->Print();
         $output = [];
         foreach ($list->Members as $object){
             $table = $object->Fields['name']->Value;
