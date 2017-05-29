@@ -25,5 +25,6 @@ class SqlObject
         foreach ($this->Fields as $field){
             $field->Print();
         }
+        print "</ol>";
     }
 }
