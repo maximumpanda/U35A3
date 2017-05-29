@@ -12,7 +12,9 @@ class FormElement
     public $DefaultValue;
     public $InputType;
     public $Values;
+    public $MaxLength;
     public $Enabled = true;
+    /** @var SqlType $_source */
     private $_source;
 
     public static $InputTypes = [
@@ -27,13 +29,14 @@ class FormElement
     {
         $this->Name = $object->Name;
         $this->_source = $object;
+        $this->MaxLength = $object->Length;
         if($object->KeyType = 1) $this->Enabled = false;
         $this->DefaultValue = $object->Value;
         $this->InputType = FormElement::$InputTypes[$this->ParseInputType($object)];
     }
 
     public function BuildHtml(){
-        $html = "<input type='$this->InputType' name='$this->Name' maxlength='$this->_source->Length' value='$this->DefaultValue'><br>"
+        $html = "<input type='$this->InputType' name='$this->Name' maxlength='$this->_source->Length' value='$this->DefaultValue'><br>";
         return $html;
     }
 
