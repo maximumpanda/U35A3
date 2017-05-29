@@ -89,7 +89,7 @@ QUERY;
             $val = mysqli_num_rows($res);
             $model = self::GenerateModelFromResult($res);
             while($row = $res->fetch_array(MYSQLI_ASSOC)){
-                $object = clone $model;
+                $object = $model->Clone();
                 Helper::Print($object->Fields['name']->Value);
                 foreach ($row as $key => $value){
                     $object->Fields[$key]->Value = $value;

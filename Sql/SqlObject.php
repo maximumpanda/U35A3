@@ -19,6 +19,14 @@ class SqlObject
         $this->Fields[$field->Alias] = $field;
     }
 
+    public function Clone(){
+        $newObject = new SqlObject();
+        foreach ($this->Fields as $field){
+            $newObject->AddField(clone $field);
+        }
+        return $newObject;
+    }
+
     public function Print(){
         print "<ol style='list-style-type:none'>[";
         foreach ($this->Fields as $field){
