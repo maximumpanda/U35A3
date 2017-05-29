@@ -97,6 +97,7 @@ QUERY;
                 foreach ($row as $key => $value){
                     Helper::Print("$key :: $value");
                     $object->Fields[$key]->Value = $value;
+                    $object->Print();
                 }
                 $result->AddMember($object);
             }
