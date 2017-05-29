@@ -104,7 +104,8 @@ class SqlType
         print "<ul>Unsigned: $this->Unsigned,</ul>";
         print "<ul>Nullable: $this->Nullable,</ul>";
         print "<ul>KeyType: $this->KeyType,</ul>";
-        print "<ul>Auto-Increment: $this->AutoIncrement </ul>";
+        print "<ul>Auto-Increment: $this->AutoIncrement,</ul>";
+        if ($this->Value != null) print "<ul>Value: $this->Value,</ul>";
         if ($this->ForeignTable != null) print "<li>" . $this->ForeignTable->Print() . ",</li>";
         print "]</ol>";
     }
