@@ -8,6 +8,7 @@
  */
 class SqlObject
 {
+    public $Name = "";
     public $Fields = [];
 
     public function __construct($name = "")
