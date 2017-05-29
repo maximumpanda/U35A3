@@ -13,7 +13,7 @@ class FormElement
     public $InputType;
     public $Values;
     public $MaxLength;
-    public $Enabled = true;
+    public $Disabled = false;
     /** @var SqlType $_source */
     private $_source;
 
@@ -31,7 +31,7 @@ class FormElement
         $this->Name = $object->Name;
         $this->_source = $object;
         $this->MaxLength = $object->Length;
-        if($object->KeyType = 1) $this->Enabled = false;
+        if($object->KeyType = 1) $this->Disabled = true;
         $this->DefaultValue = $object->Value != null ? $object->Value : "";
         $this->InputType = FormElement::$InputTypes[$this->ParseInputType($object)];
     }
@@ -42,7 +42,8 @@ class FormElement
             '<input type="' . $this->InputType .
             ' name="' . $this->Name .
             ' maxlength="' . $this->MaxLength .
-            ' value="' . $this->DefaultValue .'"><br>';
+            ' value="' . $this->DefaultValue .'"' .
+            ' disabled="' . $this->Disabled . '"><br>';
         return $html;
     }
 
