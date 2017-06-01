@@ -25,7 +25,6 @@ class MasterController{
     }
 
     private function BuildView(){
-
         RouteTable::ValidatePath($this->Path);
         $this->CallController();
         MasterView::GenerateView($this->Path);

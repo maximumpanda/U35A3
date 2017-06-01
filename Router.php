@@ -18,9 +18,14 @@ class Router{
         exit();
     }
 
-    public static function ReDirectIncomplete($path){
+    public static function RedirectIncomplete($path){
         array_push($path, self::$DefaultView);
         header("location: " . Helper::GetBaseUrl() . "/" . implode("/", $path));
+        exit();
+    }
+
+    public static function Redirect($path){
+        header('location: ' . Helper::GetBaseUrl() . $path);
         exit();
     }
 }

@@ -15,7 +15,7 @@ class RouteTable
             Router::ReDirectError(404, implode("/", $path));
         }
         if ($result == 0){
-            Router::ReDirectIncomplete($path);
+            Router::RedirectIncomplete($path);
         }
         return $result;
     }

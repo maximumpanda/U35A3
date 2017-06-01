@@ -12,7 +12,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Forms/Form.php';
 class FormsController
 {
     public static function GetIndex(){
-        $list = new SqlCollection();
         $list = Sql::GetTables("u35a1");
         $output = [];
         foreach ($list->Members as $object){
@@ -40,7 +39,7 @@ class FormsController
         $res->Print();
     }
     public static function PostModify(){
-
+        Router::Redirect("/Views/Forms/Result?Status=Success");
     }
     public static function GetAdd(){
         $table = Session::$Bag['Table'];
@@ -49,7 +48,16 @@ class FormsController
         return $form;
 
     }
+    public static function GetResult(){
+        $model =[
+            "Action" => Session::$Bag['Action'],
+            "Status" => Session::$Bag['Status']
+        ];
+        return $model;
+    }
+
     public static function PostAdd(){
+        Router::Redirect("/Views/Forms/Result?Action=Add&Status=Success");
     }
 
     private static function GenerateFormSchema($table){
