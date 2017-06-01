@@ -39,7 +39,7 @@ class FormsController
         $res->Print();
     }
     public static function PostModify(){
-        Router::Redirect("/Views/Forms/Result?Status=Success");
+        Router::Redirect("/Forms/Result?Action=Modify&Status=Success");
     }
     public static function GetAdd(){
         $table = Session::$Bag['Table'];
@@ -57,7 +57,7 @@ class FormsController
     }
 
     public static function PostAdd(){
-        Router::Redirect("/Views/Forms/Result?Action=Add&Status=Success");
+        Router::Redirect("/Forms/Result?Action=Add&Status=Success");
     }
 
     private static function GenerateFormSchema($table){
