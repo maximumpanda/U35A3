@@ -47,7 +47,6 @@ class SqlObject
             if ($field->Name == 'Id') continue;
             array_push($values, $field->Value);
         }
-
         $summary[$this->Fields['Id']->Value] = implode(" ,", $values);
         return $summary;
     }
