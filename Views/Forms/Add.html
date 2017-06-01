@@ -1,12 +1,12 @@
 <form action="/Forms/Add" method="post">
     <table>
         <?php foreach (Session::$Model->Elements as $element):?>
-            <tr>
+            <tr class="class="<?= $element->Disabled ? "Hidden" : ""?>"">
                 <td><?=$element->Name?></td>
                 <?php if ($element->InputType != 'select'):?>
                     <td>
-                        <input type="<?=$element->InputType?>" class="<?= $element->Disabled ? "Hidden" : ""?>"
-                               name="<?=$element->Name?>" maxlength="<?=$element->MaxLength?>" value="<?=$element->DefaultValue?>"
+                        <input type="<?=$element->InputType?>" name="<?=$element->Name?>"
+                               maxlength="<?=$element->MaxLength?>" value="<?=$element->DefaultValue?>"
                         >
                     </td>
                 <?php endif?>
