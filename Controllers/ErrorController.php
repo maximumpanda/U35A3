@@ -23,6 +23,7 @@ class ErrorController
         $model->Title = Session::$Bag['Code'];
         $model->Message = Session::$Bag['Message'];
         $model->ErrorMessage = self::$ErrorCodes[Session::$Bag['Code']];
+        Helper::PrintArray(RouteTable::$Routes);
         return $model;
     }
 }
