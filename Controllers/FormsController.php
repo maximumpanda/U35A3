@@ -35,6 +35,8 @@ class FormsController
     public static function GetModify(){
         $model = Sql::GenerateModel(Session::$Bag['Table'], true);
         $res = $model->SelectAll('Id=' . Session::$Bag['Id']);
+        $form = Form::NewFromModel($res);
+        return $form;
     }
     public static function PostModify(){
         Router::Redirect("/Forms/Result?Action=Modify&Status=Success");
