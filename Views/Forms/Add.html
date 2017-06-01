@@ -1,7 +1,7 @@
 <form action="/Forms/Add" method="post">
     <table>
         <?php foreach (Session::$Model->Elements as $element):?>
-            <tr class="class="<?= $element->Disabled ? "Hidden" : ""?>"">
+            <tr class="<?=$element->Disabled ? "Hidden" : ""?>">
                 <td><?=$element->Name?></td>
                 <?php if ($element->InputType != 'select'):?>
                     <td>
