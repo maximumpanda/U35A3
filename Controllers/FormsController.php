@@ -38,7 +38,7 @@ class FormsController
         $res = $model->SelectAll('Id=' . Session::$Bag['Id']);
         Helper::PrintArray($res);
         foreach ($model->Fields as $key => $value){
-            $model->Fields[$key] = $res->Members[0]->Fields[$key];
+            $model->Fields[$key]->Value = $res->Members[0]->Fields[$key]->Value;
         }
         $form = Form::NewFromModel($model);
         return $form;
