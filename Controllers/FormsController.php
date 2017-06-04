@@ -35,7 +35,10 @@ class FormsController
     public static function GetModify(){
         $model = Sql::GenerateModel(Session::$Bag['Table'], true);
         $res = $model->SelectAll('Id=' . Session::$Bag['Id']);
-        $form = Form::NewFromModel($res->Members[0]);
+        for ($i=0; $i < count($model->Fields); $i++ ){
+            $model->Fields[$i]->Value = $res->Members[0]->Fields[$i]->Value;
+        }
+        $form = Form::NewFromModel($model);
         return $form;
     }
     public static function PostModify(){
