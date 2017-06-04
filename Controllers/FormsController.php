@@ -34,7 +34,9 @@ class FormsController
     }
     public static function GetModify(){
         $model = Sql::GenerateModel(Session::$Bag['Table'], true);
+        Helper::PrintArray($model);
         $res = $model->SelectAll('Id=' . Session::$Bag['Id']);
+        Helper::PrintArray($res);
         for ($i=0; $i < count($model->Fields); $i++ ){
             $model->Fields[$i]->Value = $res->Members[0]->Fields[$i]->Value;
         }
