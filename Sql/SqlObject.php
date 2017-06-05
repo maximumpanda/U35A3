@@ -37,7 +37,9 @@ class SqlObject
         }
         else{
             Helper::Print(reset($this->Fields)->TableName);
-            return Sql::GetAllFromTable(reset($this->Fields)->TableName);
+            $res = Sql::GetAllFromTable(reset($this->Fields)->TableName);
+            Helper::PrintArray($res);
+            return $res;
         }
     }
 
