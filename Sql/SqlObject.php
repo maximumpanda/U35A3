@@ -29,9 +29,15 @@ class SqlObject
     }
 
     public function SelectAll($where = ""){
-        $query = 'Select * From ' . reset($this->Fields)->TableName;
-        if ($where !== "") $query = $query. ' where ' . $where;
-        return Sql::Query($query);
+
+        if($where !== "") {
+            $query = 'SELECT * FROM ' . reset($this->Fields)->TableName;
+            if ($where !== "") $query = $query . ' where ' . $where;
+            return Sql::Query($query);
+        }
+        else{
+            return Sql::GetAllFromTable(reset($this->Fields)->TableName);
+        }
     }
 
     public function Select($elements = "*", $where = ""){
