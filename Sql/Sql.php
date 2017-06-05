@@ -102,6 +102,20 @@ QUERY;
         return $result;
     }
 
+    public static function NonQuery($sql){
+        self::Connect();
+        self::Use(self::$_dbName);
+        $result = [];
+        {
+            if ($res = self::$_dbConnection->query($sql)){
+                while ($row = $res->fetch_array(MYSQLI_ASSOC)){
+                    $result += $res;
+                }
+            }
+        }
+        return $result;
+    }
+
     private static function GenerateModelFromResult($array){
         $model = new SqlObject();
         while ($result = mysqli_fetch_field($array)){
