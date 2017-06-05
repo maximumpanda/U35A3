@@ -35,7 +35,7 @@ th, td {
     font-size: 500%;
 }
 #ViewContainer{
-    min-height: 20px;
+    min-height: calc(100% - 20px);
     display: flex;
     margin: 10px;
     padding-bottom: auto;
