@@ -1,3 +1,18 @@
+<script>
+    function DeleteClick(event) {
+        var panel = document.getElementById("WarningPanel");
+        if ( panel.className.indexOf(" Hidden")){
+            panel.className += " Hidden";
+        }
+        if (event.currentTarget.className.indexOf(" Clicked")){
+
+        }
+        else{
+            event.currentTarget.className += " Clicked";
+        }
+    }
+</script>
+
 <table>
     <tr>
     <?php foreach (Session::$Model->Fields as $field): ?>
@@ -12,7 +27,11 @@
             <td><?=$field->Value?></td>
         <?php endforeach?>
         <td><a href=<?='/Forms/Modify?Table='.Session::$Bag['Table'].'&Id='.$obj->Fields['Id']->Value?> class="Button">Modify</a></td>
-        <td><a href=<?='/Forms/Delete?Table='.Session::$Bag['Table'].'&Id='.$obj->Fields['Id']->Value?> class="Button">Delete</a></td>
+        <td><a id=<?='/Forms/Delete?Table='.Session::$Bag['Table'].'&Id='.$obj->Fields['Id']->Value?> onclick="DeleteClick" class="Button">Delete</a></td>
     </tr>
     <?php endforeach?>
 </table>
+<div id="WarningPanel" class="Center Hidden" style="z-index: 10">
+    <div class="Center Title">Are you sure?</div>
+    <div class="Center">Click the delete button again to delete element</div>
+</div>
