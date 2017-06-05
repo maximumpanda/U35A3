@@ -105,8 +105,7 @@ QUERY;
     public static function NonQuery($sql){
         self::Connect();
         self::Use(self::$_dbName);
-        if(!$res = self::$_dbConnection->query($sql));
-            Helper::Print('Error ' . self::$_dbConnection->error);
+        $res = self::$_dbConnection->query($sql);
         self::Disconnect();
         return $res;
     }

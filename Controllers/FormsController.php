@@ -107,11 +107,8 @@ class FormsController
     }
 
     public static function PostDelete(){
-        Helper::PrintArray($_POST);
         $query = 'Delete From ' . Session::$Bag['Table'] . ' Where Id = ' . Sql::ParametrizeValue($_POST['Id']);
         $res = Sql::NonQuery($query);
-        Helper::Print($query);
-        exit();
         if ($res)
             Router::Redirect('/Forms/Result?Action=Delete&Table=' . Session::$Bag['Table'] .'&Status=Success');
         else
