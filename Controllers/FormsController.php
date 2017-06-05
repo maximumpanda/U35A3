@@ -82,6 +82,7 @@ class FormsController
     }
 
     public static function PostAdd(){
+        unset($_POST['Id']);
         $query = 'Insert into ' . Session::$Bag['Table'] . ' (' . implode(", " , array_keys($_POST)) . ') Values (';
         $query .= implode(', ', $_POST);
         $query .= ')';
