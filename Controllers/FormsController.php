@@ -39,7 +39,7 @@ class FormsController
             $model->Fields[$key]->Value = $res->Members[0]->Fields[$key]->Value;
         }
         $form = Form::NewFromModel($model);
-        Helper::PrintArray($form->Model);
+        Helper::PrintArray($form->Elements);
         return $form;
     }
     public static function PostModify(){
