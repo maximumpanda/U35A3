@@ -60,9 +60,11 @@ class FormsController
             $query .= $key . " = " . Sql::ParametrizeValue($value) . ",";
         }
         $query = substr($query, 0, strlen($query)-1);
-        Helper::PrintArray($query);
+        $query .= 'Where Id =' . $id;
+        $res = Sql::Query($query);
+        Helper::PrintArray($res);
         exit();
-        Router::Redirect("/Forms/Result?Action=Modify&Status=Success");
+        Router::Redirect('/Forms/Result?Action=Modify?Table=' . Session::$Bag['Table'] .'&Status=Success');
     }
     public static function GetAdd(){
         $table = Session::$Bag['Table'];
