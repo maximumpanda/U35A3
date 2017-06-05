@@ -90,17 +90,29 @@ class FormsController
         $query = substr($query, 0, strlen($query)-1);
         $query .= ')';
         $res = Sql::NonQuery($query);
-        Helper::Print($query);
-        Helper::Print($res);
         if ($res)
             Router::Redirect('/Forms/Result?Action=Add&Table=' . Session::$Bag['Table'] .'&Status=Success');
         else
             Router::Redirect('/Forms/Result?Action=Add&Table=' . Session::$Bag['Table'] .'&Status=Failure');
     }
 
-    private static function GenerateFormSchema($table){
-        $sqlSchema = Sql::GenerateModel($table);
-        $model = new Form();
+    public static function GetDelete(){
+        $model = Sql::GenerateModel(Session::$Bag['Table'], true);
+        $res = $model->SelectAll('Id=' . Session::$Bag['Id']);
+        foreach ($model->Fields as $key => $value){
+            $model->Fields[$key]->Value = $res->Members[0]->Fields[$key]->Value;
+        }
+        $form = Form::NewFromModel($model);
+        return $form;
+    }
 
+    public static function PostDelete(){
+        $id = $_POST['Id'];
+        $query = 'Delete From ' . Session::$Bag['Table'] . 'Where Id = ' . Sql::ParametrizeValue($_POST['Id']);
+        $res = Sql::NonQuery($query);
+        if ($res)
+            Router::Redirect('/Forms/Result?Action=Delete&Table=' . Session::$Bag['Table'] .'&Status=Success');
+        else
+            Router::Redirect('/Forms/Result?Action=Delete&Table=' . Session::$Bag['Table'] .'&Status=Failure');
     }
 }

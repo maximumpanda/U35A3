@@ -1,24 +1,3 @@
-<script type="javascript">
-        document.onload(function (){
-        var elements = document.getElementsByClassName('Delete');
-        for (var x = 0; x < elements.length; x++){
-            elements[x].on('Click', DeleteClick(event));
-        }
-
-    });
-    function DeleteClick(event) {
-        var panel = document.getElementById("WarningPanel");
-        if (panel.className.indexOf(" Hidden")){
-            panel.className = panel.className.replace(" Hidden", "");
-        }
-        if (event.currentTarget.className.indexOf(" Clicked")){
-
-        }
-        else{
-            event.currentTarget.className += " Clicked";
-        }
-    }
-</script>
 <table>
     <tr>
     <?php foreach (Session::$Model->Fields as $field): ?>
@@ -33,7 +12,7 @@
             <td><?=$field->Value?></td>
         <?php endforeach?>
         <td><a href="<?='/Forms/Modify?Table='.Session::$Bag['Table'].'&Id='.$obj->Fields['Id']->Value?>" class='Button'>Modify</a></td>
-        <td><a id="<?='/Forms/Delete?Table='.Session::$Bag['Table'].'&Id='.$obj->Fields['Id']->Value?>" class='Button Delete'>Delete</a></td>
+        <td><a href="<?='/Forms/Delete?Table='.Session::$Bag['Table'].'&Id='.$obj->Fields['Id']->Value?>" class='Button Delete'>Delete</a></td>
     </tr>
     <?php endforeach?>
 </table>
