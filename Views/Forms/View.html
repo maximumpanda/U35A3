@@ -1,8 +1,17 @@
 <script type="javascript">
+    $(document).ready(function (){
+        var elements = document.getElementsByClassName('Button');
+        for (var x = 0; x < elements.length; x++){
+            if (elements[x].id !== ""  ){
+                elements[x].onclick(DeleteClick);
+            }
+        }
+
+    });
     function DeleteClick(event) {
         var panel = document.getElementById("WarningPanel");
-        if ( panel.className.indexOf(" Hidden")){
-            panel.className += " Hidden";
+        if (panel.className.indexOf(" Hidden")){
+            panel.className = panel.className.replace(" Hidden", "");
         }
         if (event.currentTarget.className.indexOf(" Clicked")){
 
