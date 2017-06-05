@@ -60,7 +60,7 @@ class FormsController
             $query .= $key . " = " . Sql::ParametrizeValue($value) . ",";
         }
         $query = substr($query, 0, strlen($query)-1);
-        $query .= 'Where Id =' . $id;
+        $query .= ' Where Id = ' . $id;
         Helper::PrintArray($query);
         $res = Sql::Query($query);
         Helper::PrintArray($res);
