@@ -26,6 +26,7 @@ class SqlCollection
         foreach ($this->Members as $member){
             $summary = array_merge($summary, $member->Summarize());
         }
+        Helper::PrintArray($summary);
         return $summary;
     }
 }
