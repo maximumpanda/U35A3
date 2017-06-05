@@ -1,19 +1,21 @@
-<table>
-    <tr>
-    <?php foreach (Session::$Model->Fields as $field): ?>
-        <th><?=$field?></th>
-    <?php endforeach?>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
-    <?php foreach (Session::$Model->Collection->Members as $obj): ?>
-    <tr>
-        <?php foreach ($obj->Fields as $field): ?>
-            <td><?=$field->Value?></td>
+<div>
+    <table>
+        <tr>
+        <?php foreach (Session::$Model->Fields as $field): ?>
+            <th><?=$field?></th>
         <?php endforeach?>
-        <td><a href="<?='/Forms/Modify?Table='.Session::$Bag['Table'].'&Id='.$obj->Fields['Id']->Value?>" class='Button'>Modify</a></td>
-        <td><a href="<?='/Forms/Delete?Table='.Session::$Bag['Table'].'&Id='.$obj->Fields['Id']->Value?>" class='Button Delete'>Delete</a></td>
-    </tr>
-    <?php endforeach?>
-    <td><a href=<?="/Forms/Add?Table=".Session::$Bag['Table']?> class="Button">Add</a></td>
-</table>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <?php foreach (Session::$Model->Collection->Members as $obj): ?>
+        <tr>
+            <?php foreach ($obj->Fields as $field): ?>
+                <td><?=$field->Value?></td>
+            <?php endforeach?>
+            <td><a href="<?='/Forms/Modify?Table='.Session::$Bag['Table'].'&Id='.$obj->Fields['Id']->Value?>" class='Button'>Modify</a></td>
+            <td><a href="<?='/Forms/Delete?Table='.Session::$Bag['Table'].'&Id='.$obj->Fields['Id']->Value?>" class='Button Delete'>Delete</a></td>
+        </tr>
+        <?php endforeach?>
+    </table>
+    <a href=<?="/Forms/Add?Table=".Session::$Bag['Table']?> class="Button">Add</a>
+</div>
