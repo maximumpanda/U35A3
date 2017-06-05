@@ -62,7 +62,7 @@ a.Button {
     padding:5px;
 }
 
-a.Button, ConfirmClick{
+a.Button + ConfirmClick{
     color: darkred;
 }
 
