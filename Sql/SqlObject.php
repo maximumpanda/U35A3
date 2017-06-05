@@ -23,10 +23,8 @@ class SqlObject
     public function Clone(){
         $newObject = new SqlObject();
         foreach ($this->Fields as $field){
-            Helper::PrintArray($field);
             $newObject->AddField(clone $field);
         }
-        Helper::PrintArray($newObject);
         return $newObject;
     }
 
