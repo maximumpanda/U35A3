@@ -60,7 +60,7 @@ class FormsController
         }
         $query = substr($query, 0, strlen($query)-1);
         $query .= ' Where Id = ' . $id;
-        $res = Sql::Query($query);
+        $res = Sql::NonQuery($query);
         Helper::PrintArray($res);
         exit();
         Router::Redirect('/Forms/Result?Action=Modify?Table=' . Session::$Bag['Table'] .'&Status=Success');
