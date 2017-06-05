@@ -6,14 +6,15 @@
                     <td><?=$element->Name?></td>
                     <?php if ($element->InputType != 'select'):?>
                         <td>
-                            <input readonly type="<?=$element->InputType?>" name="<?=$element->Name?>"
+                            <input type="<?=$element->InputType?>" name="<?=$element->Name?>"
                                    maxlength="<?=$element->MaxLength?>" value="<?=$element->DefaultValue?>"
+                                   readonly
                             >
                         </td>
                     <?php endif?>
                     <?php if ($element->InputType == 'select'):?>
                         <td>
-                            <select readonly name="<?=$element->Name?>">
+                            <select disabled name="<?=$element->Name?>" >
                                 <?php foreach ($element->Values as $key => $value):?>
                                     <option value="<?=$key?>" <?=$key == $element->DefaultValue ? "selected" : ""?>><?=$value?></option>
                                 <?php endforeach?>
