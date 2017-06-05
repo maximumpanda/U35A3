@@ -1,5 +1,5 @@
 <div class="Center">
-    <form action="/Forms/Add" method="post">
+    <form action="/Forms/Modify" method="post">
         <table>
             <?php foreach (Session::$Model->Elements as $element):?>
                 <tr class="<?=$element->Disabled ? "Hidden" : ""?>">
@@ -23,6 +23,6 @@
                 </tr>
             <?php endforeach?>
         </table>
-        <input type="submit" class="Center" value="Add Record">
+        <input type="submit" class="Center" value="Modify Record">
     </form>
 </div>
