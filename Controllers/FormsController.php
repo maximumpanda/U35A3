@@ -42,6 +42,8 @@ class FormsController
         return $form;
     }
     public static function PostModify(){
+        Helper::PrintArray($_POST);
+        exit();
         Router::Redirect("/Forms/Result?Action=Modify&Status=Success");
     }
     public static function GetAdd(){
