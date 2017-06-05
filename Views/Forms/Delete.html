@@ -6,7 +6,7 @@
                     <td><?=$element->Name?></td>
                     <?php if ($element->InputType != 'select'):?>
                         <td>
-                            <input disabled type="<?=$element->InputType?>" name="<?=$element->Name?>"
+                            <input type="<?=$element->InputType?>" name="<?=$element->Name?>"
                                    maxlength="<?=$element->MaxLength?>" value="<?=$element->DefaultValue?>"
                             >
                         </td>
