@@ -96,7 +96,8 @@ QUERY;
             }
         }
         else{
-            Helper::Print("Error: " . self::$_dbConnection->error);
+            self::Disconnect();
+            Router::ReDirectError(400, self::$_dbConnection->error);
         }
         self::Disconnect();
         return $result;
