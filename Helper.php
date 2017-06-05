@@ -82,4 +82,11 @@ class Helper
     public static function CharIsCapitalized($char){
         return (bool) preg_match('/[A-Z]/', $char);
     }
+
+    public static function ParametrizeVariable($var){
+        if (is_string($var)){
+            return '"' . $var . '"';
+        }
+        else return $var;
+    }
 }

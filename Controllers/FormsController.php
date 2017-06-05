@@ -57,9 +57,9 @@ class FormsController
         $query = 'Update ' . Session::$Bag['Table'] .
                  ' Set ';
         foreach ($values as $key => $value){
-            $query .= $key . " = " . $value . ",";
+            $query .= $key . " = " . Helper::ParametrizeVariable($value) . ",";
         }
-        $query = substr($query, 0, count($query)-2);
+        $query = substr($query, 0, strlen($query)-2);
         Helper::PrintArray($query);
         exit();
         Router::Redirect("/Forms/Result?Action=Modify&Status=Success");
