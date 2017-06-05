@@ -94,7 +94,6 @@ QUERY;
                 }
                 $result->AddMember($object);
             }
-            Helper::PrintArray($result);
         }
         else{
             Helper::Print("Error: " . self::$_dbConnection->error);
