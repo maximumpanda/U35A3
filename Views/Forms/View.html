@@ -1,4 +1,4 @@
-<div>
+<div class="Wrapper Center">
     <table>
         <tr>
         <?php foreach (Session::$Model->Fields as $field): ?>
@@ -17,5 +17,5 @@
         </tr>
         <?php endforeach?>
     </table>
-    <a class="Center Stretch" href=<?="/Forms/Add?Table=".Session::$Bag['Table']?> class="Button">Add</a>
+    <a class="Stretch" href=<?="/Forms/Add?Table=".Session::$Bag['Table']?> class="Button">Add</a>
 </div>
