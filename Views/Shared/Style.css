@@ -59,12 +59,11 @@ th, td {
 }
 
 #Footer{
-    position: relative;
-    margin-top: -20px;
+    position: absolute;
+    bottom: 0;
     background-color:slategrey;
     height:20px;
     text-align: center;
-    clear: both;
 }
 a.Button {
     -webkit-appearance: button;
