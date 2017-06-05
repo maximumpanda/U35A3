@@ -105,15 +105,9 @@ QUERY;
     public static function NonQuery($sql){
         self::Connect();
         self::Use(self::$_dbName);
-        $result = [];
-        {
-            if ($res = self::$_dbConnection->query($sql)){
-                while ($row = $res->fetch_array(MYSQLI_ASSOC)){
-                    $result += $res;
-                }
-            }
-        }
-        return $result;
+        $res = self::$_dbConnection->query($sql);
+        self::Disconnect();
+        return $res;
     }
 
     private static function GenerateModelFromResult($array){
