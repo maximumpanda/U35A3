@@ -82,6 +82,12 @@ class FormsController
     }
 
     public static function PostAdd(){
+        $query = 'Insert into ' . Session::$Bag['Table'] . ' (' . implode(", " , array_keys($_POST)) . ') Values (';
+        $query .= implode(', ', $_POST);
+        $query .= ')';
+        $res = Sql::NonQuery($query);
+        Helper::Print($res);
+        exit();
         Router::Redirect("/Forms/Result?Action=Add&Status=Success");
     }
 
