@@ -86,6 +86,7 @@ class FormsController
         $query .= implode(', ', $_POST);
         $query .= ')';
         $res = Sql::NonQuery($query);
+        Helper::Print($query);
         Helper::Print($res);
         exit();
         Router::Redirect("/Forms/Result?Action=Add&Status=Success");
