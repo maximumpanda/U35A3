@@ -15,4 +15,5 @@
         <td><a href="<?='/Forms/Delete?Table='.Session::$Bag['Table'].'&Id='.$obj->Fields['Id']->Value?>" class='Button Delete'>Delete</a></td>
     </tr>
     <?php endforeach?>
+    <td><a href=<?="/Forms/Add?Table=".Session::$Bag['Table']?> class="Button">Add</a></td>
 </table>
