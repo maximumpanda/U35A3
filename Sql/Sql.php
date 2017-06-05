@@ -112,9 +112,9 @@ QUERY;
     }
 
     public static function ParametrizeValue($value){
-        if (is_string($value)){
-            return '"' . $value . '"';
+        if (is_numeric($value)){
+           return $value;
         }
-        else return $value;
+        else return '"' . $value . '"';
     }
 }
