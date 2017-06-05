@@ -43,6 +43,24 @@ class FormsController
     }
     public static function PostModify(){
         Helper::PrintArray($_POST);
+        $id = -1;
+        $values = [];
+        foreach ($_POST as $key => $value){
+            if ($key == "Id"){
+                $id = $value;
+            }
+            else{
+                $values[$key] = $value;
+            }
+
+        }
+        $query = 'Update ' . Session::$Bag['Table'] .
+                 ' Set ';
+        foreach ($values as $key => $value){
+            $query .= $key . " = " . $value . ",";
+        }
+        $query = substr($query, 0, count($query)-2);
+        Helper::PrintArray($query);
         exit();
         Router::Redirect("/Forms/Result?Action=Modify&Status=Success");
     }

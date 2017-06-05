@@ -1,5 +1,5 @@
 <div class="Center">
-    <form action="/Forms/Modify" method="post">
+    <form action="/Forms/Modify?Table=<?=Session::$Bag['Table']?>" method="post">
         <table>
             <?php foreach (Session::$Model->Elements as $element):?>
                 <tr class="<?=$element->Disabled ? "Hidden" : ""?>">
