@@ -85,7 +85,7 @@ class FormsController
         unset($_POST['Id']);
         $query = 'Insert into ' . Session::$Bag['Table'] . ' (' . implode(", " , array_keys($_POST)) . ') Values (';
         foreach ($_POST as $value){
-            $query .= Sql::ParametrizeValue($value) . ', ';
+            $query .= Sql::ParametrizeValue($value) . ',';
         }
         $query = substr($query, 0, strlen($query)-1);
         $query .= ')';
