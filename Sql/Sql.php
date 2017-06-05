@@ -43,6 +43,7 @@ class Sql
     public static function GetAllFromTable($table){
         $query = "Select * From $table";
         $model = self::GenerateModel($table, false);
+        Helper::PrintArray($model);
         return self::Query($query, $model);
     }
     private static function GenerateSubModel($tableName, $includeSubTables = true){
@@ -92,6 +93,7 @@ QUERY;
                 foreach ($row as $key => $value){
                     $object->Fields[$key]->Value = $value;
                 }
+                Helper::PrintArray($object);
                 $result->AddMember($object);
             }
         }
