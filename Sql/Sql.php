@@ -42,7 +42,7 @@ class Sql
     }
     public static function GetAllFromTable($table){
         $query = "Select * From $table";
-        $model = self::GenerateModel($table, false);
+        $model = self::GenerateModel($table, true);
         return self::Query($query, $model);
     }
     private static function GenerateSubModel($tableName, $includeSubTables = true){
