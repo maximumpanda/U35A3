@@ -27,14 +27,14 @@ class FormElement
 
     public function __construct(SqlType $object)
     {
-
         $this->Name = $object->Name;
         $this->_source = $object;
         $this->MaxLength = $object->Length;
         $this->Disabled = $object->KeyType == 1 ? true : false;
         $this->DefaultValue = $object->Value != null ? $object->Value : "";
         $this->InputType = FormElement::$InputTypes[$this->ParseInputType($object)];
-        if ($this->InputType == 'select') {$this->Values = $object->ForeignTable->SelectAll()->Summarize();
+        if ($this->InputType == 'select') {
+            $this->Values = $object->ForeignTable->SelectAll()->Summarize();
         }
     }
 
