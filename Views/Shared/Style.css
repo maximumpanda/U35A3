@@ -38,7 +38,6 @@ th, td {
     min-height: calc(100% - 20px);
     display: flex;
     margin: 10px;
-    padding-bottom: auto;
 }
 #Menu {
     background-color: slategrey;

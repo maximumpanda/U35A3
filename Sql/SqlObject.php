@@ -44,7 +44,10 @@ class SqlObject
         $summary = [];
         $values = [];
         foreach ($this->Fields as $field){
-            if ($field->Name == 'Id') continue;
+            if ($field->KeyType == 1) continue;
+            if ($field->KeyType == 2){
+                $values += $field->ForeignTable->SelectAll()->Summarize();
+            }
             array_push($values, $field->Value);
         }
         $summary[$this->Fields['Id']->Value] = implode(" ,", $values);
