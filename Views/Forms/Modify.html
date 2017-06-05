@@ -12,6 +12,7 @@
                         </td>
                     <?php endif?>
                     <?php if ($element->InputType == 'select'):?>
+                        <?Helper::PrintArray($element->Values)?>
                         <td>
                             <select name="<?=$element->Name?>">
                                 <?php foreach ($element->Values as $key => $value):?>
