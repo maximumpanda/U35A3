@@ -107,8 +107,8 @@ class FormsController
     }
 
     public static function PostDelete(){
-        $id = $_POST['Id'];
-        $query = 'Delete From ' . Session::$Bag['Table'] . 'Where Id = ' . Sql::ParametrizeValue($_POST['Id']);
+        Helper::PrintArray($_POST);
+        $query = 'Delete From ' . Session::$Bag['Table'] . ' Where Id = ' . Sql::ParametrizeValue($_POST['Id']);
         $res = Sql::NonQuery($query);
         Helper::Print($query);
         exit();
