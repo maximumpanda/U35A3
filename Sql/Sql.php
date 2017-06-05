@@ -126,4 +126,8 @@ QUERY;
         }
         else return '"' . $value . '"';
     }
+
+    public static function GetAllSummarized($table = ""){
+
+    }
 }
