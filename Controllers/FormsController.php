@@ -42,7 +42,6 @@ class FormsController
         return $form;
     }
     public static function PostModify(){
-        Helper::PrintArray($_POST);
         $id = -1;
         $values = [];
         foreach ($_POST as $key => $value){
@@ -61,9 +60,7 @@ class FormsController
         }
         $query = substr($query, 0, strlen($query)-1);
         $query .= ' Where Id = ' . $id;
-        Helper::PrintArray($query);
         $res = Sql::Query($query);
-        Helper::PrintArray($res);
         exit();
         Router::Redirect('/Forms/Result?Action=Modify?Table=' . Session::$Bag['Table'] .'&Status=Success');
     }
