@@ -21,7 +21,7 @@ div.Wrapper{
 
 table{
     text-align: left;
-    margin:0 auto;
+    margin: 0 auto 10px;
     padding: 20px;
     border-collapse: collapse;
 }
@@ -37,6 +37,7 @@ th, td {
 #ViewContainer{
     min-height: 20px;
     display: flex;
+    margin: 10px;
 }
 #Menu {
     background-color: slategrey;
