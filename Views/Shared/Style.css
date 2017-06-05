@@ -15,7 +15,7 @@
 }
 
 div.Wrapper{
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
 }
 
@@ -36,6 +36,7 @@ th, td {
 }
 #ViewContainer{
     min-height: 20px;
+    display: flex;
 }
 #Menu {
     background-color: slategrey;
