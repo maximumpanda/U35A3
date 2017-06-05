@@ -1,4 +1,17 @@
+<script type="javascript">
+    function DeleteClick(event) {
+        var panel = document.getElementById("WarningPanel");
+        if ( panel.className.indexOf(" Hidden")){
+            panel.className += " Hidden";
+        }
+        if (event.currentTarget.className.indexOf(" Clicked")){
 
+        }
+        else{
+            event.currentTarget.className += " Clicked";
+        }
+    }
+</script>
 <table>
     <tr>
     <?php foreach (Session::$Model->Fields as $field): ?>
@@ -21,17 +34,3 @@
     <div class="Center Title">Are you sure?</div>
     <div class="Center">Click the delete button again to delete element</div>
 </div>
-<script type="javascript">
-    function DeleteClick(event) {
-        var panel = document.getElementById("WarningPanel");
-        if ( panel.className.indexOf(" Hidden")){
-            panel.className += " Hidden";
-        }
-        if (event.currentTarget.className.indexOf(" Clicked")){
-
-        }
-        else{
-            event.currentTarget.className += " Clicked";
-        }
-    }
-</script>
