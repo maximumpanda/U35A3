@@ -62,8 +62,8 @@ a.Button {
     padding:5px;
 }
 
-a.Button + ConfirmClick{
-    color: darkred;
+a.Button + Clicked{
+    background-color: darkred;
 }
 
 body{
