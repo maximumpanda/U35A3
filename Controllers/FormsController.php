@@ -84,7 +84,10 @@ class FormsController
     public static function PostAdd(){
         unset($_POST['Id']);
         $query = 'Insert into ' . Session::$Bag['Table'] . ' (' . implode(", " , array_keys($_POST)) . ') Values (';
-        $query .= implode(', ', $_POST);
+        foreach ($_POST as $value){
+            $query .= Sql::ParametrizeValue($value) . ', ';
+        }
+        $query = substr($query, 0, strlen($query)-1);
         $query .= ')';
         $res = Sql::NonQuery($query);
         Helper::Print($query);
