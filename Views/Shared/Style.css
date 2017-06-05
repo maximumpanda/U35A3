@@ -66,8 +66,9 @@ a.Delete{
     background-color: indianred;
 }
 
-a.Clicked{
-    background-color: red;
+a.Stretch{
+    margin-left: auto;
+    margin-right: auto;
 }
 
 body{
