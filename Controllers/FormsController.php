@@ -92,8 +92,10 @@ class FormsController
         $res = Sql::NonQuery($query);
         Helper::Print($query);
         Helper::Print($res);
-        exit();
-        Router::Redirect("/Forms/Result?Action=Add&Status=Success");
+        if ($res)
+            Router::Redirect('/Forms/Result?Action=Add&Table=' . Session::$Bag['Table'] .'&Status=Success');
+        else
+            Router::Redirect('/Forms/Result?Action=Add&Table=' . Session::$Bag['Table'] .'&Status=Failure');
     }
 
     private static function GenerateFormSchema($table){
