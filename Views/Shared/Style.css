@@ -62,11 +62,11 @@ a.Button {
     padding:5px;
 }
 
-a.Button + .Delete{
+a.Delete{
     background-color: darkred;
 }
 
-a.Button + .Clicked{
+a.Clicked{
     background-color: red;
 }
 
