@@ -62,9 +62,9 @@ class FormsController
         $query .= ' Where Id = ' . $id;
         $res = Sql::NonQuery($query);
         if ($res)
-            Router::Redirect('/Forms/Result?Action=Modify?Table=' . Session::$Bag['Table'] .'&Status=Success');
+            Router::Redirect('/Forms/Result?Action=Modify&Table=' . Session::$Bag['Table'] .'&Status=Success');
         else
-            Router::Redirect('/Forms/Result?Action=Modify?Table=' . Session::$Bag['Table'] .'&Status=Failure');
+            Router::Redirect('/Forms/Result?Action=Modify&Table=' . Session::$Bag['Table'] .'&Status=Failure');
     }
     public static function GetAdd(){
         $table = Session::$Bag['Table'];
