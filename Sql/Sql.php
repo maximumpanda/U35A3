@@ -86,7 +86,7 @@ QUERY;
         self::Use(self::$_dbName);
         $result = new SqlCollection();
         try {
-            if ($res = self::$_dbConnection->query($sql) !== false) {
+            if ($res = self::$_dbConnection->query($sql) != false) {
                 if ($model == null) $model = self::GenerateModelFromResult($res);
                 while ($row = $res->fetch_array(MYSQLI_ASSOC)) {
                     $object = $model->Clone();
