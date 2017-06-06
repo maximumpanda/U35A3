@@ -6,6 +6,7 @@
  * Date: 6/5/2017
  * Time: 9:40 PM
  */
+include_once $_SERVER['DOCUMENT_ROOT'] . "/Sql/Sql.php";
 class LoginController implements IController
 {
 
@@ -16,6 +17,11 @@ class LoginController implements IController
 
     public static function GetIndex()
     {
-        // TODO: Implement GetIndex() method.
+    }
+    public static function PostIndex(){
+        $query = 'Select * From Authorizations Where Email = ' . Sql::ParametrizeValue($_POST['Username']) . ' And PasswordHash = ' . Sql::ParametrizeValue($_POST['Password']);
+        $res = Sql::Query($query);
+        Helper::PrintArray($res);
+        exit();
     }
 }
