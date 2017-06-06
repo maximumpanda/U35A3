@@ -164,6 +164,7 @@ QUERY;
         foreach ($tables as $key=>$value){
             /** @var  $field SqlType */
             foreach ($value['fk']->ForeignTable->Fields as $field ){
+                    if ($field->KeyType !== 0) continue;
                     $selection .= $field->TableName.'.'.$field->Name . ', ';
             }
         }
