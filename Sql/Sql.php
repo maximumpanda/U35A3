@@ -86,15 +86,18 @@ QUERY;
         self::Use(self::$_dbName);
         $result = new SqlCollection();
         try {
-            $res = self::$_dbConnection->query($sql);
-            if ($model == null) $model = self::GenerateModelFromResult($res);
-            while ($row = $res->fetch_array(MYSQLI_ASSOC)) {
-                $object = $model->Clone();
-                foreach ($row as $key => $value) {
-                    $object->Fields[$key]->Value = $value;
+            if ($res = self::$_dbConnection->query($sql) !== false) {
+                if ($model == null) $model = self::GenerateModelFromResult($res);
+                while ($row = $res->fetch_array(MYSQLI_ASSOC)) {
+                    $object = $model->Clone();
+                    foreach ($row as $key => $value) {
+                        $object->Fields[$key]->Value = $value;
+                    }
+                    $result->AddMember($object);
                 }
-                $result->AddMember($object);
             }
+            else
+                return false;
         }
         catch (Exception $e){
             self::Disconnect();
