@@ -48,7 +48,7 @@ class MasterController{
         Session::$Model = call_user_func($controller."::".$method);
     }
 
-    public function FindMethod($class, $name){
+    public static function FindMethod($class, $name){
         $methods = (new ReflectionClass($class))->getMethods(ReflectionMethod::IS_PUBLIC);
         foreach ($methods as $method){
             if (strtolower($method->name) == strtolower(Helper::GetRequestMethod().$name))
