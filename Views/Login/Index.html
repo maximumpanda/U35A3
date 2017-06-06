@@ -1,6 +1,6 @@
 <div class="Wrapper Center">
-    <?Helper::PrintArray(Session::$Bag['LoggedIn'])?>
-    <? if (isset(Session::$Bag['LoggedIn']) === false || Session::$Bag['LoggedIn'] === false): ?>
+    <?Helper::PrintArray(Session::$Bag)?>
+    <? if (isset(Session::$Bag['LoggedIn']) == false || Session::$Bag['LoggedIn'] == false): ?>
         <form action="/Login/Index" method="post">
             Username: <input name="UserName" type="text">
             Password: <input name="Password" type="password">
