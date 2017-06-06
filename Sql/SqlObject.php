@@ -48,6 +48,7 @@ class SqlObject
     }
 
     public function Summarize(){
+        Helper::PrintArray($this->Fields);
         $summary = [];
         $values = [];
         foreach ($this->Fields as $field){
