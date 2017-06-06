@@ -130,4 +130,22 @@ QUERY;
     public static function GetAllSummarized($table = ""){
 
     }
+
+    public static function BuildJoinStatement(SqlObject $model){
+        $tables = self::GetPrimaryAndForeignKeyPairs($model);
+        Helper::PrintArray($tables);
+    }
+
+    private static function GetPrimaryAndForeignKeyPairs(SqlObject $model){
+        $tables = [];
+        foreach ($model->Fields as $field){
+            if($field->KeyType == 2){
+                $tbl = $field->ForeignTable->Fields['Id'];
+                $obj = [$tbl->TableName => ["0" => $tbl->Fields['Id'], "1"=> $field]];
+                $tables += $obj;
+                $tables += self::GetPrimaryAndForeignKeyPairs($field->ForeignTable);
+            }
+        }
+        return $tables;
+    }
 }
