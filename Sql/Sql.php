@@ -140,6 +140,7 @@ QUERY;
             $curKey = $keys[$x];
             $query .= 'Inner Join ' . $curKey . ' On ' . $curKey.'.'.$tables[$curKey]['pk']->Name . " = ". $tables[$curKey]['fk']->TableName.'.'.$tables[$curKey]['fk']->Name. ' ';
         }
+        Helper::PrintArray($tables);
         Helper::Print($query);
     }
 
