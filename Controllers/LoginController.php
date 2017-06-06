@@ -22,6 +22,7 @@ class LoginController implements IController
         $query = 'Select * From Authorizations Where Email = ' . Sql::ParametrizeValue($_POST['Username']) . ' And PasswordHash = ' . Sql::ParametrizeValue($_POST['Password']);
         $res = Sql::Query($query);
         Helper::PrintArray($res);
+        Helper::PrintArray($_POST);
         exit();
     }
 }
