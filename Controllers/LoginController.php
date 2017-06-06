@@ -23,12 +23,14 @@ class LoginController implements IController
         $query = 'Select DISTINCT Id From Authentications Where Email LIKE ' . strtoupper(Sql::ParametrizeValue('%'. $_POST['UserName'].'%')) .
             ' And PasswordHash = ' . Sql::ParametrizeValue($_POST['Password']);
         $res = Sql::Query($query);
-        if (isset($res->Members[0]))
-            if(strpos(strtoupper($_POST['UserName']), '@PANDA.CO') !== false ){
+        if (isset($res->Members[0])) {
+            if (strpos(strtoupper($_POST['UserName']), '@PANDA.CO') !== false) {
+                Helper::Print('true');
                 Session::$Bag['LoggedIn'] = true;
                 Session::$Bag['AuthenticationLevel'] = 10;
                 Router::Redirect("/Home/Index");
             }
+        }
         Router::Redirect("/Login/Index");
     }
 }
