@@ -33,4 +33,10 @@ class LoginController implements IController
         }
         Router::Redirect("/Login/Index");
     }
+
+    public static function PostLogout(){
+        Session::$Bag['LoggedIn'] = false;
+        Session::$Bag['AuthenticationLevel'] = 0;
+        Router::Redirect("/Home/Index");
+    }
 }
