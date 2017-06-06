@@ -1,7 +1,14 @@
 <div class="Wrapper Center">
-    <form action="/Login/Index" method="post">
-        Username: <input name="UserName" type="text">
-        Password: <input name="Password" type="password">
-        <input type="submit" class="Center" value="Login">
-    </form>
+    <?if (Session::$Bag['LoggedIn'] == false):?>
+        <form action="/Login/Index" method="post">
+            Username: <input name="UserName" type="text">
+            Password: <input name="Password" type="password">
+            <input type="submit" class="Center" value="Login">
+        </form>
+    <?else:?>
+        <form action="/Login/Logout" method="post">
+            <input type="submit" class="Center" value="Log out">
+        </form>
+    <?endif?>
+
 </div>
