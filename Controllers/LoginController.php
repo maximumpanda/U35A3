@@ -21,6 +21,7 @@ class LoginController implements IController
     public static function PostIndex(){
         $query = 'Select * From Authorizations Where Email LIKE ' . Sql::ParametrizeValue('%'. $_POST['UserName'].'%');
         $res = Sql::Query($query);
+        Helper::PrintArray($query);
         Helper::PrintArray($res);
         Helper::PrintArray($_POST);
         exit();
