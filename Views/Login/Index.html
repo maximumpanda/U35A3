@@ -1,16 +1,15 @@
 <div class="Wrapper Center">
 
-    <? if (isset(Session::$Bag['LoggedIn']) == false || Session::$Bag['LoggedIn'] == false): ?>
+    <?php if (isset(Session::$Bag['LoggedIn']) == false || Session::$Bag['LoggedIn'] == false): ?>
         <form action="/Login/Index" method="post">
             Username: <input name="UserName" type="text">
             Password: <input name="Password" type="password">
             <input type="submit" class="Center" value="Login">
         </form>
         <a class="Button" href="/Login/Create">Create Account</a>
-    <? else: ?>
+    <?php else: ?>
         <form action="/Login/Logout" method="post">
             <input type="submit" class="Center" value="Log out">
         </form>
-    <? endif ?>
-
+    <?php endif ?>
 </div>
