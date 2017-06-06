@@ -42,7 +42,7 @@ class Sql
     }
     public static function GetAllFromTable($table){
         $query = "Select * From $table";
-        $model = self::GenerateModel($table, true);
+        $model = self::GenerateModel($table, false);
         return self::Query($query, $model);
     }
     private static function GenerateSubModel($tableName, $includeSubTables = true){
@@ -128,8 +128,19 @@ QUERY;
         else return '"' . $value . '"';
     }
 
-    public static function GetAllSummarized($table = ""){
-
+    public static function GetLinkedValues($table, $where){
+        $model = self::GenerateModel($table, true);
+        /** @var  $results SqlCollection */
+        $query = self::BuildJoinStatement($model, $where);
+        $res = self::Query($query);
+        $result = "";
+        foreach ($res->Members as $member){
+            foreach ($member->Fields as $field){
+                $result .= $field->Value . ', ';
+            }
+        }
+        $result = substr($result, 0, strlen($result)-2);
+        return $result;
     }
 
     public static function BuildJoinStatement(SqlObject $model, $where = ""){
@@ -142,9 +153,7 @@ QUERY;
             $query .= 'Join ' . $curKey . ' On ' . $curKey.'.'.$tables[$curKey]['pk']->Name . " = ". $tables[$curKey]['fk']->TableName.'.'.$tables[$curKey]['fk']->Name. ' ';
         }
         $query .= 'Where ' . $tables[$keys[0]]['pk']->TableName.'.'.$tables[$keys[0]]['pk']->Name.'='. self::ParametrizeValue($where);
-        Helper::Print($query);
-        $res = self::Query($query);
-        Helper::PrintArray($res);
+        return $query;
     }
 
     private static function GetPrimaryAndForeignKeyPairs(SqlObject $model){
