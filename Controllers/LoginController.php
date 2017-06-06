@@ -25,11 +25,13 @@ class LoginController implements IController
         $res = Sql::Query($query);
         if (isset($res->Members[0])) {
             if (strpos(strtoupper($_POST['UserName']), '@PANDA.CO') !== false) {
-                Helper::Print('true');
-                Session::$Bag['LoggedIn'] = true;
                 Session::$Bag['AuthenticationLevel'] = 10;
-                Router::Redirect("/Home/Index");
             }
+            else{
+                Session::$Bag['AuthenticationLevel'] =0;
+            }
+            Session::$Bag['LoggedIn'] = true;
+            Router::Redirect("/Home/Index");
         }
         Router::Redirect("/Login/Index");
     }
