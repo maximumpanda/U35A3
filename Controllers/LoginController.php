@@ -19,7 +19,7 @@ class LoginController implements IController
     {
     }
     public static function PostIndex(){
-        $query = 'Select * From Authorizations Where Email = ' . Sql::ParametrizeValue($_POST['Username']) . ' And PasswordHash = ' . Sql::ParametrizeValue($_POST['Password']);
+        $query = 'Select * From Authorizations Where Email = ' . Sql::ParametrizeValue($_POST['UserName']);
         $res = Sql::Query($query);
         Helper::PrintArray($res);
         Helper::PrintArray($_POST);
