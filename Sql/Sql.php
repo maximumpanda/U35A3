@@ -85,32 +85,44 @@ QUERY;
         self::Connect();
         self::Use(self::$_dbName);
         $result = new SqlCollection();
-        if ($res = self::$_dbConnection->query($sql)){
+        try {
+            $res = self::$_dbConnection->query($sql);
             if ($model == null) $model = self::GenerateModelFromResult($res);
-            while($row = $res->fetch_array(MYSQLI_ASSOC)){
+            while ($row = $res->fetch_array(MYSQLI_ASSOC)) {
                 $object = $model->Clone();
-                foreach ($row as $key => $value){
+                foreach ($row as $key => $value) {
                     $object->Fields[$key]->Value = $value;
                 }
                 $result->AddMember($object);
             }
         }
-        else{
+        catch (Exception $e){
             self::Disconnect();
-
+            Router::ReDirectError(400, $e->getMessage());
         }
-        self::Disconnect();
+        finally
+        {
+            self::Disconnect();
+        }
         return $result;
     }
 
     public static function NonQuery($sql){
         self::Connect();
         self::Use(self::$_dbName);
-        if (!$res = self::$_dbConnection->query($sql));{
-            self::Disconnect();
-            Router::ReDirectError(400, self::$_dbConnection->error);
+        $res = null;
+        try{
+            $res = self::$_dbConnection->query($sql);
+            return $res;
         }
-        self::Disconnect();
+        catch (Exception $e){
+            self::Disconnect();
+            Router::ReDirectError(400, $e->getMessage());
+        }
+        finally
+        {
+            self::Disconnect();
+        }
         return $res;
     }
 
