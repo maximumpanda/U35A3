@@ -86,7 +86,7 @@ QUERY;
         self::Use(self::$_dbName);
         $result = new SqlCollection();
         try {
-            if ($res = self::$_dbConnection->query($sql) != false) {
+            if ($res = self::$_dbConnection->query($sql)) {
                 Helper::PrintArray($sql);
                 Helper::PrintArray($res);
                 if ($model == null) $model = self::GenerateModelFromResult($res);
