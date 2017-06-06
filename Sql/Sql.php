@@ -135,6 +135,8 @@ QUERY;
         $tables = self::GetPrimaryAndForeignKeyPairs($model);
         //Helper::PrintArray($tables);
         $selection = self::GetJoinSelection($tables);
+        Helper::PrintArray($selection);
+        exit();
         $keys = array_keys($tables);
         $query = 'select * from ' . $keys[0] . ' ';
         for ($x = 1; $x < count($keys); $x++){
