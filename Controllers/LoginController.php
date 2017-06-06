@@ -23,8 +23,6 @@ class LoginController implements IController
         $query = 'Select DISTINCT Id From Authentications Where Email LIKE ' . strtoupper(Sql::ParametrizeValue('%'. $_POST['UserName'].'%')) .
             ' And PasswordHash = ' . Sql::ParametrizeValue($_POST['Password']);
         $res = Sql::Query($query);
-        Helper::PrintArray($query);
-        exit();
         if (isset($res->Members[0])) {
             if (strpos(strtoupper($_POST['UserName']), '@PANDA.CO') !== false) {
                 Session::$Bag['AuthenticationLevel'] = 10;
