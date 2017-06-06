@@ -117,6 +117,6 @@ class FormsController implements IController
 
     public static function AuthenticationLevel()
     {
-        return 2;
+        return 0;
     }
 }
