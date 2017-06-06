@@ -7,6 +7,7 @@
  */
 session_start();
 Session::$Bag =& $_SESSION;
+if (!isset(Session::$Bag['AuthenticationLevel'])) Session::$Bag['AuthenticationLevel'] = 0;
 class Session{
     public Static $Bag;
     public static $View;
