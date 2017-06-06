@@ -132,7 +132,6 @@ QUERY;
     }
 
     public static function BuildJoinStatement(SqlObject $model){
-        Helper::PrintArray($model);
         $tables = self::GetPrimaryAndForeignKeyPairs($model);
         Helper::PrintArray($tables);
     }
