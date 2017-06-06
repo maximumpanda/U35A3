@@ -6,9 +6,14 @@
  * Time: 3:54 PM
  */
 
-class AlphaController
+class AlphaController implements IController
 {
     public static function GetIndex(){
         return http_response_code(404);
+    }
+
+    public static function AuthenticationLevel()
+    {
+        return 1;
     }
 }

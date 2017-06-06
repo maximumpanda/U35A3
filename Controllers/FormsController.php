@@ -9,7 +9,7 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . "/Sql/Sql.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/Models/Forms/View.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Forms/Form.php';
-class FormsController
+class FormsController implements IController
 {
     public static function GetIndex(){
         $list = Sql::GetTables("u35a1");
@@ -113,5 +113,10 @@ class FormsController
             Router::Redirect('/Forms/Result?Action=Delete&Table=' . Session::$Bag['Table'] .'&Status=Success');
         else
             Router::Redirect('/Forms/Result?Action=Delete&Table=' . Session::$Bag['Table'] .'&Status=Failure');
+    }
+
+    public static function AuthenticationLevel()
+    {
+        return 2;
     }
 }

@@ -59,7 +59,7 @@ class SqlObject
                 array_push($values, $field->Value);
             }
         }
-        $summary[$this->Fields['Id']->Value] = implode(" ,", $values);
+        $summary[$this->Fields['Id']->Value] = implode(", ", $values);
         return $summary;
     }
 

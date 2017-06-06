@@ -6,7 +6,16 @@
  * Date: 6/5/2017
  * Time: 9:40 PM
  */
-class LoginController
+class LoginController implements IController
 {
 
+    public static function AuthenticationLevel()
+    {
+        return 0;
+    }
+
+    public static function GetIndex()
+    {
+        // TODO: Implement GetIndex() method.
+    }
 }

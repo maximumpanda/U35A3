@@ -7,7 +7,7 @@
  * Time: 3:31 PM
  */
 include_once $_SERVER["DOCUMENT_ROOT"] . "/Models/Error/ErrorModel.php";
-class ErrorController
+class ErrorController implements IController
 {
     private static $ErrorCodes = [
         400 => "Bad Request",
@@ -24,5 +24,10 @@ class ErrorController
         $model->Message = Session::$Bag['Message'];
         $model->ErrorMessage = self::$ErrorCodes[Session::$Bag['Code']];
         return $model;
+    }
+
+    public static function AuthenticationLevel()
+    {
+        return 0;
     }
 }

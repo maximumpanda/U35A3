@@ -6,9 +6,14 @@
  * Date: 4/25/2017
  * Time: 3:30 PM
  */
-class TrackerController
+class TrackerController implements IController
 {
     public static function GetIndex(){
 
+    }
+
+    public static function AuthenticationLevel()
+    {
+        return 0;
     }
 }

@@ -84,7 +84,9 @@ class RouteTable
         $parentList = self::GenerateParentList($controller);
         $controllerName = Helper::GetClassName($controller);
         $base = self::GetControllerBaseName($controllerName);
-        $methods = (new ReflectionClass($controllerName))->getMethods(ReflectionMethod::IS_PUBLIC);
+        $class = new ReflectionClass($controllerName);
+        $methods = $class->getMethods(ReflectionMethod::IS_PUBLIC);
+        $authLevel = $methods['AuthenticationLevel']->invoke($class);
         $gets = [];
         $posts = [];
         $element = [];
@@ -93,6 +95,7 @@ class RouteTable
             if (strpos($method->name, "Post") !== false) $posts[substr($method->name, 4)] = $method->name;
         }
         $element[$base] =[
+            "AuthenticationLevel" => $authLevel,
             "Controller" => $controllerName,
             "Get" => $gets,
             "Post" => $posts
