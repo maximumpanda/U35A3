@@ -163,7 +163,7 @@ QUERY;
         Helper::PrintArray($tables);
         foreach ($tables as $key=>$value){
             /** @var  $field SqlType */
-            foreach ($value['fk']['ForeignTable']->Fields as $field ){
+            foreach ($value['fk']->ForeignTable->Fields as $field ){
                     $selection .= $field->TableName.'.'.$field->Name . ', ';
             }
         }
