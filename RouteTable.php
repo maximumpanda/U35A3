@@ -86,6 +86,8 @@ class RouteTable
         $base = self::GetControllerBaseName($controllerName);
         $class = new ReflectionClass($controllerName);
         $methods = $class->getMethods(ReflectionMethod::IS_PUBLIC);
+        Helper::PrintArray($methods);
+        exit();
         $authLevel = $methods['AuthenticationLevel']->invoke($class);
         $gets = [];
         $posts = [];
