@@ -42,6 +42,8 @@ class RouteTable
         $requestMethod = Helper::GetRequestMethod();
         if (isset($array[$controllerKey][$requestMethod])) {
             if ($viewKey = self::InsensitiveKeySearch($array[$controllerKey][$requestMethod], $viewKey) !== false) {
+                if ($array[$controllerKey]["AuthenticationLevel"] > Session::$Bag['AuthenticationLevel'])
+                    Router::ReDirectError(401, "You must Have an Admin Account tO Access This Resource");
                 return true;
             }
         }
