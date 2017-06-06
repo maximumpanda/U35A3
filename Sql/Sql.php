@@ -160,6 +160,7 @@ QUERY;
 
     private static function GetJoinSelection($tables){
         $selection = "";
+        Helper::PrintArray($tables);
         foreach ($tables as $key=>$value){
             /** @var  $field SqlType */
             foreach ($value['fk']['ForeignTable']->Fields as $field ){
