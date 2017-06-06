@@ -114,9 +114,4 @@ class FormsController
         else
             Router::Redirect('/Forms/Result?Action=Delete&Table=' . Session::$Bag['Table'] .'&Status=Failure');
     }
-
-    public static function GetTest(){
-        $model = Sql::GenerateModel("Addresses");
-        Sql::BuildJoinStatement($model, 12);
-    }
 }
