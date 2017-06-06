@@ -3,7 +3,7 @@
     include_once $_SERVER["DOCUMENT_ROOT"] . "/RouteTable.php";
     $buttons = [];
     foreach (RouteTable::$Routes as $routeRoot => $branch){
-        Helper::PrintArray($routeRoot);
+        Helper::PrintArray($branch);
         if (in_array($routeRoot, RouteTable::$HiddenBranches)) continue;
         array_push($buttons, $routeRoot);
     }
