@@ -13,7 +13,7 @@ class TrackerController implements IController
     }
 
     public static function PostTrack(){
-        $query = "Select "
+        $query = "Select ";
     }
 
     public static function AuthenticationLevel()
