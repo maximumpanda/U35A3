@@ -133,10 +133,10 @@ QUERY;
 
     public static function BuildJoinStatement(SqlObject $model){
         $tables = self::GetPrimaryAndForeignKeyPairs($model);
-        //Helper::PrintArray($tables);
         $selection = self::GetJoinSelection($tables);
         $keys = array_keys($tables);
         $query = 'select '. $selection .' from ' . $keys[0] . ' ';
+        Helper::Print($query);
         for ($x = 1; $x < count($keys); $x++){
             $curKey = $keys[$x];
             $query .= 'Inner Join ' . $curKey . ' On ' . $curKey.'.'.$tables[$curKey]['pk']->Name . " = ";
@@ -158,7 +158,6 @@ QUERY;
 
     private static function GetJoinSelection($tables){
         $selection = "";
-        Helper::PrintArray($tables);
         foreach ($tables as $key=>$value){
             /** @var  $field SqlType */
             foreach ($value['fk']->ForeignTable->Fields as $field ){
