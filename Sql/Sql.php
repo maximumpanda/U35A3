@@ -131,7 +131,7 @@ QUERY;
 
     }
 
-    public static function BuildJoinStatement(SqlObject $model){
+    public static function BuildJoinStatement(SqlObject $model, $where = ""){
         $tables = self::GetPrimaryAndForeignKeyPairs($model);
         $selection = self::GetJoinSelection($tables);
         $keys = array_keys($tables);
@@ -140,7 +140,7 @@ QUERY;
             $curKey = $keys[$x];
             $query .= 'Inner Join ' . $curKey . ' On ' . $curKey.'.'.$tables[$curKey]['pk']->Name . " = ". $tables[$curKey]['fk']->TableName.'.'.$tables[$curKey]['fk']->Name. ' ';
         }
-        Helper::PrintArray($tables);
+        $query .= $tables[$keys[0]]['pk']->TableName.'.'.$tables[$keys[0]]['pk']->Name.'='. self::ParametrizeValue($where);
         Helper::Print($query);
     }
 
