@@ -135,10 +135,8 @@ QUERY;
         $tables = self::GetPrimaryAndForeignKeyPairs($model);
         //Helper::PrintArray($tables);
         $selection = self::GetJoinSelection($tables);
-        Helper::PrintArray($selection);
-        exit();
         $keys = array_keys($tables);
-        $query = 'select * from ' . $keys[0] . ' ';
+        $query = 'select '. $selection .' from ' . $keys[0] . ' ';
         for ($x = 1; $x < count($keys); $x++){
             $curKey = $keys[$x];
             $query .= 'Inner Join ' . $curKey . ' On ' . $curKey.'.'.$tables[$curKey]['pk']->Name . " = ";
@@ -168,6 +166,7 @@ QUERY;
                     $selection .= $field->TableName.'.'.$field->Name . ', ';
             }
         }
+        $selection = substr($selection, 0, strlen($selection)-2);
         return $selection;
     }
 }
