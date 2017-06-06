@@ -142,7 +142,7 @@ QUERY;
         foreach ($model->Fields as $field){
             if($field->KeyType == 2){
                 $tbl = $field->ForeignTable->Fields['Id'];
-                $obj = [$tbl->TableName => ["0" => $tbl->Fields['Id'], "1"=> $field]];
+                $obj = [$tbl->TableName => ["0" => $tbl, "1"=> $field]];
                 $tables += $obj;
                 $tables += self::GetPrimaryAndForeignKeyPairs($field->ForeignTable);
             }
