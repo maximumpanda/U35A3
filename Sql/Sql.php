@@ -138,7 +138,7 @@ QUERY;
         $query = 'select '. $selection .' from ' . $keys[0] . ' ';
         for ($x = 1; $x < count($keys); $x++){
             $curKey = $keys[$x];
-            $query .= 'Inner Join ' . $curKey . ' On ' . $curKey.'.'.$tables[$curKey]['pk']->Name . " = ";
+            $query .= 'Inner Join ' . $curKey . ' On ' . $curKey.'.'.$tables[$curKey]['pk']->Name . " = ". $tables[$curKey]['fk']->TableName.'.'.$tables[$curKey]['fk']->Name. ' ';
         }
         Helper::Print($query);
     }
