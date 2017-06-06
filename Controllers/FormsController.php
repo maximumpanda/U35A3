@@ -116,6 +116,7 @@ class FormsController
     }
 
     public static function GetTest(){
-        Sql::BuildJoinStatement();
+        $model = Sql::GenerateModel("Addresses");
+        Sql::BuildJoinStatement($model);
     }
 }
