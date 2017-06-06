@@ -136,11 +136,11 @@ QUERY;
         $selection = self::GetJoinSelection($tables);
         $keys = array_keys($tables);
         $query = 'select '. $selection .' from ' . $keys[0] . ' ';
-        Helper::Print($query);
         for ($x = 1; $x < count($keys); $x++){
             $curKey = $keys[$x];
             $query .= 'Inner Join ' . $curKey . ' On ' . $curKey.'.'.$tables[$curKey]['pk']->Name . " = ";
         }
+        Helper::Print($query);
     }
 
     private static function GetPrimaryAndForeignKeyPairs(SqlObject $model){
