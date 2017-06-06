@@ -133,7 +133,14 @@ QUERY;
 
     public static function BuildJoinStatement(SqlObject $model){
         $tables = self::GetPrimaryAndForeignKeyPairs($model);
-        Helper::PrintArray($tables);
+        //Helper::PrintArray($tables);
+        $selection = self::GetJoinSelection($tables);
+        $keys = array_keys($tables);
+        $query = 'select * from ' . $keys[0] . ' ';
+        for ($x = 1; $x < count($keys); $x++){
+            $curKey = $keys[$x];
+            $query .= 'Inner Join ' . $curKey . ' On ' . $curKey.'.'.$tables[$curKey]['pk']->Name . " = "
+        }
     }
 
     private static function GetPrimaryAndForeignKeyPairs(SqlObject $model){
@@ -141,11 +148,22 @@ QUERY;
         foreach ($model->Fields as $field){
             if($field->KeyType == 2){
                 $tbl = $field->ForeignTable->Fields['Id'];
-                $obj = [$tbl->TableName => ["0" => $tbl, "1"=> $field]];
+                $obj = [$tbl->TableName => ["pk" => $tbl, "fk"=> $field]];
                 $tables += $obj;
                 $tables += self::GetPrimaryAndForeignKeyPairs($field->ForeignTable);
             }
         }
         return $tables;
+    }
+
+    private static function GetJoinSelection($tables){
+        $selection = "";
+        foreach ($tables as $key=>$value){
+            /** @var  $field SqlType */
+            foreach ($value['fk']['ForeignTable']->Fields as $field ){
+                    $selection .= $field->TableName.'.'.$field->Name . ', ';
+            }
+        }
+        return $selection;
     }
 }
