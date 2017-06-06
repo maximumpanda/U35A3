@@ -54,7 +54,7 @@ class SqlObject
         foreach ($this->Fields as $field){
             if ($field->KeyType == 1) continue;
             if ($field->KeyType == 2){
-                array_push($values, implode(" ,", $field->ForeignTable->SelectAll($field->Value)->Summarize()));
+                array_push($values, implode(" ,", $field->ForeignTable->Select("*", $field->Value)->Summarize()));
             }
             else {
                 array_push($values, $field->Value);
