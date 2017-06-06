@@ -97,7 +97,7 @@ QUERY;
         }
         else{
             self::Disconnect();
-            Router::ReDirectError(400, self::$_dbConnection->error);
+
         }
         self::Disconnect();
         return $result;
@@ -106,7 +106,10 @@ QUERY;
     public static function NonQuery($sql){
         self::Connect();
         self::Use(self::$_dbName);
-        $res = self::$_dbConnection->query($sql);
+        if (!$res = self::$_dbConnection->query($sql));{
+            self::Disconnect();
+            Router::ReDirectError(400, self::$_dbConnection->error);
+        }
         self::Disconnect();
         return $res;
     }
