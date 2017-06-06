@@ -31,6 +31,11 @@ table, th, td {
 th, td {
     padding: 5px;
 }
+
+form{
+    display: flex;
+    flex-direction: column;
+}
 .Title{
     font-size: 500%;
 }
