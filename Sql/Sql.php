@@ -96,8 +96,6 @@ QUERY;
                     $result->AddMember($object);
                 }
             }
-            else
-                return false;
         }
         catch (Exception $e){
             self::Disconnect();
