@@ -48,6 +48,7 @@ class SqlObject
     }
 
     public function Summarize(){
+        Helper::PrintArray($this->Fields);
         $summary = [];
         $values = [];
         foreach ($this->Fields as $field){
@@ -59,7 +60,6 @@ class SqlObject
                 array_push($values, $field->Value);
             }
         }
-        Helper::PrintArray($values);
         $summary[$this->Fields['Id']->Value] = implode(" ,", $values);
         return $summary;
     }
