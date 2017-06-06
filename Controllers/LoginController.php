@@ -19,9 +19,10 @@ class LoginController implements IController
     {
     }
     public static function PostIndex(){
-        $query = 'Select DISTINCT Id From Authentications Where Email LIKE ' . strtoupper(Sql::ParametrizeValue('%'. $_POST['UserName'].'%'));
+        $query = 'Select DISTINCT Id From Authentications Where Email LIKE ' . strtoupper(Sql::ParametrizeValue('%'. $_POST['UserName'].'%')) .
+            ' And PasswordHash = ' . Sql::ParametrizeValue($_POST['Password']);
         $res = Sql::Query($query);
-        if (isset($res[0]))
+        if (isset($res->Members[0]))
             if(strpos(strtoupper($_POST['UserName']), '@PANDA.CO') !== false ){
                 Session::$Bag['AuthenticationLevel'] = 10;
                 Router::Redirect("/Home/Index");
