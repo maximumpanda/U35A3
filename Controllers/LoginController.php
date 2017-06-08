@@ -67,8 +67,8 @@ class LoginController implements IController
                 Sql::ParametrizeValue($_POST['Email']).', '. Sql::ParametrizeValue($_POST['PasswordHash']).', '.Sql::ParametrizeValue('Salty').')';
             $res = Sql::NonQuery($query);
             if ($res >0)
-                Router::Redirect('/Forms/Result?Action=Create&Status=Success');
+                Router::Redirect('/Login/Result?Action=Create&Status=Success');
         }
-        Router::Redirect('/Forms/Result?Action=Create&Status=Failure');
+        Router::Redirect('/Login/Result?Action=Create&Status=Failure');
     }
 }
