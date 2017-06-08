@@ -47,6 +47,7 @@ class LoginController implements IController
         $clientModel = Sql::GenerateModel("Clients");
 
         unset($authModel->Fields['Id']);
+        unset($authModel->Fields['Salt']);
         unset($clientModel->Fields['Id']);
         Helper::PrintArray($authModel);
         Helper::PrintArray($clientModel);
