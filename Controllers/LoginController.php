@@ -41,4 +41,12 @@ class LoginController implements IController
         Session::$Bag['AuthenticationLevel'] = 0;
         Router::Redirect("/Home/Index");
     }
+
+    public static function GetCreate(){
+        $authModel = Sql::GenerateModel("Authentications");
+        $clientModel = Sql::GenerateModel("Clients");
+        Helper::PrintArray($authModel);
+        Helper::PrintArray($clientModel);
+        return new form();
+    }
 }
