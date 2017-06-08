@@ -14,6 +14,7 @@ class TrackerController implements IController
 
     public static function PostTrack(){
         Helper::PrintArray($_POST);
+        Router::Redirect('/Tracker/Result');
     }
 
     public static function AuthenticationLevel()
