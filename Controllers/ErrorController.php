@@ -19,6 +19,7 @@ class ErrorController implements IController
 
 
     public static function GetIndex(){
+        Helper::PrintArray(RouteTable::$Routes);
         $model = new ErrorModel();
         $model->Title = Session::$Bag['Code'];
         $model->Message = Session::$Bag['Message'];
