@@ -45,8 +45,13 @@ class LoginController implements IController
     public static function GetCreate(){
         $authModel = Sql::GenerateModel("Authentications");
         $clientModel = Sql::GenerateModel("Clients");
+
+        unset($authModel->Fields['Id']);
+        unset($clientModel->Fields['Id']);
         Helper::PrintArray($authModel);
         Helper::PrintArray($clientModel);
+        $model = $authModel + $clientModel;
+        Helper::PrintArray($model);
         return new form();
     }
 }
