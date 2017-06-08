@@ -50,7 +50,7 @@ class LoginController implements IController
         unset($clientModel->Fields['Id']);
         Helper::PrintArray($authModel);
         Helper::PrintArray($clientModel);
-        $model = $authModel + $clientModel;
+        $model = $clientModel += $authModel;
         Helper::PrintArray($model);
         return new form();
     }
