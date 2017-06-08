@@ -13,7 +13,8 @@ class TrackerController implements IController
     }
 
     public static function PostTrack(){
-        $query = "Select ";
+        Helper::PrintArray($_POST);
+        exit();
     }
 
     public static function AuthenticationLevel()
