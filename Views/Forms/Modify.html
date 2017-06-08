@@ -1,7 +1,6 @@
 <div class="Center">
     <form action="/Forms/Modify?Table=<?=Session::$Bag['Table']?>" method="post">
         <table>
-            <?Helper::PrintArray(Session::$Model)?>
             <?php foreach (Session::$Model->Elements as $element):?>
                 <tr class="<?=$element->Disabled ? "Hidden" : ""?>">
                     <td><?=$element->Name?></td>
