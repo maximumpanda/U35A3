@@ -17,6 +17,10 @@ class TrackerController implements IController
         Router::Redirect('/Tracker/Result');
     }
 
+    public static function GetResult(){
+        
+    }
+
     public static function AuthenticationLevel()
     {
         return 0;
