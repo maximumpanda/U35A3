@@ -41,40 +41,4 @@ class LoginController implements IController
         Session::$Bag['AuthenticationLevel'] = 0;
         Router::Redirect("/Home/Index");
     }
-
-    public static function GetCreate(){
-        $authModel = Sql::GenerateModel("Authentications");
-        $clientModel = Sql::GenerateModel("Clients");
-
-        unset($authModel->Fields['Id']);
-        unset($authModel->Fields['Salt']);
-        unset($clientModel->Fields['Id']);
-        Helper::PrintArray($authModel);
-        Helper::PrintArray($clientModel);
-        $model = new SqlObject();
-        $model->Fields = $clientModel->Fields + $authModel->Fields;
-        Helper::PrintArray($model);
-        return Form::NewFromModel($model);
-    }
-
-    public static function PostCreate(){
-        Helper::PrintArray($_POST);
-        $query = 'Insert Into Clients (FirstName, LastName, Address, IsBusinessAccount, Telephone) Value ('.
-            Sql::ParametrizeValue($_POST['FirstName']) . ', ' . Sql::ParametrizeValue($_POST['LastName']). ', ' . Sql::ParametrizeValue($_POST['Address']). ', '.
-            sql::ParametrizeValue($_POST['IsBusinessAccount']). ', ' . Sql::ParametrizeValue($_POST['Telephone']).')';
-        Helper::Print($query);
-        $res = Sql::NonQuery($query);
-        if ($res > 0){
-            $query = 'Insert Into Authentications (Email, PasswordHash, Salt) Value ('.
-                Sql::ParametrizeValue($_POST['Email']).', '. Sql::ParametrizeValue($_POST['PasswordHash']).', '.Sql::ParametrizeValue('Salty').')';
-            $res = Sql::NonQuery($query);
-            if ($res >0)
-                Helper::PrintArray($res);
-            exit();
-                Router::Redirect('/Login/Result?Action=Create&Status=Success');
-        }
-        Helper::PrintArray($res);
-        exit();
-        Router::Redirect('/Login/Result?Action=Create&Status=Failure');
-    }
 }
