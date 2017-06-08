@@ -58,6 +58,7 @@ class LoginController implements IController
     }
 
     public static function PostCreate(){
+        Helper::PrintArray($_POST);
         $query = 'Insert Into Clients (FirstName, LastName, Address, IsBusinessAccount, Telephone) Value ('.
             Sql::ParametrizeValue($_POST['FirstName']) . ', ' . Sql::ParametrizeValue($_POST['LastName']). ', ' . Sql::ParametrizeValue($_POST['Address']). ', '.
             sql::ParametrizeValue($_POST['IsBusinessAccount']). ', ' . Sql::ParametrizeValue($_POST['Telephone']).')';
