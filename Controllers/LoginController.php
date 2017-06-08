@@ -61,6 +61,7 @@ class LoginController implements IController
         $query = 'Insert Into Clients (FirstName, LastName, Address, IsBusinessAccount, Telephone) Value ('.
             Sql::ParametrizeValue($_POST['FirstName']) . ', ' . Sql::ParametrizeValue($_POST['LastName']). ', ' . Sql::ParametrizeValue($_POST['Address']). ', '.
             sql::ParametrizeValue($_POST['IsBusinessAccount']). ', ' . Sql::ParametrizeValue($_POST['Telephone']).')';
+        Helper::Print($query);
         $res = Sql::NonQuery($query);
         if ($res > 0){
             $query = 'Insert Into Authentications (Email, PasswordHash, Salt) Value ('.
