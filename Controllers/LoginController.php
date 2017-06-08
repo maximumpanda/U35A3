@@ -56,4 +56,19 @@ class LoginController implements IController
         Helper::PrintArray($model);
         return Form::NewFromModel($model);
     }
+
+    public static function PostCreate(){
+        $query = 'Insert Into Clients (FirstName, LastName, Address, IsBusinessAccount, Telephone) Value ('.
+            Sql::ParametrizeValue($_POST['FirstName']) . ', ' . Sql::ParametrizeValue($_POST['LastName']). ', ' . Sql::ParametrizeValue($_POST['Address']). ', '.
+            sql::ParametrizeValue($_POST['IsBusinessAccount']). ', ' . Sql::ParametrizeValue($_POST['Telephone']).')';
+        $res = Sql::NonQuery($query);
+        if ($res > 0){
+            $query = 'Insert Into Authentications (Email, PasswordHash, Salt) Value ('.
+                Sql::ParametrizeValue($_POST['Email']).', '. Sql::ParametrizeValue($_POST['PasswordHash']).', '.Sql::ParametrizeValue('Salty').')';
+            $res = Sql::NonQuery($query);
+            if ($res >0)
+                Router::Redirect('/Forms/Result?Action=Create&Status=Success');
+        }
+        Router::Redirect('/Forms/Result?Action=Create&Status=Failure');
+    }
 }
