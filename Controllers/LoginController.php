@@ -54,6 +54,6 @@ class LoginController implements IController
         $model = new SqlObject();
         $model->Fields = $clientModel->Fields + $authModel->Fields;
         Helper::PrintArray($model);
-        return new form();
+        return Form::NewFromModel($model);
     }
 }
