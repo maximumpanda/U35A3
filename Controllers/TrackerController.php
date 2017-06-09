@@ -12,9 +12,8 @@ class TrackerController implements IController
 
     }
 
-    public static function PostTrack(){
-        Helper::PrintArray($_POST);
-        Router::Redirect('/Tracker/Result?Status="At Depot"');
+    public static function GetTrack(){
+        Session::$Bag['Status'];
     }
 
     public static function GetResult(){
