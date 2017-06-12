@@ -212,7 +212,7 @@ QUERY;
                 }
             }
             else {
-                $selection .= $value->TableName.'.'.$field->Name. ' AS ' . $field->Name;
+                $selection .= $value->TableName.'.'.$value->Name. ' AS ' . $value->Name;
             }
         }
         return $selection;
