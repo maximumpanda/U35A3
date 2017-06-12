@@ -50,7 +50,6 @@ class SqlObject
     public function Summarize(){
         $summary = [];
         $values = [];
-        Helper::PrintArray($this->Fields);
         foreach ($this->Fields as $field){
             if ($field->KeyType == 1) continue;
             if ($field->KeyType == 2){

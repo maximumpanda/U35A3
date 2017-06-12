@@ -158,6 +158,7 @@ QUERY;
             }
         }
         $result = substr($result, 0, strlen($result)-2);
+        Helper::PrintArray($res);
         return $result;
     }
 
