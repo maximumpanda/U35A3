@@ -182,6 +182,10 @@ QUERY;
     private static function GetPrimaryAndForeignKeyPairs(SqlObject $model){
         $tables = [];
         foreach ($model->Fields as $field){
+            if ($field->KeyType == 1){
+                $tbl = array_values($field->ForeignTable->Fields)[0];
+                $tables[$field->TableName] = ['pk'=>$field];
+            }
             if($field->KeyType == 2){
                 $tbl = array_values($field->ForeignTable->Fields)[0];
                 $obj = [$tbl->TableName => ["pk" => $tbl, "fk"=> $field]];
