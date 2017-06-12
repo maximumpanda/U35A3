@@ -151,6 +151,7 @@ QUERY;
         $model = self::GenerateModel($table, true);
         /** @var  $results SqlCollection */
         $query = self::BuildJoinStatement($model, $where);
+        Helper::Print($query);
         $res = self::Query($query);
         $result = "";
         foreach ($res->Members as $member){
