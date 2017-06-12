@@ -70,7 +70,6 @@ class FormsController implements IController
         $table = Session::$Bag['Table'];
         $model = Sql::GenerateModel($table, true);
         $form = Form::NewFromModel($model);
-        Helper::Print($form);
         return $form;
 
     }
