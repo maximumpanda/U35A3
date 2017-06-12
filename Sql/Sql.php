@@ -90,7 +90,7 @@ QUERY;
                 if ($model == null) $model = self::GenerateModelFromResult($res);
                 while ($row = $res->fetch_row()) {
                     $object = $model->Clone();
-                    $keys = array_keys($object->Fields);
+                    $keys = array_keys($model->Fields);
                     Helper::PrintArray($keys);
                     foreach ($row as $key => $value) {
                         $object->Fields[$key]->Value = $value;
