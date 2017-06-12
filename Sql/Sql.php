@@ -155,7 +155,7 @@ QUERY;
         $result = '';
         foreach ($res->Members as $key=>$value){
             foreach ($value->Fields as $field){
-                if ($field->KeyType == 0)
+                if ($field->KeyType !== 1)
                     $result .= $field->Value . ', ';
             }
         }
