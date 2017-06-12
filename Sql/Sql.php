@@ -208,11 +208,11 @@ QUERY;
         foreach ($model->Fields as $key=>$value){
             if ($value->KeyType == 2){
                 foreach ($value->ForeignTable->Fields as $field){
-                    $selection .= $field->TableName.'.'.$field->Name . ' AS ' . $field->TableName . ',';
+                    $selection .= $field->TableName.'.'.$field->Name . ' AS ' . $field->TableName . ', ';
                 }
             }
             else {
-                $selection .= $value->TableName.'.'.$value->Name. ' AS ' . $value->Name;
+                $selection .= $value->TableName.'.'.$value->Name. ' AS ' . $value->Name . ', ';
             }
         }
         return $selection;
