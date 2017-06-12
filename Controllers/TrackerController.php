@@ -13,15 +13,9 @@ class TrackerController implements IController
     }
 
     public static function GetTrack(){
-        Session::$Bag['Status'];
+        Session::$Bag['Status'] = "Success";
     }
 
-    public static function GetResult(){
-        $model =[
-            "Status" => Session::$Bag['Status']
-        ];
-        return $model;
-    }
 
     public static function AuthenticationLevel()
     {
