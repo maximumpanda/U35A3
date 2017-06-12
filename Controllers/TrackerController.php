@@ -13,7 +13,7 @@ class TrackerController implements IController
     }
 
     public static function GetTrack(){
-        $query = "Select Id, DeliveryTime, Weight, Status.Status AS Status From Packages ".
+        $query = "Select Packages.Id, DeliveryTime, Weight, Status.Status AS Status From Packages ".
                  "LEFT JOIN Status On Packages.Status = Status.Id ".
                  "where Id =" . Session::$Bag['PackageId'];
         Helper::Print($query);
