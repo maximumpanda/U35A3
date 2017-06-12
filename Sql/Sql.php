@@ -200,7 +200,7 @@ QUERY;
     public static function BuildJoinStatementFromModel(SqlObject $model, $where =''){
         $tables = self::GetPrimaryAndForeignKeyPairs($model);
         $selection = self::GetJoinSelectionFromModel($model);
-        Helper::PrintArray($tables);
+        Helper::PrintArray($selection);
         Helper::PrintArray($model);
     }
 
