@@ -17,7 +17,14 @@ class SqlObject
     }
 
     public function AddField(SqlType $field){
-        $this->Fields[$field->Alias] = $field;
+        if (isset($this->Fields))
+        {
+            $this->Fields[$field->TableName.'.'.$field->Name] = $field;
+        }
+        else{
+            $this->Fields[$field->Name] = $field;    
+        }
+
     }
 
     public function Clone(){
