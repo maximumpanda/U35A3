@@ -157,7 +157,7 @@ QUERY;
         Helper::PrintArray($res);
         foreach ($res->Members as $key=>$value){
             foreach ($value->Fields as $field){
-                if ($field->KeyType !== 0)
+                if ($field->KeyType !== 2)
                     $result .= $field->Value . ', ';
             }
         }
