@@ -59,15 +59,12 @@ class SqlObject
         $values = [];
         Helper::PrintArray($this->Fields);
         foreach ($this->Fields as $field){
+            if ($field->KeyType == 1) continue;
             if ($field->KeyType == 2){
                 array_push($values, Sql::GetLinkedValues($field->TableName, $field->Name, $this->Fields['Id']->Value));
             }
-        }
-        if (count($values) == 0){
-            foreach ($this->Fields as $field){
-                if ($field->KeyType == 0){
-                    array_push($values, $field->Value);
-                }
+            else{
+                array_push($values, $field->Value);
             }
         }
         $summary[$this->Fields['Id']->Value] = implode(", ", $values);
