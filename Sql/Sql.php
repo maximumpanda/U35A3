@@ -142,6 +142,10 @@ QUERY;
 
     public static function ParametrizeValue($value){
         if (is_numeric($value)){
+            $asString = (string) $value;
+            $firstChar = substr($asString, 0, 1);
+            if ($firstChar == '+' || $firstChar === '0')
+                return '"' . $value . '"';
            return $value;
         }
         else return '"' . $value . '"';
