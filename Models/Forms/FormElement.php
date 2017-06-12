@@ -36,7 +36,6 @@ class FormElement
         if ($this->InputType == 'select') {
             $this->Values = $object->ForeignTable->SelectAll()->Summarize();
         }
-        Helper::PrintArray($this);
     }
 
     private function ParseInputType(SqlType $object){

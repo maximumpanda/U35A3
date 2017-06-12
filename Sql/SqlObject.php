@@ -44,7 +44,6 @@ class SqlObject
         }
         else{
             $res = Sql::GetAllFromTable(reset($this->Fields)->TableName);
-            Helper::PrintArray($res);
             return $res;
         }
     }
@@ -60,9 +59,7 @@ class SqlObject
         $values = [];
         foreach ($this->Fields as $field){
             if ($field->KeyType == 2){
-                Helper::PrintArray($field);
                 array_push($values, Sql::GetLinkedValues($field->TableName, $this->Fields['Id']->Value));
-                Helper::PrintArray($values);
             }
         }
         $summary[$this->Fields['Id']->Value] = implode(", ", $values);
