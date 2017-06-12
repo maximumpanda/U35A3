@@ -200,6 +200,7 @@ QUERY;
     public static function BuildJoinStatementFromModel(SqlObject $model, $where =''){
         $selection = self::GetJoinSelectionFromModel($model);
         $tables = self::GetUniqueTablesInModel($model);
+        Helper::PrintArray($tables);
         Helper::PrintArray($selection);
         Helper::PrintArray($model);
     }
