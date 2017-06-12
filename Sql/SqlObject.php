@@ -66,7 +66,7 @@ class SqlObject
                 array_push($values, $field->Value);
             }
         }
-        Helper::PrintArray($values);
+        Helper::PrintArray($this->Fields);
         $summary[$this->Fields['Id']->Value] = implode(", ", $values);
         return $summary;
     }
