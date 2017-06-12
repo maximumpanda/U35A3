@@ -215,6 +215,7 @@ QUERY;
                 $selection .= $value->TableName.'.'.$value->Name. ' AS ' . $value->Name . ', ';
             }
         }
+        $selection = substr($selection, 0, strlen($selection)-2);
         return $selection;
     }
 }
