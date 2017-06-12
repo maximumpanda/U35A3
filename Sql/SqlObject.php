@@ -57,6 +57,7 @@ class SqlObject
     public function Summarize(){
         $summary = [];
         $values = [];
+        Helper::PrintArray($this->Fields);
         foreach ($this->Fields as $field){
             if ($field->KeyType == 2){
                 array_push($values, Sql::GetLinkedValues($field->TableName, $field->Name, $this->Fields['Id']->Value));
