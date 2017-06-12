@@ -199,16 +199,23 @@ QUERY;
 
     public static function BuildJoinStatementFromModel(SqlObject $model, $where =''){
         $tables = self::GetPrimaryAndForeignKeyPairs($model);
+        $selection = self::GetJoinSelectionFromModel($model);
         Helper::PrintArray($tables);
         Helper::PrintArray($model);
     }
 
-    public static function GetJoinSelectionFromModel(SqlObject $model, $tables){
+    public static function GetJoinSelectionFromModel(SqlObject $model){
         $selection ='';
         foreach ($model->Fields as $key=>$value){
             if ($value->KeyType == 2){
-                $selection .= "$";
+                foreach ($value->ForeignTable->Fields as $field){
+                    $selection .= $field->TableName.'.'.$field->Name . ' AS ' . $field->TableName . ',';
+                }
+            }
+            else {
+                $selection .= $value->TableName.'.'.$field->Name. ' AS ' . $field->Name;
             }
         }
+        return $selection;
     }
 }
