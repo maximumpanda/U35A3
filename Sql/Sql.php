@@ -183,7 +183,6 @@ QUERY;
         $tables = [];
         foreach ($model->Fields as $field){
             if ($field->KeyType == 1){
-                $tbl = array_values($field->ForeignTable->Fields)[0];
                 $tables[$field->TableName] = ['pk'=>$field];
             }
             if($field->KeyType == 2){
