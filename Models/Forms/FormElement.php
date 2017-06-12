@@ -34,7 +34,7 @@ class FormElement
         $this->DefaultValue = $object->Value != null ? $object->Value : "";
         $this->InputType = FormElement::$InputTypes[$this->ParseInputType($object)];
         if ($this->InputType == 'select') {
-            $this->Values = $object->ForeignTable->SelectAll()->Summarize();
+            $this->Values = $object->ForeignTable->Summarize();
         }
     }
 
