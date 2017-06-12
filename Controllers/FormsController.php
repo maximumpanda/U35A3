@@ -71,6 +71,7 @@ class FormsController implements IController
         $model = Sql::GenerateModel($table, true);
         $form = Form::NewFromModel($model);
         Helper::PrintArray($form);
+        exit();
         return $form;
 
     }
