@@ -165,13 +165,12 @@ QUERY;
         $tables = self::GetPrimaryAndForeignKeyPairs($model);
         $selection = self::GetJoinSelection($tables);
         $keys = array_keys($tables);
-        $query = 'select '. $selection .' from ' . $keys[0] . ' ';
+        $query = 'select '. $selection .' from ' . $model->Fields[0]->TableName . ' ';
         for ($x = 1; $x < count($keys); $x++){
             $curKey = $keys[$x];
             $query .= 'Join ' . $curKey . ' On ' . $curKey.'.'.$tables[$curKey]['pk']->Name . " = ". $tables[$curKey]['fk']->TableName.'.'.$tables[$curKey]['fk']->Name. ' ';
         }
         $query .= 'Where ' . $tables[$keys[0]]['pk']->TableName.'.'.$tables[$keys[0]]['pk']->Name.'='. self::ParametrizeValue($where);
-        Helper::Print($query);
         return $query;
     }
 
