@@ -93,7 +93,7 @@ QUERY;
                     $keys = array_keys($model->Fields);
                     Helper::PrintArray($keys);
                     foreach ($row as $key => $value) {
-                        $object->Fields[$key]->Value = $value;
+                        $object->Fields[$keys[$key]]->Value = $value;
                     }
                     $result->AddMember($object);
                 }
