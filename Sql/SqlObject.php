@@ -63,7 +63,7 @@ class SqlObject
             if ($field->KeyType == 2){
                 array_push($values, Sql::GetLinkedValues($field->TableName, $field->Name, $this->Fields['Id']->Value));
             }
-            else{
+            if ($field->KeyType == 0){
                 array_push($values, $field->Value);
             }
         }
