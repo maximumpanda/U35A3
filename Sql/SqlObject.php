@@ -62,9 +62,6 @@ class SqlObject
             if ($field->KeyType == 2){
                 array_push($values, Sql::GetLinkedValues($field->TableName, $field->Value));
             }
-            if ($field->KeyType == 0){
-                array_push($values, $field->Value);
-            }
         }
         $summary[$this->Fields['Id']->Value] = implode(", ", $values);
         Helper::PrintArray($values);
