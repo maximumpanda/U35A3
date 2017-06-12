@@ -14,13 +14,14 @@ class TrackerController implements IController
 
     public static function GetTrack(){
         $model = Sql::GenerateModel("Packages");
+        unset($model->Fields['Id']);
         unset($model->Fields['Client']);
         unset($model->Fields['Handler']);
         unset($model->Fields['Recipient']);
         unset($model->Fields['Address']);
-        $form = Form::NewFromModel($model);
+        $query = Sql::BuildJoinStatement($model, 'Id = '.Session::$Bag['PackageId']);
         Helper::PrintArray($model);
-        Helper::PrintArray($form->Elements);
+        Helper::PrintArray($query);
         Session::$Bag['Status'] = "Success";
     }
 
