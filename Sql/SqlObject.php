@@ -63,7 +63,6 @@ class SqlObject
                 array_push($values, Sql::GetLinkedValues($field->TableName, $field->Value));
             }
         }
-        Helper::PrintArray($values);
         $summary[$this->Fields['Id']->Value] = implode(", ", $values);
         return $summary;
     }
