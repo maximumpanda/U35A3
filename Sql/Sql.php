@@ -155,7 +155,8 @@ QUERY;
         $result = "";
         foreach ($res->Members as $member){
             foreach ($member->Fields as $field){
-                $result .= $field->Value . ', ';
+                if ($field->Name !== 'Id')
+                    $result .= $field->Value . ', ';
             }
         }
         $result = substr($result, 0, strlen($result)-2);
