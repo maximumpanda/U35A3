@@ -60,7 +60,7 @@ class SqlObject
         Helper::PrintArray($this->Fields);
         foreach ($this->Fields as $field){
             if ($field->KeyType == 2){
-                array_push($values, Sql::GetLinkedValues($field->TableName, $this->Fields['Id']->Value));
+                array_push($values, Sql::GetLinkedValues($field->TableName, $field->Name, $this->Fields['Id']->Value));
             }
         }
         if (count($values) == 0){

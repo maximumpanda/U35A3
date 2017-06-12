@@ -147,21 +147,13 @@ QUERY;
         else return '"' . $value . '"';
     }
 
-    public static function GetLinkedValues($table, $where = ''){
+    public static function GetLinkedValues($table, $field, $where = ''){
         $model = self::GenerateModel($table, true);
         /** @var  $results SqlCollection */
-        $query = self::BuildJoinStatement($model, $where);
+        $query = self::BuildJoinStatement($model[$field]->ForeignTable, $where);
         Helper::Print($query);
         $res = self::Query($query);
-        $result = "";
-        foreach ($res->Members as $member){
-            foreach ($member->Fields as $field){
-                if ($field->Name !== 'Id')
-                    $result .= $field->Value . ', ';
-            }
-        }
-        $result = substr($result, 0, strlen($result)-2);
-        return $result;
+        return $res;
     }
 
     public static function BuildJoinStatement(SqlObject $model, $where = ''){
