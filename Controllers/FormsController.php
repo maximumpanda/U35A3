@@ -69,6 +69,7 @@ class FormsController implements IController
     public static function GetAdd(){
         $table = Session::$Bag['Table'];
         $model = Sql::GenerateModel($table, true);
+        Helper::PrintArray($model);
         $form = Form::NewFromModel($model);
         return $form;
 
