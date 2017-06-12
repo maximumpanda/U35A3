@@ -13,9 +13,9 @@
                     <?php endif?>
                     <?php if ($element->InputType == 'checkbox'):?>
                         <td>
+                            <input type="hidden" name="<?=$element->Name?>" value="0">
                             <input type="<?=$element->InputType?>" name="<?=$element->Name?>"
-                                <?= $element->DefaultValue == 1 ? "Checked" : "" ?>
-                            >
+                                <?= $element->DefaultValue ==1 ? "checked" : ""?> value="1"
                         </td>
                     <?php endif?>
                     <?php if ($element->InputType == 'select'):?>
