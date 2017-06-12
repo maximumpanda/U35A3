@@ -13,7 +13,6 @@ class Session{
     public static $View;
     public static $Model;
 
-
     public static function SetView($val){
         self::$View = $val;
     }

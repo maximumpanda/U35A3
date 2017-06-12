@@ -13,7 +13,8 @@ class TrackerController implements IController
     }
 
     public static function GetTrack(){
-        Helper::PrintArray(Session::$Bag);
+        $model = Sql::GenerateModel("Packages");
+        Helper::PrintArray($model);
         Session::$Bag['Status'] = "Success";
     }
 
