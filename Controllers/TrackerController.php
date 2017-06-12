@@ -14,7 +14,7 @@ class TrackerController implements IController
 
     public static function GetTrack(){
         $model = Sql::GenerateModel("Packages");
-        unset($model->Fields['Clients']);
+        unset($model->Fields['Client']);
         unset($model->Fields['Handler']);
         unset($model->Fields['Recipient']);
         unset($model->Fields['Address']);
