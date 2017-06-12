@@ -153,8 +153,6 @@ QUERY;
         $query = self::BuildJoinStatement($model->Fields[$field]->ForeignTable, $where);
         $res = self::Query($query);
         $result = '';
-        Helper::Print($query);
-        Helper::PrintArray($res);
         foreach ($res->Members as $key=>$value){
             foreach ($value->Fields as $field){
                 if ($field->KeyType == 0)
