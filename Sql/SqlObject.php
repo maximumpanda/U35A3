@@ -61,7 +61,7 @@ class SqlObject
         foreach ($this->Fields as $field){
             if ($field->KeyType == 1) continue;
             if ($field->KeyType == 2){
-                array_push($values, Sql::GetLinkedValues($field->TableName, $field->Name, $this->Fields['Id']->Value));
+                array_push($values, Sql::GetLinkedValues($field->TableName, $field->Name, $field->Value));
             }
             if ($field->KeyType == 0){
                 array_push($values, $field->Value);
