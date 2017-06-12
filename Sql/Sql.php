@@ -150,7 +150,7 @@ QUERY;
     public static function GetLinkedValues($table, $field, $where = ''){
         $model = self::GenerateModel($table, true);
         /** @var  $results SqlCollection */
-        $query = self::BuildJoinStatement($model[$field]->ForeignTable, $where);
+        $query = self::BuildJoinStatement($model->Fields[$field]->ForeignTable, $where);
         Helper::Print($query);
         $res = self::Query($query);
         return $res;
