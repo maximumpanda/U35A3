@@ -85,15 +85,18 @@ class FormsController implements IController
         unset($_POST['Id']);
         $query = 'Insert into ' . Session::$Bag['Table'] . ' (' . implode(", " , array_keys($_POST)) . ') Values (';
         foreach ($_POST as $value){
-            $query .= Sql::ParametrizeValue($value) . ',';
+            $query .= Sql::ParametrizeValue($value) . ', ';
         }
-        $query = substr($query, 0, strlen($query)-1);
+        $query = substr($query, 0, strlen($query)-2);
         $query .= ')';
         $res = Sql::NonQuery($query);
         if ($res)
             Router::Redirect('/Forms/Result?Action=Add&Table=' . Session::$Bag['Table'] .'&Status=Success');
-        else
-            Router::Redirect('/Forms/Result?Action=Add&Table=' . Session::$Bag['Table'] .'&Status=Failure');
+        else {
+            Helper::PrintArray($query);
+            exit();
+            Router::Redirect('/Forms/Result?Action=Add&Table=' . Session::$Bag['Table'] . '&Status=Failure');
+        }
     }
 
     public static function GetDelete(){
