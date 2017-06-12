@@ -147,7 +147,7 @@ QUERY;
         else return '"' . $value . '"';
     }
 
-    public static function GetLinkedValues($table, $where){
+    public static function GetLinkedValues($table, $where = ''){
         Helper::Print($table);
         $model = self::GenerateModel($table, true);
         /** @var  $results SqlCollection */
@@ -175,7 +175,8 @@ QUERY;
             $curKey = $keys[$x];
             $query .= 'Join ' . $curKey . ' On ' . $curKey.'.'.$tables[$curKey]['pk']->Name . " = ". $tables[$curKey]['fk']->TableName.'.'.$tables[$curKey]['fk']->Name. ' ';
         }
-        $query .= 'Where ' . $originTable.'.'.$tables[$originTable]['pk']->Name.'='. self::ParametrizeValue($where);
+        if ($where !== '')
+            $query .= 'Where ' . $originTable.'.'.$tables[$originTable]['pk']->Name.'='. self::ParametrizeValue($where);
         return $query;
     }
 
