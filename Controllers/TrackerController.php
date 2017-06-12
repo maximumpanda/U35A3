@@ -18,7 +18,7 @@ class TrackerController implements IController
         unset($model->Fields['Handler']);
         unset($model->Fields['Recipient']);
         unset($model->Fields['Address']);
-        $query = Sql::BuildJoinStatement($model, Session::$Bag['PackageId']);
+        $query = Sql::BuildJoinStatementFromModel($model, Session::$Bag['PackageId']);
         Helper::PrintArray($model);
         Helper::PrintArray($query);
         Session::$Bag['Status'] = "Success";
