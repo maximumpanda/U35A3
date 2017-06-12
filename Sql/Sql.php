@@ -88,7 +88,7 @@ QUERY;
         try {
             if ($res = self::$_dbConnection->query($sql)) {
                 if ($model == null) $model = self::GenerateModelFromResult($res);
-                Helper::Print('MODEL!');
+                Helper::Print($res);
                 Helper::PrintArray($model);
                 while ($row = $res->fetch_array(MYSQLI_ASSOC)) {
                     $object = $model->Clone();
