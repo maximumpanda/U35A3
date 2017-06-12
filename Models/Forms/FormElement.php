@@ -35,7 +35,6 @@ class FormElement
         $this->InputType = FormElement::$InputTypes[$this->ParseInputType($object)];
         if ($this->InputType == 'select') {
             $this->Values = $object->ForeignTable->SelectAll()->Summarize();
-            Helper::PrintArray($this);
         }
     }
 
