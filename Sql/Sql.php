@@ -158,7 +158,7 @@ QUERY;
         return $result;
     }
 
-    public static function BuildJoinStatement(SqlObject $model, $where = ""){
+    public static function BuildJoinStatement(SqlObject $model, $where = ''){
         $tables = self::GetPrimaryAndForeignKeyPairs($model);
         $selection = self::GetJoinSelection($tables);
         $keys = array_keys($tables);
@@ -184,8 +184,8 @@ QUERY;
         return $tables;
     }
 
-    private static function GetJoinSelection($tables){
-        $selection = "";
+    private static function GetJoinSelection($tables, $onlyForeignKeys){
+        $selection = '';
         foreach ($tables as $key=>$value){
             /** @var  $field SqlType */
             foreach ($value['fk']->ForeignTable->Fields as $field ){
@@ -195,5 +195,9 @@ QUERY;
         }
         $selection = substr($selection, 0, strlen($selection)-2);
         return $selection;
+    }
+
+    public static function BuildJoinStatementFromModel(SqlObject $model, $where =''){
+        $tables = self::GetPrimaryAndForeignKeyPairs($model);
     }
 }
