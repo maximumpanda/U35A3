@@ -184,7 +184,7 @@ QUERY;
         return $tables;
     }
 
-    private static function GetJoinSelection($tables, $onlyForeignKeys){
+    private static function GetJoinSelection($tables){
         $selection = '';
         foreach ($tables as $key=>$value){
             /** @var  $field SqlType */
