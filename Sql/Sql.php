@@ -200,5 +200,15 @@ QUERY;
     public static function BuildJoinStatementFromModel(SqlObject $model, $where =''){
         $tables = self::GetPrimaryAndForeignKeyPairs($model);
         Helper::PrintArray($tables);
+        Helper::PrintArray($model);
+    }
+
+    public static function GetJoinSelectionFromModel(SqlObject $model, $tables){
+        $selection ='';
+        foreach ($model->Fields as $key=>$value){
+            if ($value->KeyType == 2){
+                $selection .= "$";
+            }
+        }
     }
 }
