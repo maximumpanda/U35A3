@@ -17,7 +17,7 @@ class TrackerController implements IController
                  "LEFT JOIN Status On Packages.Status = Status.Id ".
                  "where Packages.Id =" . Session::$Bag['PackageId'];
         $res = Sql::Query($query);
-        if (count($res->Members) >= 0){
+        if (count($res->Members) > 0){
             return $res->Members[0];
         }
         return null;
