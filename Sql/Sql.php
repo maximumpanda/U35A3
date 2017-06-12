@@ -199,6 +199,7 @@ QUERY;
 
     public static function BuildJoinStatementFromModel(SqlObject $model, $where =''){
         $selection = self::GetJoinSelectionFromModel($model);
+        $tables = self::GetUniqueTablesInModel($model);
         Helper::PrintArray($selection);
         Helper::PrintArray($model);
     }
@@ -217,5 +218,21 @@ QUERY;
         }
         $selection = substr($selection, 0, strlen($selection)-2);
         return $selection;
+    }
+
+    public static function GetUniqueTablesInModel(SqlObject $model){
+        $tables = [];
+        foreach ($model->Fields as $field){
+            if ($field->KeyType == 2){
+                $tables += self::GetUniqueTablesInModel($field->ForeignTable);
+            }
+            else if (isset($tables, $field->TableName) !== false){
+                continue;
+            }
+            else{
+                $tables[$field->TableName] = 1;
+            }
+        }
+        return $tables;
     }
 }
