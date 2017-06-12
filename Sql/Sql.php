@@ -89,7 +89,7 @@ QUERY;
             if ($res = self::$_dbConnection->query($sql)) {
                 if ($model == null) $model = self::GenerateModelFromResult($res);
                 while ($row = $res->fetch_row()) {
-                    $object = $model->Clone();
+                    $object = new SqlObject();
                     $keys = array_keys($model->Fields);
                     Helper::PrintArray($keys);
                     foreach ($row as $key => $value) {
