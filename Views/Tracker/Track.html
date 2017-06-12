@@ -7,12 +7,14 @@
     <br>
     <?php if (Session::$Model !== null):?>
     <table>
+        <?php foreach (Session::$Model->Fields as $key=>$value):?>
         <tr>
-            <?php foreach (Session::$Model->Fields as $key=>$value):?>
+
             <td><?=Helper::SplitPascalCase($key)?></td>
             <td><?=$value->Value?></td>
-            <?php endforeach?>
+
         </tr>
+        <?php endforeach?>
     </table>
     <?php else :?>
 
