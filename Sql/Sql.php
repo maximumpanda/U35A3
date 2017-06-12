@@ -200,7 +200,7 @@ QUERY;
         if ($includeDefaultFields){
             foreach ($model->Fields as $value){
                 if ($value->KeyType == 2) continue;
-                $selection .= $value->TableName.'.'.$value->Name;
+                $selection .= $value->TableName.'.'.$value->Name . ', ';
             }
         }
         foreach ($tables as $key=>$value){
