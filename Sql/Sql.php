@@ -153,7 +153,8 @@ QUERY;
         $query = self::BuildJoinStatement($model->Fields[$field]->ForeignTable, $where);
         Helper::Print($query);
         $res = self::Query($query);
-        return $res;
+        unset($res['Id']);
+        return implode(', ', $res);
     }
 
     public static function BuildJoinStatement(SqlObject $model, $where = ''){
