@@ -21,7 +21,7 @@ class LoginController implements IController
 
     public static function PostIndex(){
         $query = 'Select DISTINCT Id From Authentications Where Email LIKE ' . strtoupper(Sql::ParametrizeValue('%'. $_POST['UserName'].'%')) .
-            ' And PasswordHash = ' . Sql::ParametrizeValue($_POST['Password']);
+            ' And Binary PasswordHash = ' . Sql::ParametrizeValue($_POST['Password']);
         Helper::Print($query);
         exit();
         $res = Sql::Query($query);
