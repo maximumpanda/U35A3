@@ -6,15 +6,15 @@
                     <td><?=$element->Name?></td>
                     <?php if ($element->InputType != 'select' && $element->InputType != 'checkbox'):?>
                         <td>
-                            <input type="<?=$element->InputType?>" name="<?=$element->Name?>"
+                            <input DISABLED type="<?=$element->InputType?>" name="<?=$element->Name?>"
                                    maxlength="<?=$element->MaxLength?>" value="<?=$element->DefaultValue?>"
                             >
                         </td>
                     <?php endif?>
                     <?php if ($element->InputType == 'checkbox'):?>
                         <td>
-                            <input type="hidden" name="<?=$element->Name?>" value="0">
-                            <input type="<?=$element->InputType?>" name="<?=$element->Name?>"
+                            <input DISABLED type="hidden" name="<?=$element->Name?>" value="0">
+                            <input DISABLED type="<?=$element->InputType?>" name="<?=$element->Name?>"
                                 <?= $element->DefaultValue ==1 ? "checked" : ""?> value="1"
                         </td>
                     <?php endif?>
