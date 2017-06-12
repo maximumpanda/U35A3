@@ -5,10 +5,7 @@
     <br>
     <br>
     <br>
-    <div class="Message">
-        <?=Session::$Model['Status']?>
-    </div>
-    <?php if (isset(Session::$Model)):?>
+    <?php if (Session::$Model !== null):?>
     <table>
         <tr>
             <?foreach (Session::$Model->Fields as $key=>$value):?>
