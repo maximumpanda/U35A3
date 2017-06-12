@@ -167,7 +167,7 @@ QUERY;
 
     public static function BuildJoinStatement(SqlObject $model, $where = ''){
         $tables = self::GetPrimaryAndForeignKeyPairs($model);
-        $selection = self::GetJoinSelection($tables, false, $model);
+        $selection = self::GetJoinSelection($tables, true, $model);
         $originTable = reset($model->Fields)->TableName;
         $keys = array_keys($tables);
         $query = 'select '. $selection .' from ' . $originTable . ' ';
