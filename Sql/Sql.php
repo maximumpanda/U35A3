@@ -91,8 +91,6 @@ QUERY;
                 while ($row = $res->fetch_row()) {
                     $object = $model->Clone();
                     $keys = array_keys($model->Fields);
-                    Helper::Print('Keys');
-                    Helper::PrintArray($keys);
                     foreach ($row as $key => $value) {
                         $object->Fields[$keys[$key]]->Value = $value;
                     }
@@ -170,8 +168,6 @@ QUERY;
 
     public static function BuildJoinStatement(SqlObject $model, $where = ''){
         $tables = self::GetPrimaryAndForeignKeyPairs($model);
-        Helper::PrintArray($tables);
-        Helper::PrintArray($model);
         $selection = self::GetJoinSelection($tables, true, $model);
         $originTable = reset($model->Fields)->TableName;
         $keys = array_keys($tables);
@@ -181,7 +177,6 @@ QUERY;
             $query .= 'Join ' . $curKey . ' On ' . $curKey.'.'.$tables[$curKey]['pk']->Name . " = ". $tables[$curKey]['fk']->TableName.'.'.$tables[$curKey]['fk']->Name. ' ';
         }
         $query .= 'Where ' . $originTable.'.'.$tables[$originTable]['pk']->Name.'='. self::ParametrizeValue($where);
-        Helper::Print($query);
         return $query;
     }
 
