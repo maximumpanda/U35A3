@@ -92,9 +92,6 @@ QUERY;
                 Helper::PrintArray($keys);
                 while ($row = $res->fetch_row()) {
                     $object = $model->Clone();
-
-                    Helper::PrintArray($row);
-
                     foreach ($row as $key => $value) {
                         $object->Fields[$keys[$key]]->Value = $value;
                     }
