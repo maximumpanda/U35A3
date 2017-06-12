@@ -154,7 +154,7 @@ QUERY;
         Helper::Print($query);
         $res = self::Query($query);
         unset($res['Id']);
-        return implode(', ', $res);
+        return implode(', ', $res->Members);
     }
 
     public static function BuildJoinStatement(SqlObject $model, $where = ''){
