@@ -17,12 +17,12 @@ class SqlObject
     }
 
     public function AddField(SqlType $field){
-        if (isset($this->Fields[$field->Name]))
+        if (isset($this->Fields[$field->Alias]))
         {
-            $this->Fields[$field->TableName.'.'.$field->Name] = $field;
+            $this->Fields[$field->TableName.'.'.$field->Alias] = $field;
         }
         else{
-            $this->Fields[$field->Name] = $field;
+            $this->Fields[$field->Alias] = $field;
         }
 
     }
