@@ -165,6 +165,7 @@ QUERY;
     public static function BuildJoinStatement(SqlObject $model, $where = ''){
         $tables = self::GetPrimaryAndForeignKeyPairs($model);
         Helper::PrintArray($tables);
+        Helper::PrintArray($model);
         $selection = self::GetJoinSelection($tables);
         $originTable = reset($model->Fields)->TableName;
         $keys = array_keys($tables);
