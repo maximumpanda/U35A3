@@ -168,7 +168,7 @@ QUERY;
         $query = 'select '. $selection .' from ' . reset($model->Fields)->TableName . ' ';
         for ($x = 1; $x < count($keys); $x++){
             $curKey = $keys[$x];
-            $query .= 'Join ' . $curKey . ' On ' . $curKey.'.'.$tables[$curKey]['pk']->Name . " = ". $tables[$curKey]['fk']->TableName.'.'.$tables[$curKey]['fk']->Name. ' ';
+            $query .= 'Left Join ' . $curKey . ' On ' . $curKey.'.'.$tables[$curKey]['pk']->Name . " = ". $tables[$curKey]['fk']->TableName.'.'.$tables[$curKey]['fk']->Name. ' ';
         }
         $query .= 'Where ' . $tables[$keys[0]]['pk']->TableName.'.'.$tables[$keys[0]]['pk']->Name.'='. self::ParametrizeValue($where);
         Helper::Print($query);
