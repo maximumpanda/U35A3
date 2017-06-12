@@ -89,9 +89,9 @@ QUERY;
             if ($res = self::$_dbConnection->query($sql)) {
                 if ($model == null) $model = self::GenerateModelFromResult($res);
                 while ($row = $res->fetch_row()) {
-                    Helper::Print("ROW");
-                    Helper::PrintArray($row);
                     $object = $model->Clone();
+                    $keys = array_keys($object->Fields);
+                    Helper::PrintArray($keys);
                     foreach ($row as $key => $value) {
                         $object->Fields[$key]->Value = $value;
                     }
