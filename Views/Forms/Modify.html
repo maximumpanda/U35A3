@@ -4,21 +4,21 @@
             <?php foreach (Session::$Model->Elements as $element):?>
                 <tr class="<?=$element->Disabled ? "Hidden" : ""?>">
                     <td><?=$element->Name?></td>
-                    <?php if ($element->InputType !== 'select' && $element->InputType !== 'checkbox'):?>
+                    <?php if ($element->InputType != 'select' && $element->InputType != 'checkbox'):?>
                         <td>
                             <input type="<?=$element->InputType?>" name="<?=$element->Name?>"
                                    maxlength="<?=$element->MaxLength?>" value="<?=$element->DefaultValue?>"
                             >
                         </td>
                     <?php endif?>
-                    <?php if ($element->InputType === 'checkbox'):?>
+                    <?php if ($element->InputType == 'checkbox'):?>
                         <td>
                             <input type="<?=$element->InputType?>" name="<?=$element->Name?>"
-                                <?= $element->DefaultValue === 1 ? "Checked" : "" ?>
+                                <?= $element->DefaultValue == 1 ? "Checked" : "" ?>
                             >
                         </td>
                     <?php endif?>
-                    <?php if ($element->InputType === 'select'):?>
+                    <?php if ($element->InputType == 'select'):?>
                         <td>
                             <select name="<?=$element->Name?>">
                                 <?php foreach ($element->Values as $key => $value):?>
