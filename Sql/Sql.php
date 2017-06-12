@@ -91,6 +91,7 @@ QUERY;
                 while ($row = $res->fetch_row()) {
                     $object = new SqlObject();
                     $keys = array_keys($model->Fields);
+                    Helper::Print('Keys');
                     Helper::PrintArray($keys);
                     foreach ($row as $key => $value) {
                         $object->Fields[$keys[$key]]->Value = $value;
