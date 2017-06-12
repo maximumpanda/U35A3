@@ -199,44 +199,4 @@ QUERY;
         $selection = substr($selection, 0, strlen($selection)-2);
         return $selection;
     }
-
-    public static function BuildJoinStatementFromModel(SqlObject $model, $where =''){
-        $selection = self::GetJoinSelectionFromModel($model);
-        $tables = self::GetUniqueTablesInModel($model);
-        Helper::PrintArray($tables);
-        Helper::PrintArray($selection);
-        Helper::PrintArray($model);
-    }
-
-    public static function GetJoinSelectionFromModel(SqlObject $model){
-        $selection ='';
-        foreach ($model->Fields as $key=>$value){
-            if ($value->KeyType == 2){
-                foreach ($value->ForeignTable->Fields as $field){
-                    $selection .= $field->TableName.'.'.$field->Name . ' AS ' . $field->TableName . ', ';
-                }
-            }
-            else {
-                $selection .= $value->TableName.'.'.$value->Name. ' AS ' . $value->Name . ', ';
-            }
-        }
-        $selection = substr($selection, 0, strlen($selection)-2);
-        return $selection;
-    }
-
-    public static function GetUniqueTablesInModel(SqlObject $model){
-        $tables = [];
-        foreach ($model->Fields as $field){
-            if ($field->KeyType == 2){
-                $tables += self::GetUniqueTablesInModel($field->ForeignTable);
-            }
-            else if (isset($tables, $field->TableName) !== false){
-                continue;
-            }
-            else{
-                $tables[$field->TableName] = 1;
-            }
-        }
-        return $tables;
-    }
 }
