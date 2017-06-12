@@ -8,10 +8,10 @@
     <?php if (Session::$Model !== null):?>
     <table>
         <tr>
-            <?foreach (Session::$Model->Fields as $key=>$value):?>
+            <?php foreach (Session::$Model->Fields as $key=>$value):?>
             <td><?=Helper::SplitPascalCase($key)?></td>
             <td><?=$value->Value?></td>
-            <?endforeach?>
+            <?php endforeach?>
         </tr>
     </table>
     <?php else :?>
