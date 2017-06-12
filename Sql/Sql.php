@@ -88,7 +88,7 @@ QUERY;
         try {
             if ($res = self::$_dbConnection->query($sql)) {
                 if ($model == null) $model = self::GenerateModelFromResult($res);
-                while ($row = $res->fetch()) {
+                while ($row = $res->fetch_row()) {
                     Helper::Print("ROW");
                     Helper::PrintArray($row);
                     $object = $model->Clone();
