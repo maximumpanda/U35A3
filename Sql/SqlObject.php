@@ -58,9 +58,11 @@ class SqlObject
         $summary = [];
         $values = [];
         foreach ($this->Fields as $field){
-            if ($field->KeyType == 1) continue;
             if ($field->KeyType == 2){
                 array_push($values, Sql::GetLinkedValues($field->TableName, $field->Value));
+            }
+            else{
+                $values += $field->Value;
             }
         }
         $summary[$this->Fields['Id']->Value] = implode(", ", $values);
