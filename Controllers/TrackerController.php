@@ -13,13 +13,9 @@ class TrackerController implements IController
     }
 
     public static function GetTrack(){
-        $model = Sql::GenerateModel("Packages");
-        unset($model->Fields['Client']);
-        unset($model->Fields['Handler']);
-        unset($model->Fields['Recipient']);
-        unset($model->Fields['Address']);
-        unset($model->Fields['Status']->ForeignTable->Fields['Id']);
-        $query = Sql::BuildJoinStatementFromModel($model, Session::$Bag['PackageId']);
+        $query = "Select id, DeliveryTime, Weight, Status.Status AS Status From Packages ".
+                 "LEFT JOIN Status On Packages.Status = Status.Id ".
+                 "where Id =" . Session::$Bag['PackageId'];
         Helper::PrintArray($query);
         Session::$Bag['Status'] = "Success";
     }
