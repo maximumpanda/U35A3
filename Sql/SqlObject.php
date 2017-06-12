@@ -62,7 +62,7 @@ class SqlObject
                 array_push($values, Sql::GetLinkedValues($field->TableName, $field->Value));
             }
             else{
-                $values += $field->Value;
+                array_push($values, $field->Value);
             }
         }
         $summary[$this->Fields['Id']->Value] = implode(", ", $values);
