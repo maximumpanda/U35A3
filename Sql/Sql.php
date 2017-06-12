@@ -151,7 +151,6 @@ QUERY;
         $model = self::GenerateModel($table, true);
         /** @var  $res SqlCollection */
         $query = self::BuildJoinStatement($model->Fields[$field]->ForeignTable, $where);
-        Helper::Print($query);
         $res = self::Query($query);
         $result = '';
         foreach ($res->Members as $key=>$value){
