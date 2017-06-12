@@ -134,9 +134,6 @@ QUERY;
     private static function GenerateModelFromResult($array){
         $model = new SqlObject();
         while ($result = mysqli_fetch_field($array)){
-            Helper::Print("WHILE");
-            Helper::PrintArray($result);
-            Helper::Print("ENDWHILE");
             $newType = SqlType::NewFromFetch($result);
             $model->AddField($newType);
         }
