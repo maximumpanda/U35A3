@@ -44,8 +44,6 @@ class FormsController implements IController
     public static function PostModify(){
         $id = -1;
         $values = [];
-        Helper::PrintArray($_POST);
-        exit();
         foreach ($_POST as $key => $value){
             if ($key == "Id"){
                 $id = $value;
