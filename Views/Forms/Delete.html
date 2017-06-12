@@ -6,7 +6,7 @@
                     <td><?=$element->Name?></td>
                     <?php if ($element->InputType != 'select' && $element->InputType != 'checkbox'):?>
                         <td>
-                            <input DISABLED type="<?=$element->InputType?>" name="<?=$element->Name?>"
+                            <input type="<?=$element->InputType?>" name="<?=$element->Name?>"
                                    maxlength="<?=$element->MaxLength?>" value="<?=$element->DefaultValue?>"
                             >
                         </td>
