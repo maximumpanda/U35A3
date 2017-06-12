@@ -44,6 +44,8 @@ class FormsController implements IController
     public static function PostModify(){
         $id = -1;
         $values = [];
+        Helper::PrintArray($_POST);
+        exit();
         foreach ($_POST as $key => $value){
             if ($key == "Id"){
                 $id = $value;
@@ -83,7 +85,6 @@ class FormsController implements IController
 
     public static function PostAdd(){
         unset($_POST['Id']);
-        Helper::PrintArray($_POST);
         $query = 'Insert into ' . Session::$Bag['Table'] . ' (' . implode(", " , array_keys($_POST)) . ') Values (';
         foreach ($_POST as $value){
             $query .= Sql::ParametrizeValue($value) . ', ';
@@ -94,8 +95,6 @@ class FormsController implements IController
         if ($res)
             Router::Redirect('/Forms/Result?Action=Add&Table=' . Session::$Bag['Table'] .'&Status=Success');
         else {
-            Helper::PrintArray($query);
-            exit();
             Router::Redirect('/Forms/Result?Action=Add&Table=' . Session::$Bag['Table'] . '&Status=Failure');
         }
     }
