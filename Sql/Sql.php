@@ -149,12 +149,18 @@ QUERY;
 
     public static function GetLinkedValues($table, $field, $where = ''){
         $model = self::GenerateModel($table, true);
-        /** @var  $results SqlCollection */
+        /** @var  $res SqlCollection */
         $query = self::BuildJoinStatement($model->Fields[$field]->ForeignTable, $where);
         Helper::Print($query);
         $res = self::Query($query);
-        unset($res['Id']);
-        return implode(', ', $res->Members);
+        $result = '';
+        foreach ($res->Members as $key=>$value){
+            foreach ($value->Fields as $field){
+                $result .= $field->Value . ', ';
+            }
+        }
+        $result = substr($result, 0, strlen($result)-2);
+        return $result;
     }
 
     public static function BuildJoinStatement(SqlObject $model, $where = ''){
