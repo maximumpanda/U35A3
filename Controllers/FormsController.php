@@ -108,6 +108,8 @@ class FormsController implements IController
     }
 
     public static function PostDelete(){
+        Helper::PrintArray($_POST);
+        exit();
         $query = 'Delete From ' . Session::$Bag['Table'] . ' Where Id = ' . Sql::ParametrizeValue($_POST['Id']);
         $res = Sql::NonQuery($query);
         if ($res)
