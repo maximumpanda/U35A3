@@ -166,7 +166,7 @@ QUERY;
         $tables = self::GetPrimaryAndForeignKeyPairs($model);
         Helper::PrintArray($tables);
         Helper::PrintArray($model);
-        $selection = self::GetJoinSelection($tables);
+        $selection = self::GetJoinSelection($tables, true, $model);
         $originTable = reset($model->Fields)->TableName;
         $keys = array_keys($tables);
         $query = 'select '. $selection .' from ' . $originTable . ' ';
@@ -195,8 +195,14 @@ QUERY;
         return $tables;
     }
 
-    private static function GetJoinSelection($tables){
+    private static function GetJoinSelection($tables, $includeDefaultFields = false, SqlObject $model = null){
         $selection = '';
+        if ($includeDefaultFields){
+            foreach ($model->Fields as $value){
+                if ($value->KeyType == 2) continue;
+                $selection .= $value->TableName.'.'.$value->Name;
+            }
+        }
         foreach ($tables as $key=>$value){
             /** @var  $field SqlType */
             if (isset($value['fk'])) {
