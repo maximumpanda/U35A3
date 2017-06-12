@@ -44,6 +44,7 @@ class SqlObject
         }
         else{
             $res = Sql::GetAllFromTable(reset($this->Fields)->TableName);
+            Helper::PrintArray($res);
             return $res;
         }
     }
