@@ -39,7 +39,6 @@ class FormsController implements IController
             $model->Fields[$key]->Value = $res->Members[0]->Fields[$key]->Value;
         }
         $form = Form::NewFromModel($model);
-        Helper::PrintArray($form);
         return $form;
     }
     public static function PostModify(){
