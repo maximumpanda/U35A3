@@ -199,5 +199,6 @@ QUERY;
 
     public static function BuildJoinStatementFromModel(SqlObject $model, $where =''){
         $tables = self::GetPrimaryAndForeignKeyPairs($model);
+        Helper::PrintArray($tables);
     }
 }
