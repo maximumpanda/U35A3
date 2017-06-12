@@ -83,6 +83,7 @@ class FormsController implements IController
 
     public static function PostAdd(){
         unset($_POST['Id']);
+        Helper::PrintArray($_POST);
         $query = 'Insert into ' . Session::$Bag['Table'] . ' (' . implode(", " , array_keys($_POST)) . ') Values (';
         foreach ($_POST as $value){
             $query .= Sql::ParametrizeValue($value) . ', ';
