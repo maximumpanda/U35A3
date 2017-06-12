@@ -172,7 +172,6 @@ QUERY;
         }
         $query .= 'Where ' . $tables[$keys[0]]['pk']->TableName.'.'.$tables[$keys[0]]['pk']->Name.'='. self::ParametrizeValue($where);
         Helper::Print($query);
-        exit();
         return $query;
     }
 
