@@ -8,6 +8,18 @@
     <div class="Message">
         <?=Session::$Model['Status']?>
     </div>
+    <?php if (isset(Session::$Model)):?>
+    <table>
+        <tr>
+            <?foreach (Session::$Model->Fields as $key=>$value):?>
+            <td><?=Helper::SplitPascalCase($key)?></td>
+            <td><?=$value->Value?></td>
+            <?endforeach?>
+        </tr>
+    </table>
+    <?php else :?>
+
+    <?php endif?>
     <div>
         <a class="Button" href="/Tracker/Index">Return</a>
     </div>

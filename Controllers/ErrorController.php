@@ -14,7 +14,7 @@ class ErrorController implements IController
         401 => "Unauthorized",
         403 => "Forbidden",
         404 => "Page Not Found",
-        405 => "MethodNotAllowed"
+        405 => "Method Not Allowed"
         ];
 
 

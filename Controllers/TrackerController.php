@@ -16,10 +16,11 @@ class TrackerController implements IController
         $query = "Select Packages.Id, DeliveryTime, Weight, Status.Status AS Status From Packages ".
                  "LEFT JOIN Status On Packages.Status = Status.Id ".
                  "where Packages.Id =" . Session::$Bag['PackageId'];
-        Helper::Print($query);
         $res = Sql::Query($query);
-        Helper::PrintArray($res);
-        Session::$Bag['Status'] = "Success";
+        if (count($res->Members) >= 0){
+            return $res->Members[0];
+        }
+        return null;
     }
 
 
