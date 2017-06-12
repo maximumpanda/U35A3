@@ -199,9 +199,11 @@ QUERY;
         $selection = '';
         foreach ($tables as $key=>$value){
             /** @var  $field SqlType */
-            foreach ($value['fk']->ForeignTable->Fields as $field ){
+            if (isset($value['fk'])) {
+                foreach ($value['fk']->ForeignTable->Fields as $field) {
                     if ($field->KeyType !== 0) continue;
-                    $selection .= $field->TableName.'.'.$field->Name. ', ';
+                    $selection .= $field->TableName . '.' . $field->Name . ', ';
+                }
             }
         }
         $selection = substr($selection, 0, strlen($selection)-2);
