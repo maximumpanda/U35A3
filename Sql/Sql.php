@@ -195,7 +195,7 @@ QUERY;
             /** @var  $field SqlType */
             foreach ($value['fk']->ForeignTable->Fields as $field ){
                     if ($field->KeyType !== 0) continue;
-                    $selection .= $field->TableName.'.'.$field->Name .' As '. $field->TableName. ', ';
+                    $selection .= $field->TableName.'.'.$field->Name .' As '. $field->Name. ', ';
             }
         }
         $selection = substr($selection, 0, strlen($selection)-2);
