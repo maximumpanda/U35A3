@@ -165,13 +165,14 @@ QUERY;
     public static function BuildJoinStatement(SqlObject $model, $where = ''){
         $tables = self::GetPrimaryAndForeignKeyPairs($model);
         $selection = self::GetJoinSelection($tables);
+        $originTable = reset($model->Fields)->TableName
         $keys = array_keys($tables);
-        $query = 'select '. $selection .' from ' . reset($model->Fields)->TableName . ' ';
+        $query = 'select '. $selection .' from ' . $originTable . ' ';
         for ($x = 1; $x < count($keys); $x++){
             $curKey = $keys[$x];
             $query .= 'Left Join ' . $curKey . ' On ' . $curKey.'.'.$tables[$curKey]['pk']->Name . " = ". $tables[$curKey]['fk']->TableName.'.'.$tables[$curKey]['fk']->Name. ' ';
         }
-        $query .= 'Where ' . $tables[$keys[0]]['pk']->TableName.'.'.$tables[$keys[0]]['pk']->Name.'='. self::ParametrizeValue($where);
+        $query .= 'Where ' . $originTable.'.'.$tables[$originTable['pk']->Name.'='. self::ParametrizeValue($where);
         Helper::Print($query);
         return $query;
     }
