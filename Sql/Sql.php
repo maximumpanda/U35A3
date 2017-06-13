@@ -98,7 +98,7 @@ QUERY;
                 }
             }
             else{
-                //throw new Exception(self::$_dbConnection->error);
+                throw new Exception(self::$_dbConnection->error);
             }
         }
         catch (Exception $e){
